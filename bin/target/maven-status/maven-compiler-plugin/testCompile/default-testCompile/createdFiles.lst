@@ -1,0 +1,6 @@
+com\creditcloud\jpa\unit_test\TestHttp.class
+com\creditcloud\jpa\unit_test\TestQRCode.class
+com\creditcloud\jpa\unit_test\LoanTest.class
+com\creditcloud\jpa\unit_test\TestCookie.class
+com\creditcloud\jpa\unit_test\TestDecode.class
+com\creditcloud\jpa\unit_test\UnitTestApplicationTests.class

@@ -1,0 +1,8 @@
+商品名称	productName
+成交数量	productNum
+成交单位	dealUnit
+成交单价	productPrice
+成交总价	productSum
+币制	productCurrency
+征免方式	productTax
+报关单编号 prerecordSn

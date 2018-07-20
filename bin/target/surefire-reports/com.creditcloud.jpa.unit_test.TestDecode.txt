@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.creditcloud.jpa.unit_test.TestDecode
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.064 sec <<< FAILURE! - in com.creditcloud.jpa.unit_test.TestDecode
+testRegex2(com.creditcloud.jpa.unit_test.TestDecode)  Time elapsed: 0.063 sec  <<< ERROR!
+java.lang.IllegalArgumentException: CalculateDays failed. End Date not allowed before start date.
+	at com.creditcloud.common.utils.HxbDaysUtil.calculateDays(HxbDaysUtil.java:41)
+	at com.creditcloud.jpa.unit_test.TestDecode.testRegex2(TestDecode.java:209)
+

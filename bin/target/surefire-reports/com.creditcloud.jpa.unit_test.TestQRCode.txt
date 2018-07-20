@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.creditcloud.jpa.unit_test.TestQRCode
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.051 sec <<< FAILURE! - in com.creditcloud.jpa.unit_test.TestQRCode
+testJsonToMap(com.creditcloud.jpa.unit_test.TestQRCode)  Time elapsed: 0.051 sec  <<< ERROR!
+java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 2 path $
+	at com.google.gson.stream.JsonReader.nextString(JsonReader.java:825)
+	at com.creditcloud.jpa.unit_test.TestQRCode.testJsonToMap(TestQRCode.java:127)
+
