@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @author MRB
  */
 public class HorseRace{
-    static final int FINISH_LINE = 75;
+     static final int FINISH_LINE = 75;
     private List<Horse> horses = new ArrayList<Horse>();
     private ExecutorService exec = Executors.newCachedThreadPool();
     private CyclicBarrier barrier;
@@ -56,7 +56,7 @@ public class HorseRace{
     }
     public static void main(String[] args) {
         int nHorses = 7;
-        int pause = 200;
+        int pause = 1;
         new HorseRace(nHorses, pause);
     }
 }

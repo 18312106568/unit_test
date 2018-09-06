@@ -1,6 +1,7 @@
 package com.creditcloud.jpa.unit_test;
 
 import com.creditcloud.jpa.unit_test.hello.QuoteClient;
+import com.creditcloud.jpa.unit_test.utils.SpringUtil;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,8 +11,9 @@ import org.springframework.context.annotation.Bean;
 public class UnitTestApplication {
 
 	public static void main(String[] args) {
-            
-            SpringApplication.run(UnitTestApplication.class, args);
+            System.out.println("============================>");
+            SpringUtil.setApplicationContext(
+                    SpringApplication.run(UnitTestApplication.class, args));
 	}
         /*
         @Bean

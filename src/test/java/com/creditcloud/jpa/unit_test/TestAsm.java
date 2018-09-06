@@ -7,7 +7,7 @@ package com.creditcloud.jpa.unit_test;
 
 import com.creditcloud.jpa.unit_test.loader.MyClassLoader;
 import com.creditcloud.jpa.unit_test.service.LoginService;
-import com.efushui.microservice.common.http.RetrofitAssociatedServiceClass;
+//import com.efushui.microservice.common.http.RetrofitAssociatedServiceClass;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,7 +25,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.springframework.util.ResourceUtils;
-import com.efushui.microservice.model.vo.ResultVO;
+//import com.efushui.microservice.model.vo.ResultVO;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.FieldVisitor;
 import retrofit2.Call;

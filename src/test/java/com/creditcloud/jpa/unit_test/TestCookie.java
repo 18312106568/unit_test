@@ -29,11 +29,13 @@ import okhttp3.Response;
 import org.springframework.util.ResourceUtils;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
+import javax.servlet.SessionTrackingMode;
+import org.apache.catalina.Globals;
 
 /**
  *
@@ -215,4 +217,9 @@ public class TestCookie {
         System.out.println(new Date(1515997891000L));
     }
     
+    
+    public void testConnectKey(){
+        
+        
+    }
 }

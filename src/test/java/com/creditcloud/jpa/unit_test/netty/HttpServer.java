@@ -32,16 +32,16 @@ public class HttpServer {
     }
 
     public static void start(int port) throws Exception {
-        ServerBootstrap b = new ServerBootstrap();
+        ServerBootstrap bootstap = new ServerBootstrap();
         NioEventLoopGroup group = new NioEventLoopGroup();
-        b.group(group)
+        bootstap.group(group)
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
-                    public void initChannel(SocketChannel ch)
+                    public void initChannel(SocketChannel channel)
                             throws Exception {
-                        System.out.println("initChannel ch:" +ch);
-                        ch.pipeline()
+                        System.out.println("initChannel ch:" +channel);
+                        channel.pipeline()
                                 .addLast("decoder", new HttpRequestDecoder())   // 1
                                 .addLast("encoder", new HttpResponseEncoder())  // 2
                                 .addLast("aggregator", new HttpObjectAggregator(512 * 1024))    // 3
@@ -51,6 +51,6 @@ public class HttpServer {
                 .option(ChannelOption.SO_BACKLOG, 128) // determining the number of connections queued
                 .childOption(ChannelOption.SO_KEEPALIVE, Boolean.TRUE);
 
-        b.bind(port).sync();
+        bootstap.bind(port).sync();
     }
 }

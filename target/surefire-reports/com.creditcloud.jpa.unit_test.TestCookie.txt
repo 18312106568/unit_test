@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.creditcloud.jpa.unit_test.TestCookie
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.699 sec - in com.creditcloud.jpa.unit_test.TestCookie

@@ -132,20 +132,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>com.efushui.microservice</groupId>
-            <artifactId>microserviceModel</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.efushui.microservice</groupId>
-            <artifactId>microservice-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-transport</artifactId>
             <version>4.1.24.Final</version>
@@ -166,13 +152,13 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.creditcloud.common</groupId>
             <artifactId>Common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
             <type>jar</type>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>net.minidev</groupId>
             <artifactId>asm</artifactId>
@@ -200,18 +186,32 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        
+         <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>1.7</version>
+        </dependency>
     </dependencies>
 
     <build>   
         <plugins>
-<!--            <plugin>  
+            <plugin>  
                 <groupId>org.apache.maven.plugins</groupId>  
                 <artifactId>maven-surefire-plugin</artifactId>  
                 <version>2.18.1</version>  
                 <configuration>  
-                    <skipTests>true</skipTests>  
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <argLine>-Xms10m</argLine>
+                    <argLine>-Xmx512m</argLine>
                 </configuration>  
-            </plugin>  -->
+            </plugin>  
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -227,7 +227,7 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
+<!--                <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
                     <generatePackage>com.creditcloud.jpa.unit_test.hello.wsdl</generatePackage>
                     <schemas>
@@ -235,7 +235,7 @@
                             <url>http://opentest.guanmaoyun.net/service/ServiceProviderFacade?wsdl</url>
                         </schema>
                     </schemas>
-                </configuration>
+                </configuration>-->
             </plugin>
         </plugins>
     </build>

@@ -149,7 +149,7 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
+<!--                <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
                     <generatePackage>com.creditcloud.jpa.unit_test.hello.wsdl</generatePackage>
                     <schemas>
@@ -157,7 +157,7 @@
                             <url>http://opentest.guanmaoyun.net/service/ServiceProviderFacade?wsdl</url>
                         </schema>
                     </schemas>
-                </configuration>
+                </configuration>-->
             </plugin>
         </plugins>
     </build>
