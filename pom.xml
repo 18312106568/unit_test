@@ -152,7 +152,7 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>com.creditcloud.common</groupId>
             <artifactId>Common</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -187,7 +187,7 @@
             <type>jar</type>
         </dependency>
         
-         <dependency>
+        <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
             <version>2.7.3</version>
@@ -197,6 +197,29 @@
             <groupId>commons-dbutils</groupId>
             <artifactId>commons-dbutils</artifactId>
             <version>1.7</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>5.2.0</version>
+        </dependency> 
+         <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.10.0</version>
+            <scope>test</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
 
@@ -227,7 +250,7 @@
                         </goals>
                     </execution>
                 </executions>
-<!--                <configuration>
+                <!--                <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
                     <generatePackage>com.creditcloud.jpa.unit_test.hello.wsdl</generatePackage>
                     <schemas>

@@ -18,14 +18,15 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
-
+import org.junit.Test;
 /**
  * Created by RoyDeng on 17/7/20.
  */
 public class HttpServer {
 
 
-    public static void main(String[] args) throws Exception {
+    
+    public static void main(String args[]) throws Exception {
         int port = 4702;
         System.out.println("程序开始=====>>");
         start(port);

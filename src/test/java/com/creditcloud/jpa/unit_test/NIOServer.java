@@ -34,7 +34,6 @@ public class NIOServer {
         serverSocketChannel.configureBlocking(false);
         serverSocketChannel.bind(new InetSocketAddress(4701));
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-
         while (true) {
             if (selector.selectNow() < 0) {
                 continue;

@@ -1,10 +1,12 @@
 com\creditcloud\jpa\unit_test\model\PtuiCheckVK.class
 com\creditcloud\jpa\unit_test\model\enums\ClassType.class
+com\creditcloud\jpa\unit_test\hadoop\WordCount$WordCountMapper.class
 com\creditcloud\jpa\unit_test\service\LoginService.class
 com\creditcloud\jpa\unit_test\controller\EncryptController.class
 com\creditcloud\jpa\unit_test\entity\QQLogin.class
 com\creditcloud\jpa\unit_test\vo\tp\CrackVo.class
 com\creditcloud\jpa\unit_test\utils\LoginUtil.class
+com\creditcloud\jpa\unit_test\hadoop\WordCount.class
 com\creditcloud\jpa\unit_test\UnitTestApplication.class
 com\creditcloud\jpa\unit_test\hello\QuoteClient.class
 com\creditcloud\jpa\unit_test\configuration\OkHttpConfiguration.class
@@ -17,6 +19,7 @@ com\creditcloud\jpa\unit_test\entity\TbTeacher.class
 com\creditcloud\jpa\unit_test\utils\NetConfig.class
 com\creditcloud\jpa\unit_test\vo\ResponseForm.class
 com\creditcloud\jpa\unit_test\proxy\dynamic\CustomInvocationHandler.class
+com\creditcloud\jpa\unit_test\utils\SpringUtil.class
 com\creditcloud\jpa\unit_test\driver\ExproderDriver.class
 com\creditcloud\jpa\unit_test\entity\Product.class
 com\creditcloud\jpa\unit_test\entity\base\EntityId.class
@@ -32,5 +35,6 @@ com\creditcloud\jpa\unit_test\repository\TbTeacherRepository.class
 com\creditcloud\jpa\unit_test\repository\ProductRepository.class
 com\creditcloud\jpa\unit_test\proxy\dynamic\HelloWorldImpl.class
 com\creditcloud\jpa\unit_test\configuration\QuoteConfiguration.class
+com\creditcloud\jpa\unit_test\hadoop\WordCount$WordCountReducer.class
 com\creditcloud\jpa\unit_test\proxy\Ship.class
 com\creditcloud\jpa\unit_test\repository\QQLoginRepository.class

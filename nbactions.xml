@@ -22,7 +22,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-XX:+PrintStringTableStatistics -Xms10m -Xmx16m -Dfile.encoding=UTF-8 -classpath %classpath ${packageClassName}</exec.args>
+                <exec.args>-XX:+PrintStringTableStatistics -Dfile.encoding=UTF-8 -classpath %classpath ${packageClassName}</exec.args>
                 <exec.executable>java</exec.executable>
                 <skipTests>true</skipTests>
                 <exec.workingdir></exec.workingdir>
@@ -38,7 +38,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -XX:+PrintStringTableStatistics -Xms10m -Xmx16m -Dfile.encoding=UTF-8 -classpath %classpath ${packageClassName}</exec.args>
+                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -XX:+PrintStringTableStatistics -Dfile.encoding=UTF-8 -classpath %classpath ${packageClassName}</exec.args>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
                 <exec.workingdir></exec.workingdir>
@@ -54,7 +54,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-XX:+PrintStringTableStatistics -Xms10m -Xmx16m -Dfile.encoding=UTF-8 -classpath %classpath ${packageClassName}</exec.args>
+                <exec.args>-XX:+PrintStringTableStatistics -Dfile.encoding=UTF-8 -classpath %classpath ${packageClassName}</exec.args>
                 <exec.executable>java</exec.executable>
                 <exec.workingdir></exec.workingdir>
             </properties>
@@ -117,7 +117,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-XX:+PrintStringTableStatistics -Dfile.encoding=UTF-8 -classpath %classpath ${packageClassName}</exec.args>
+                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -XX:+PrintStringTableStatistics -Dfile.encoding=UTF-8 -classpath %classpath ${packageClassName}</exec.args>
                 <exec.executable>java</exec.executable>
                 <exec.classpathScope>${classPathScope}</exec.classpathScope>
                 <jpda.listen>true</jpda.listen>

@@ -2,8 +2,6 @@ package com.creditcloud.jpa.unit_test;
 
 import java.io.*;
 import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
@@ -15,7 +13,7 @@ public class HttpServer {
         try {
 
             ServerSocket server = new ServerSocket(4700);
-            System.out.println(new String("程序运行开始".getBytes(),"GBK"));
+            System.out.println("程序运行开始");
             //创建一个ServerSocket在端口4700监听客户请求
             while (true) {
                 Socket socket = server.accept();
@@ -62,3 +60,4 @@ public class HttpServer {
     }
 
 }
+
