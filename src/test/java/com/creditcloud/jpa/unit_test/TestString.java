@@ -5,7 +5,9 @@
  */
 package com.creditcloud.jpa.unit_test;
 
+import java.io.FileNotFoundException;
 import org.junit.Test;
+import org.springframework.util.ResourceUtils;
 
 /**
  *
@@ -34,5 +36,11 @@ public class TestString {
         System.out.println(s1 == s2);    // true
         Thread.sleep(3000);
         
+    }
+    
+    @Test
+    public void testFilePath() throws FileNotFoundException{
+        System.out.println(this.getClass().getResource("").getPath());
+        //System.out.println(ResourceUtils.getURL("classpath"));
     }
 }

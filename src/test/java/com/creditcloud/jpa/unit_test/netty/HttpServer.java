@@ -10,6 +10,7 @@ package com.creditcloud.jpa.unit_test.netty;
  * @author MRB
  */
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -19,6 +20,7 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import org.junit.Test;
+import io.netty.channel.nio.NioEventLoop;
 /**
  * Created by RoyDeng on 17/7/20.
  */
@@ -35,6 +37,7 @@ public class HttpServer {
     public static void start(int port) throws Exception {
         ServerBootstrap bootstap = new ServerBootstrap();
         NioEventLoopGroup group = new NioEventLoopGroup();
+
         bootstap.group(group)
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -52,6 +55,7 @@ public class HttpServer {
                 .option(ChannelOption.SO_BACKLOG, 128) // determining the number of connections queued
                 .childOption(ChannelOption.SO_KEEPALIVE, Boolean.TRUE);
 
-        bootstap.bind(port).sync();
+        ChannelFuture future = bootstap.bind(port);
+        future.sync();
     }
 }

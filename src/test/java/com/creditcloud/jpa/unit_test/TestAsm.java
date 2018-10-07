@@ -28,7 +28,7 @@ import org.springframework.util.ResourceUtils;
 //import com.efushui.microservice.model.vo.ResultVO;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.FieldVisitor;
-import retrofit2.Call;
+//import retrofit2.Call;
 
 /**
  *
@@ -137,32 +137,32 @@ public class TestAsm {
         
     }
     
-    @Test
-    public void loanClass() throws IOException{
-        File file = ResourceUtils.getFile("classpath:CertificateClient.class");
-        
-        InputStream in = new FileInputStream(file);
-        
-         byte[] result = new byte[1024];  
-          
-        int count = in.read(result);  
-        // 使用自定义的类加载器将 byte字节码数组转换为对应的class对象  
-        MyClassLoader loader = new MyClassLoader();  
-        Class clazz = loader.defineMyClass( result, 0, count);  
-         RetrofitAssociatedServiceClass clzAnn =(RetrofitAssociatedServiceClass) 
-                 clazz.getAnnotation(RetrofitAssociatedServiceClass.class);
-         System.out.println(clzAnn);
-         
-        Method[] methods = clazz.getDeclaredMethods();
-        for(Method method: methods){
-            Annotation[] anns = method.getAnnotations();
-            System.out.println(method.getName());
-            for(Annotation ann : anns){
-                System.out.println(ann);
-            }
-        }
-       
-    }
+//    @Test
+//    public void loanClass() throws IOException{
+//        File file = ResourceUtils.getFile("classpath:CertificateClient.class");
+//        
+//        InputStream in = new FileInputStream(file);
+//        
+//         byte[] result = new byte[1024];  
+//          
+//        int count = in.read(result);  
+//        // 使用自定义的类加载器将 byte字节码数组转换为对应的class对象  
+//        MyClassLoader loader = new MyClassLoader();  
+//        Class clazz = loader.defineMyClass( result, 0, count);  
+//         RetrofitAssociatedServiceClass clzAnn =(RetrofitAssociatedServiceClass) 
+//                 clazz.getAnnotation(RetrofitAssociatedServiceClass.class);
+//         System.out.println(clzAnn);
+//         
+//        Method[] methods = clazz.getDeclaredMethods();
+//        for(Method method: methods){
+//            Annotation[] anns = method.getAnnotations();
+//            System.out.println(method.getName());
+//            for(Annotation ann : anns){
+//                System.out.println(ann);
+//            }
+//        }
+//       
+//    }
     
     @Test
     public void testAddChar(){

@@ -5,7 +5,7 @@
  */
 package com.creditcloud.jpa.unit_test;
 
-import com.creditcloud.common.utils.AesEncryptUtil;
+//import com.creditcloud.common.utils.AesEncryptUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -19,7 +19,7 @@ public class TestEncrypt {
     public void testAES() throws Exception{
         String salt = "UzFlM3A1IDAyMDEwLDAgMDIwMDIxMTcgMTA6MzMgQU0=";
         String password = "qwerty";
-        System.out.println(AesEncryptUtil.desEncrypt("m6wjssdiq88xbAr0kvIhJA=="));
+//        System.out.println(AesEncryptUtil.desEncrypt("m6wjssdiq88xbAr0kvIhJA=="));
 //        System.out.println(AesEncryptUtil.encrypt(
 //                AesEncryptUtil.desEncrypt("m6wjssdiq88xbAr0kvIhJA==")));
         String passphrase = getPassphrase(salt,password);

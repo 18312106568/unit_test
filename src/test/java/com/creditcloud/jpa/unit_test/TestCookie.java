@@ -11,6 +11,8 @@ import com.creditcloud.jpa.unit_test.utils.NetConfig;
 import com.creditcloud.jpa.unit_test.vo.BaseResult;
 import com.creditcloud.jpa.unit_test.vo.tp.CrackVo;
 import com.google.gson.Gson;
+import io.netty.util.NettyRuntime;
+import io.netty.util.internal.SystemPropertyUtil;
 import org.junit.Test;
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,6 +34,7 @@ import java.util.Date;
 //import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 import javax.servlet.SessionTrackingMode;
@@ -221,5 +224,17 @@ public class TestCookie {
     public void testConnectKey(){
         
         
+    }
+    
+    @Test
+    public void testDefaultEventLoopThreads(){
+        int DEFAULT_EVENT_LOOP_THREADS = Math.max(1, SystemPropertyUtil.getInt(
+                "io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));
+        System.out.println( SystemPropertyUtil.getInt("io.netty.eventLoopThreads",0));
+        System.out.println(DEFAULT_EVENT_LOOP_THREADS);
+        System.out.println( Runtime.getRuntime().availableProcessors());
+        AtomicInteger aint = new AtomicInteger(10);
+        aint.compareAndSet(10, 11);
+        System.out.println(aint);
     }
 }

@@ -5,8 +5,8 @@
  */
 package com.creditcloud.jpa.unit_test;
 
-import com.creditcloud.common.security.SecurityUtils;
-import com.creditcloud.common.utils.HxbDaysUtil;
+//import com.creditcloud.common.security.SecurityUtils;
+//import com.creditcloud.common.utils.HxbDaysUtil;
 import com.creditcloud.jpa.unit_test.utils.ConverUtil;
 import com.creditcloud.jpa.unit_test.vo.DeclarationForm;
 import com.creditcloud.jpa.unit_test.vo.ResponseForm;
@@ -76,16 +76,16 @@ public class TestDecode {
 //        }
 //    }
   
-    @Test
-    public  void testCrypto()  {  
-        try {
-             String mobile = SecurityUtils.getSalt("18312106568");
-            System.out.println(mobile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-     
-    }  
+//    @Test
+//    public  void testCrypto()  {  
+//        try {
+//             String mobile = SecurityUtils.getSalt("18312106568");
+//            System.out.println(mobile);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//     
+//    }  
       
     /** 
      * aes解密 
@@ -221,13 +221,13 @@ public class TestDecode {
         System.out.println("1[2]3,".replaceAll("[12\\[\\],]", ""));
     }
     
-    @Test
-    public void testRegex2() throws ParseException{
-        //System.out.println("1[2]31,".replace("[12\\[\\],]", ""));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
-        System.out.println( HxbDaysUtil.calculateDays(sdf.parse("20150514 23:00:00"),sdf.parse("20150515 19:00:01")) );
-        
-    }
+//    @Test
+//    public void testRegex2() throws ParseException{
+//        //System.out.println("1[2]31,".replace("[12\\[\\],]", ""));
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+//        System.out.println( HxbDaysUtil.calculateDays(sdf.parse("20150514 23:00:00"),sdf.parse("20150515 19:00:01")) );
+//        
+//    }
     
     @Test
     public void testRegex3(){
@@ -368,5 +368,12 @@ public class TestDecode {
          
          }
         
+    }
+    
+    @Test
+    public void testMatcher(){
+        Pattern pattern = Pattern.compile("<% .*%>");
+        Matcher matcher = pattern.matcher("1<% 1%>");
+        System.out.println(matcher.find());
     }
 }

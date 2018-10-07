@@ -29,6 +29,7 @@
         <XmlSchema.version>1.4.5</XmlSchema.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <backport-util-concurrent.version>3.0</backport-util-concurrent.version>
+        <jacoco.version>0.7.5.201505241946</jacoco.version>
     </properties>
 
     <dependencies>
@@ -209,7 +210,7 @@
             <artifactId>elasticsearch</artifactId>
             <version>5.2.0</version>
         </dependency> 
-         <dependency>
+        <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>transport</artifactId>
             <version>5.2.0</version>
@@ -220,6 +221,27 @@
             <version>2.10.0</version>
             <scope>test</scope>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <!--         <dependency>
+           <groupId>org.elasticsearch</groupId>
+           <artifactId>elasticsearch</artifactId>
+           <version>6.1.1</version>
+        </dependency>-->
+        <!--  es升级需要依赖的 -->
+        <!--        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>6.1.1</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.0.0</version>
         </dependency>
     </dependencies>
 
@@ -234,7 +256,7 @@
                     <argLine>-Xms10m</argLine>
                     <argLine>-Xmx512m</argLine>
                 </configuration>  
-            </plugin>  
+            </plugin> 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -259,6 +281,42 @@
                         </schema>
                     </schemas>
                 </configuration>-->
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>target/jacoco.exec</dataFile>
+                            <outputDirectory>target/jacoco-ut</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
         </plugins>
     </build>
