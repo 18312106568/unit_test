@@ -20,6 +20,10 @@ public class TestSSL {
         final SslContext sslCtx;
         sslCtx = SslContextBuilder.forClient()
                   .trustManager(InsecureTrustManagerFactory.INSTANCE).build();
+        for(String cipher :sslCtx.cipherSuites()){
+            System.out.println(cipher);
+        }
         System.out.println(sslCtx);
+        System.out.println(System.getProperty("javax.net.ssl.trustStore"));
     }
 }

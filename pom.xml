@@ -153,6 +153,12 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        
+        <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>junitperf</artifactId>
+            <version>1.0.2</version>
+        </dependency>
         <!--        <dependency>
             <groupId>com.creditcloud.common</groupId>
             <artifactId>Common</artifactId>
@@ -257,11 +263,11 @@
                     <argLine>-Xmx512m</argLine>
                 </configuration>  
             </plugin> 
-            <plugin>
+<!--            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
+            </plugin>-->
+<!--            <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
                 <version>0.12.3</version>
@@ -272,7 +278,7 @@
                         </goals>
                     </execution>
                 </executions>
-                <!--                <configuration>
+                                <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
                     <generatePackage>com.creditcloud.jpa.unit_test.hello.wsdl</generatePackage>
                     <schemas>
@@ -280,8 +286,8 @@
                             <url>http://opentest.guanmaoyun.net/service/ServiceProviderFacade?wsdl</url>
                         </schema>
                     </schemas>
-                </configuration>-->
-            </plugin>
+                </configuration>
+            </plugin>-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -316,6 +322,17 @@
                     <systemPropertyVariables>
                         <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
                     </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <debug>false</debug>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <argLine>-Xms10m</argLine>
+                    <argLine>-Xmx512m</argLine>
                 </configuration>
             </plugin>
         </plugins>

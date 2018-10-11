@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.GZIPInputStream;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,6 +30,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ResourceUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
 /**
  *
@@ -50,6 +54,36 @@ public class TestJson {
     final String ENCODE = "UTF-8";
     
     final String TEMP_DIR = "/tmp";
+    
+    //@Test
+    public static void main(String args[]) throws IOException{
+        System.out.println(System.getProperty("file.encoding"));
+        System.out.println("中文");
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+              .url("https://www.huya.com/member/task.php?m=User&do=listTotal&callback=huyaNavUserCard")
+              .get()
+              .addHeader("Accept-Encoding", "gzip")
+               .addHeader("cookie", "__yamid_tt1=0.5201708322216603; __yamid_new=C7F4227E01C0000138B4296BB5001B15; hd_newui=0.04613345228277432; SoundValue=1.00; udb_guiddata=50be64759c324c3e9b949a307e1840a8; alphaValue=0.80; guid=716c41f63e1c9e5b5d705e185f189e3e; videoLine=1; isInLiveRoom=; Hm_lvt_51700b6c722f5bb4cf39906a596ea41f=1537088556,1538798535,1538967117; PHPSESSID=92cd2lqsjn3l5fdln4no0s63c5; __yasmid=0.5201708322216603; udb_passdata=3; web_qrlogin_confirm_id=9162a928-2459-4614-b3b3-0421728278b0; avatar=http://thirdqq.qlogo.cn/qqapp/101406359/0FFC013FFD95202344530B9D4235B60C/100; nickname=MRB; partner_uid=0FFC013FFD95202344530B9D4235B60C; udb_biztoken=AQBnd-HaV-zvJXtAx79cHbIxpDfHp9g8DaHNYYcQIRpcrbHB3F3agU6aIj2ZwEGIP46b-XWTvXjaXeClDeUZtTmB2enfgBHkorYJ5vBxa-7dMWremstHAg3zBbgJMDA_u4sGS3pMEAc4cewYY06MSGFUfDhHNQPY8NrFd3bLRTpJTuIp0fU5qZarO6fDekwGbAJxTdzs5MWA0dehg8-Uz8Nv1_FCki2G4pXqOXpBXUagzC38K-wIV2RTVAfwciDsUU-OPsSr6xj5_HrAWtP79RFtFD0KG1y8sszrDI8iambB4ng6QdWYEz2-PzUN8kGj_K3rg-_KNs9YUNCnadXHLYIO; udb_openid=0FFC013FFD95202344530B9D4235B60C; udb_origin=100; udb_other=%7B%22lt%22%3A%221538967177826%22%2C%22isRem%22%3A%221%22%7D; udb_passport=newqq_a1j_vzisk; udb_status=0; udb_uid=1850294048; udb_version=1.0; username=newqq_a1j_vzisk; yyuid=1850294048; lType=qq; Hm_lpvt_51700b6c722f5bb4cf39906a596ea41f=1538967178; h_unt=1538967179; __yaoldyyuid=1850294048; _yasids=__rootsid%3DC82BA4A6C3100001A0871400CE58E670")
+              .build();
+            Response response = client.newCall(request).execute();
+            byte[] data = response.body().bytes();
+            System.out.println(new String(data));
+            ByteArrayInputStream bis = new ByteArrayInputStream(data);
+            GZIPInputStream gzip = new GZIPInputStream(bis);
+            byte[] buf = new byte[1024];
+            int num = -1;
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            while ((num = gzip.read(buf, 0, buf.length)) != -1) {
+                    bos.write(buf, 0, num);
+            }
+            gzip.close();
+            bis.close();
+            byte[] ret = bos.toByteArray();
+            bos.flush();
+            bos.close();
+            System.out.println(new String(ret));
+    }
     
     @Test
     public void jsonAnalysis()throws Exception{
