@@ -25,11 +25,7 @@ public class Consumer1 {
  
 	public static void main(String[] args) throws MQClientException {
 		DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("order_Consumer");
-		consumer.setNamesrvAddr("192.168.1.171:9876;"
-                        + "192.168.100.145:9876;"
-                        + "192.168.100.146:9876;"
-                        + "192.168.100.149:9876;"
-                        + "192.168.100.239:9876");
+		consumer.setNamesrvAddr("192.168.1.113:9876");
  
 		/**
 		 * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费<br>
