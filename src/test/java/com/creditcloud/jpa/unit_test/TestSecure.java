@@ -136,11 +136,18 @@ public class TestSecure {
     public void testDes() throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException{
          Security.addProvider(new com.sun.crypto.provider.SunJCE()); 
          String Algorithm="DES"; // 定义 加密算法 , 可用 DES,DESede,Blowfish 
-         String myinfo="本周参与开发，发现portal的服务调用那块代码复用率很高，重复的工作很多。考虑到如果提高代码抽象度，可能会给项目本身以及他人学习带来复杂度，我觉得这块可以编写一个通用的模板。"; 
-         KeyGenerator keygen = KeyGenerator.getInstance(Algorithm); 
-         SecretKey deskey = keygen.generateKey();
-         byte[] deskeyEncodes = deskey.getEncoded();
-         
+         String myinfo="-3a6a7d35994df1081eb7f2dda3a2255"; 
+//         KeyGenerator keygen = KeyGenerator.getInstance(Algorithm); 
+//         SecretKey deskey = keygen.generateKey();
+//         byte[] deskeyEncodes = deskey.getEncoded();
+         String encKey="jyys si eth yaw";
+         MessageDigest md = MessageDigest.getInstance("MD5");
+         byte[] datas = encKey.getBytes();
+         byte[] result = md.digest(datas);
+         String desSpecStr = converString(result).substring(0, 16);
+         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(Algorithm);
+         DESKeySpec desSpect = new DESKeySpec(desSpecStr.getBytes());
+         SecretKey deskey = keyFactory.generateSecret(desSpect);
          System.out.println("加密前的二进串 :"+new String(Base64.encode(myinfo.getBytes()))); 
          System.out.println("加密前的信息 :"+myinfo); 
          
@@ -151,8 +158,6 @@ public class TestSecure {
          
         // 解密
          Cipher c2 = Cipher.getInstance(Algorithm); 
-         DESKeySpec desSpect = new DESKeySpec(deskeyEncodes);
-         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(Algorithm);
          deskey = keyFactory.generateSecret(desSpect);
          c2.init(Cipher.DECRYPT_MODE,deskey); 
 //        c1 = Cipher.getInstance(Algorithm); 
