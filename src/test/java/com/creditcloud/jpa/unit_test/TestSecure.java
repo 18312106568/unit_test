@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Reader;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -38,6 +39,10 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import org.apache.directory.api.util.Base64;
 import org.junit.Test;
 
@@ -52,7 +57,7 @@ public class TestSecure {
         MessageDigest md = MessageDigest.getInstance("MD5");
         byte[] datas = "abc".getBytes();
         byte[] result = md.digest(datas);
-        System.out.println(converString(result));
+        System.out.println(new String(Base64.encode(result)));
         
         md = MessageDigest.getInstance("SHA-1");
         result = md.digest(datas);
@@ -128,12 +133,13 @@ public class TestSecure {
     }
     
     @Test
-    public void testDes() throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException{
+    public void testDes() throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException{
          Security.addProvider(new com.sun.crypto.provider.SunJCE()); 
          String Algorithm="DES"; // 定义 加密算法 , 可用 DES,DESede,Blowfish 
          String myinfo="本周参与开发，发现portal的服务调用那块代码复用率很高，重复的工作很多。考虑到如果提高代码抽象度，可能会给项目本身以及他人学习带来复杂度，我觉得这块可以编写一个通用的模板。"; 
          KeyGenerator keygen = KeyGenerator.getInstance(Algorithm); 
          SecretKey deskey = keygen.generateKey();
+         byte[] deskeyEncodes = deskey.getEncoded();
          
          System.out.println("加密前的二进串 :"+new String(Base64.encode(myinfo.getBytes()))); 
          System.out.println("加密前的信息 :"+myinfo); 
@@ -144,10 +150,39 @@ public class TestSecure {
          System.out.println("加密后的二进串 :"+new String(Base64.encode(cipherByte))); 
          
         // 解密
-        c1 = Cipher.getInstance(Algorithm); 
-        c1.init(Cipher.DECRYPT_MODE,deskey); 
-        byte[] clearByte=c1.doFinal(cipherByte); 
+         Cipher c2 = Cipher.getInstance(Algorithm); 
+         DESKeySpec desSpect = new DESKeySpec(deskeyEncodes);
+         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(Algorithm);
+         deskey = keyFactory.generateSecret(desSpect);
+         c2.init(Cipher.DECRYPT_MODE,deskey); 
+//        c1 = Cipher.getInstance(Algorithm); 
+//        c1.init(Cipher.DECRYPT_MODE,deskey); 
+        byte[] clearByte=c2.doFinal(cipherByte); 
         System.out.println("解密后的二进串 :"+new String(Base64.encode(clearByte))); 
         System.out.println("解密后的信息 :"+(new String(clearByte)));
+    }
+    
+    @Test
+    public void testAes() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, NoSuchPaddingException, BadPaddingException, NoSuchPaddingException{
+        String Algorithm="AES"; // 定义 加密算法 
+        String AES_CBC_PKCS5_PADDING = "AES/CBC/PKCS5Padding";
+        String password = "123456";
+        String privilageKey = "2018121323411234";
+        String ivKey = "2018121323411234";
+        
+        SecretKeySpec secretKeySpec = new SecretKeySpec(privilageKey.getBytes(),Algorithm);
+        IvParameterSpec ivSpec = new IvParameterSpec(ivKey.getBytes());
+        Cipher cipher = Cipher.getInstance(AES_CBC_PKCS5_PADDING);
+        
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec,ivSpec);
+        
+        byte[] encryptedContent = cipher.doFinal(password.getBytes());
+        
+        Cipher cipher2 = Cipher.getInstance(AES_CBC_PKCS5_PADDING);
+        cipher2.init(Cipher.DECRYPT_MODE, secretKeySpec,ivSpec);
+        byte[] decryptedContent = cipher2.doFinal(encryptedContent);
+        
+        System.out.println(new String(decryptedContent));
+        
     }
 }
