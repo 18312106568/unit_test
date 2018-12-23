@@ -19,6 +19,7 @@ import java.io.ObjectOutputStream;
 import java.io.Reader;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -31,6 +32,8 @@ import java.security.Security;
 import javax.crypto.SecretKey;
 import java.security.Signature;
 import java.security.SignatureException;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -78,7 +81,7 @@ public class TestSecure {
     }
     
     @Test
-    public void testDsa() throws NoSuchAlgorithmException, FileNotFoundException, IOException, InvalidKeyException, SignatureException, ClassNotFoundException, InvalidKeySpecException{
+    public void testSHA1withRSA() throws NoSuchAlgorithmException, FileNotFoundException, IOException, InvalidKeyException, SignatureException, ClassNotFoundException, InvalidKeySpecException{
         String algorithm = "RSA";
         final String SIGN_ALGORITHMS = "SHA1withRSA";
 //        KeyPairGenerator keygen = KeyPairGenerator.getInstance(algorithm);
@@ -130,6 +133,33 @@ public class TestSecure {
         sigcheck.initVerify(pubKey);
         sigcheck.update(info);
         System.out.println(sigcheck.verify(Base64.decode(encrypt)));
+    }
+    
+    
+    @Test
+    public void testRSA() throws Exception{
+        String RSA_ALGORITHM = "RSA";
+        //为RSA算法创建一个KeyPairGenerator对象
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance(RSA_ALGORITHM);
+        kpg.initialize(512);
+        String data = "123";
+        
+        
+        //生成密匙对
+        KeyPair keyPair = kpg.generateKeyPair();
+        //得到公钥
+        RSAPublicKey publicKey = (RSAPublicKey)keyPair.getPublic();
+        //得到密钥
+        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+        Cipher cipher = Cipher.getInstance(RSA_ALGORITHM);
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+        byte[] buffer = cipher.doFinal(data.getBytes());
+        System.out.println(new String(buffer));
+        
+        Cipher cipher2 = Cipher.getInstance(RSA_ALGORITHM);
+        cipher2.init(Cipher.DECRYPT_MODE, privateKey);
+        buffer = cipher2.doFinal(buffer);
+        System.out.println(new String(buffer));
     }
     
     @Test

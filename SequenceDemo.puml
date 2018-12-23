@@ -1,0 +1,12 @@
+@startuml
+User -> ModelService: 输入host,port,数据库，表，用户名，密码,包名
+ModelService --> MysqlUtils:getConn()
+ModelService <-- MysqlUtils:return
+ModelService --> SqlExcutor: createTableEntity(tableName)
+SqlExcutor --> SqlExcutor: getTableInfo(tableName)
+SqlExcutor --> SqlExcutor: getColumnInfo(tableName)
+SqlExcutor --> SqlExcutor: getColumnCommentInfo(tableName)
+ModelService <-- SqlExcutor: return tableEntity
+ModelService -->  TemplateGenerator:createJava(tableEntity)
+User <-- TemplateGenerator:创建文件成功
+@enduml
