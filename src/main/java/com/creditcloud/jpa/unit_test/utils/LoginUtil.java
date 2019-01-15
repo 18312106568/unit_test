@@ -9,13 +9,16 @@ import com.creditcloud.jpa.unit_test.constant.WebConstant;
 import com.creditcloud.jpa.unit_test.driver.ExproderDriver;
 import com.creditcloud.jpa.unit_test.model.PtuiCheckVK;
 import com.google.gson.Gson;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.WebDriver;
 
 /**
  *
@@ -53,9 +56,16 @@ public class LoginUtil {
      * @throws UnsupportedEncodingException
      */
     public static String getEntryptPassword(PtuiCheckVK vk) {
-        try {
-            //输入要访问的网页地址
-            WebDriver driver = ExproderDriver.getInstance();
+//        try {
+//            //输入要访问的网页地址
+//            WebDriver driver = ExproderDriver.getInstance();
+//            driver.get(WebConstant.ENCODE_URL + "?vk=" + URLEncoder.encode(new Gson().toJson(vk), "UTF-8"));
+//            final String encryption = driver.findElement(By.tagName("body")).getText();
+//            return encryption;
+//        } catch (UnsupportedEncodingException e) {
+//        }
+        try{
+            WebDriver driver = ExproderDriver.getChromeInstance();
             driver.get(WebConstant.ENCODE_URL + "?vk=" + URLEncoder.encode(new Gson().toJson(vk), "UTF-8"));
             final String encryption = driver.findElement(By.tagName("body")).getText();
             return encryption;

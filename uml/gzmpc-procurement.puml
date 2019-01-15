@@ -1,0 +1,24 @@
+采购流程
+/*
+由采购中心维护好货源、进货参数等数据后录入进货合同释放给物流中心，等物流中心返回收货信息后采购员进行勾单入库处理，生成可销库存。
+采购中心收到供应商发票时需进行录入发票数据到BMS系统，等到约定的日期后进行进货结算，最后由财务部进行确认付款。
+*/
+@startuml
+autonumber
+actor "操作员" as user
+participant "采购中心" as procure
+participant "物流中心" as logistics
+database "数据库" as db
+
+user -> procure : 维护好货源、进货参数
+user -> procure : 录入进货合同
+procure -> db : 写入数据库
+procure -> logistics : 释放信息给物流中心
+user -> logistics : 查询是否返回收货信息
+logistics -> user : 返回收货信息
+user -> procure : 勾单
+procure -> db : 入库
+
+
+
+@enduml

@@ -1,0 +1,39 @@
+bms系统架构图
+
+@startuml
+
+sprite $bProcess jar:archimate/business-process
+sprite $aComponent jar:archimate/application-component
+
+archimate #Business "本部ERP"  as erp <<business-process>>
+archimate #Business "基础数据平台"  as base <<business-process>>
+archimate #Business "共享库存平台" as share <<business-process>>
+archimate #Business "电子商务" as online_retailers <<business-process>>
+archimate #Business "订单系统" as order_system <<business-process>>
+archimate #Business "NC系统" as nc <<business-process>>
+archimate #Business "HNC系统" as hnc <<business-process>>
+archimate #Business "WMS平台" as wms <<business-process>>
+
+archimate #APPLICATION "企业服务总线" as esb <<application-component>>
+archimate #APPLICATION "DBlink" as dblink <<application-component>>
+
+
+esb -up-> erp
+dblink -up-> erp
+
+base .up.|> dblink : 基础数据
+nc .up.|> dblink
+order_system .up.|> dblink
+online_retailers .up.|> dblink : 订单审批数据
+hnc .up.|> dblink
+share .up.|> dblink
+
+wms .up.|> esb : 出入库数据
+
+legend left
+以上组件详细参考如下
+<$bProcess> :应用
+<$aComponent> : 中间件
+endlegend
+
+@enduml
