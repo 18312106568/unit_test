@@ -21,6 +21,18 @@ import org.springframework.util.ResourceUtils;
  * @author MRB
  */
 public class TestString {
+
+    private  String test;
+
+    public TestString(){}
+
+    public TestString(String test){
+        this.test = test;
+    }
+
+    private void test(){
+        System.out.println(test);
+    }
     
     @Rule
     public JunitPerfRule junitPerfRule = new JunitPerfRule();

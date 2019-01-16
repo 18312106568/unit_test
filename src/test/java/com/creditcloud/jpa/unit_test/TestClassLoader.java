@@ -21,8 +21,9 @@ public class TestClassLoader {
         System.out.println("BootstrapClassLoader 的加载路径: ");
 		
         URL[] urls = sun.misc.Launcher.getBootstrapClassPath().getURLs();
-        for(URL url : urls)
-                System.out.println(url);
+        for(URL url : urls) {
+            System.out.println(url);
+        }
         System.out.println("----------------------------");
         
         URLClassLoader extClassLoader = (URLClassLoader)ClassLoader.getSystemClassLoader().getParent();
@@ -43,8 +44,9 @@ public class TestClassLoader {
         System.out.println("应用(系统)类加载器 的加载路径: ");
 
         urls = appClassLoader.getURLs();
-        for(URL url : urls)
-                System.out.println(url);
+        for(URL url : urls) {
+            System.out.println(url);
+        }
 
         System.out.println("----------------------------");	
         
@@ -64,6 +66,11 @@ public class TestClassLoader {
         System.out.println("<------------>");
         System.out.println(System.getProperty("file.encoding"));
     }
-    
+
+    @Test
+    public void testClassLoader(){
+        System.out.println(String.class.getClassLoader());
+        System.out.println(TestClassLoader.class.getClassLoader());
+    }
     
 }

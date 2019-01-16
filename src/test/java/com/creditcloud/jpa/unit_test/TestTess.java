@@ -16,7 +16,7 @@ public class TestTess {
         instance.setLanguage("eng");
 
         try {
-            String result =  instance.doOCR(new File(System.getProperty("user.dir")+"/images/001.png"));
+            String result =  instance.doOCR(new File(System.getProperty("user.dir")+"/images/002.png"));
             System.out.println(result);
         } catch (TesseractException e) {
             e.printStackTrace();
