@@ -304,6 +304,12 @@
             <artifactId>jna</artifactId>
             <version>5.2.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>jpcap</groupId>
+            <artifactId>jpcap</artifactId>
+            <version>0.1.19-001-64</version>
+        </dependency>
     </dependencies>
 
     <build>   

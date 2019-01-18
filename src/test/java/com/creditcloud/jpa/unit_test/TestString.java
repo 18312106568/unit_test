@@ -22,17 +22,11 @@ import org.springframework.util.ResourceUtils;
  */
 public class TestString {
 
-    private  String test;
+
 
     public TestString(){}
 
-    public TestString(String test){
-        this.test = test;
-    }
 
-    private void test(){
-        System.out.println(test);
-    }
     
     @Rule
     public JunitPerfRule junitPerfRule = new JunitPerfRule();
@@ -94,5 +88,26 @@ public class TestString {
         }
        // Thread.sleep(200);
     }
+
+    @Test
+    public void testAscll(){
+        System.out.println((char) (97+25));
+    }
+
+
+    public static class PString{
+        private  String test;
+
+        public PString(String test){
+            this.test = test;
+        }
+
+
+        private void test(){
+            System.out.println(test);
+        }
+    }
+
+
     
 }

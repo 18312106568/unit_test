@@ -220,4 +220,34 @@ public class TestSecure {
         System.out.println(new String(decryptedContent));
         
     }
+
+
+    @Test
+    public void test3Des(){
+        System.out.println(System.getProperty("file.encoding"));
+        //加密信息
+        String myinfo = "123";
+        //明文密钥
+        String encKey = "123456788765432112345678";
+        String Algorithm = "DESede";   // 定义 加密算法 , 可用 DES,DESede,Blowfish
+        SecretKey deskey = new SecretKeySpec(encKey.getBytes(), Algorithm);
+        Cipher cipher = null;
+        try {
+            cipher = Cipher.getInstance(Algorithm);
+            cipher.init(Cipher.ENCRYPT_MODE, deskey);
+            byte[] cipherByte=cipher.doFinal(myinfo.getBytes());
+            System.out.println("加密后的二进串 :"+new String(Base64.encode(cipherByte)));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

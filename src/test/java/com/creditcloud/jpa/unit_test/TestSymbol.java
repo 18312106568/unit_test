@@ -17,6 +17,7 @@ public class TestSymbol {
 
     @Test
     public void testAccessController(){
+        System.out.println("ad600da626d4b3ee191d0056705e4746f78465722f8503892bdeab93ce8e19be0bd401b80448c80a2de00dc17fcc1c99".length());
         String javaHome = AccessController.doPrivileged(new PrivilegedAction<String>() {
             @Override
             public String run() {
@@ -32,8 +33,8 @@ public class TestSymbol {
         /**
          * 测试能否访问实例的私有属性与方法
          */
-        TestString testString = new TestString("123");
-        Class clazz = TestString.class;
+        TestString.PString testString = new TestString.PString("123");
+        Class clazz = TestString.PString.class;
         for(Field field : clazz.getDeclaredFields()){
             if("test".equals(field.getName())){
                 field.setAccessible(true);
