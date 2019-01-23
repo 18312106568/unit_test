@@ -1,0 +1,23 @@
+@startuml
+autonumber
+participant ScheduleService as "定时服务"
+participant BrowserService as "浏览服务"
+participant XunLeiService  as "下载服务"
+participant VideoService  as "视频服务"
+database DataBase
+
+ScheduleService -> VideoService : 获取常规网站新数据
+VideoService -> DataBase :查询数据
+DataBase -> VideoService :返回最后下载
+VideoService -> VideoService : 是否有未下载完成的任务？
+alt 是
+    VideoService -> XunLeiService: 启动迅雷，开启任务
+end
+VideoService -> ScheduleService :返回最后下载视频
+ScheduleService -> BrowserService :查询页面最新视频
+ScheduleService <- BrowserService :遍历常规网站，返回最新视频以及下载链接
+ScheduleService -> XunLeiService : 启动迅雷下载
+ScheduleService -> VideoService :同时写入数据库，任务处于正在下载状态
+VideoService -> DataBase: 写入数据库
+
+@enduml
