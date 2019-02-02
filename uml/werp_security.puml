@@ -1,0 +1,37 @@
+@startuml
+
+start
+    :输入账号oAccount及密码oPwd;
+    ->转字母算法;
+    :转字母账号cAccount与转字母密码cPwd;
+    -[#00cc66]->cAccount+cPwd;
+    :密码序列号 pwdSeq;
+    :取cAccount第二位字母ca2,取cAccount最后一位字母cal;
+    ->cal取模13;
+    :生成ical;
+while (i<30,i初始值为0)
+
+  ->转字母算法(ical+ca2+i+1);
+  :生成新的ical;
+  if (position==1 && pwdSeq.length<30?,position初始值为1) then (yes)
+    :position=0;
+    ->pwdSeq+ical;
+    :生成新的pwdSeq;
+  else (no)
+    :position=1;
+    ->ical+pwdSeq;
+    :生成新的pwdSeq;
+  endif
+  :i++;
+endwhile
+:取cPwd最后一位字母cpl ;
+while (i<30,i初始值为0)
+  :取pwdSeq第i个字母 pwdSeq[i];
+  ->转字母算法(pwdSeq[i]+cpl+i+1);
+  :生成结果替换pwdSeq第i个字母;
+  :i++;
+endwhile
+
+stop
+
+@enduml

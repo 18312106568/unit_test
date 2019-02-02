@@ -310,6 +310,20 @@
             <artifactId>jpcap</artifactId>
             <version>0.1.19-001-64</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-compiler</artifactId>
+            <version>7.17.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-internal</artifactId>
+            <version>7.17.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>   
