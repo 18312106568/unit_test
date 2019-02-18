@@ -1,0 +1,26 @@
+import com.creditcloud.jpa.unit_test.TestDrools.Stu;
+rule "rule1"
+    salience 1
+        when
+            $stu:Stu(age>30)//这里就是LHS
+        then
+            System.out.println("age>30岁的人:"+$stu.getName());//RHS
+end
+
+
+rule "rule2"
+    salience 2
+    when
+         $stu:Stu(gender=="male",age>25)
+    then
+        System.out.println("性别为男,age>25岁的人:"+$stu.getName());
+     end
+
+
+rule "rule3"
+     salience 3
+     when
+        $stu:Stu(getName()=="张三")
+        then
+         System.out.println("名字为:"+$stu.getName());
+         end

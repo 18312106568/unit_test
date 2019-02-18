@@ -192,7 +192,6 @@
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-yarn-common:2.7.3" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.stream:stax-api:1.0-2" level="project" />
-    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jersey:jersey-core:1.9" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jersey:jersey-client:1.9" level="project" />
@@ -279,7 +278,15 @@
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-support:2.53.1" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-leg-rc:2.53.1" level="project" />
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna:5.2.0" level="project" />
-    <orderEntry type="library" name="Maven: jpcap:jpcap:0.1.19-001-64" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: jpcap:jpcap:0.1.19-001-64">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jpcap.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.drools:drools-compiler:7.17.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.drools:drools-core:7.17.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.kie:kie-api:7.17.0.Final" level="project" />
@@ -296,5 +303,8 @@
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.kie:kie-internal:7.17.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.13" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
   </component>
 </module>

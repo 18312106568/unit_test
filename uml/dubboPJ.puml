@@ -1,0 +1,31 @@
+@startuml
+
+sprite $bProcess jar:archimate/business-process
+sprite $aService jar:archimate/application-service
+sprite $aComponent jar:archimate/application-component
+
+archimate #Business "商户后台系统"  as portal <<business-process>>
+archimate #Business "运营后台系统"  as boss <<business-process>>
+archimate #APPLICATION "交易服务"  as trade <<application-service>>
+archimate #APPLICATION "用户服务"  as user <<application-service>>
+archimate #APPLICATION "订单服务"  as order <<application-service>>
+archimate #APPLICATION "计费服务"  as fee <<application-service>>
+archimate #COMPONENT "服务注册与发现"  as dubbo <<application-component>>
+
+portal *-down- dubbo
+portal *-down- dubbo
+portal *-down- dubbo
+portal *-down- dubbo
+
+boss *-down- dubbo
+boss *-down- dubbo
+boss *-down- dubbo
+boss *-down- dubbo
+
+user *-up- dubbo
+trade *-up- dubbo
+order *-up- dubbo
+fee *-up- dubbo
+
+
+@enduml
