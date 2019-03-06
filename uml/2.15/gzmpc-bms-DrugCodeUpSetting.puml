@@ -1,0 +1,19 @@
+@startuml
+class DrugCodeUploadSetting  {
+  goodsId:货品Id
+'  opCode:操作码
+'  goodsName:货品名称
+'  productRegulation:品规
+'  brandName:厂牌
+'  manufacturer：生产厂家
+'  isSupervised：是否药监码品种
+  state:状态
+  upload_Frequency：上传频率
+  received_Mail:接收邮箱
+  modifierId:修改人ID
+'  modifierName:修改人
+  modifierDate:修改时间
+  lastUploadTime:上次上传时间
+  remarks:备注
+}
+@enduml
