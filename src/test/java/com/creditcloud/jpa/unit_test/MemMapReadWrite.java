@@ -5,6 +5,10 @@
  */
 package com.creditcloud.jpa.unit_test;
 
+import org.junit.Test;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
@@ -65,10 +69,44 @@ public class MemMapReadWrite {
         }
     }
 
-    public static void main(String[] args) {
-        String readFileName = "D:\\program\\glassfish4.rar";
-        String writeFileName = "D:\\tmp\\1.rar";
+    @Test
+    public static void copyFile(String sourceFile,String targetFile){
+        try {
+            RandomAccessFile readRandomAccessFile = new RandomAccessFile(sourceFile,"rw");
+            FileChannel readFileChannel = readRandomAccessFile.getChannel();
 
-        writeFile(readFileName, writeFileName);
+            RandomAccessFile writeRandomAccessFile = new RandomAccessFile(targetFile,"rw");
+            FileChannel writeFileChannel = writeRandomAccessFile.getChannel();
+            //MappedByteBuffer mappedByteBuffer = writeFileChannel.map(FileChannel.MapMode.READ_WRITE,0,readRandomAccessFile.length());
+
+            ByteBuffer buf = ByteBuffer.allocate(1024);
+            int bytesRead = readFileChannel.read(buf);
+            while(bytesRead != -1){
+                buf.flip();
+                writeFileChannel.write(buf);
+//                while(buf.hasRemaining()){
+//                    mappedByteBuffer.put(buf.get());
+//                }
+                buf.compact();
+                bytesRead = readFileChannel.read(buf);
+            }
+            readFileChannel.close();
+            writeFileChannel.close();
+            //mappedByteBuffer.flip();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+//        String readFileName = "D:\\program\\glassfish4.rar";
+////        String writeFileName = "D:\\tmp\\1.rar";
+////
+////        writeFile(readFileName, writeFileName);
+        String sourceFile = "E:\\note\\WMS_MSC.sql";
+        String targetFile = "E:\\note\\WMS_MSC.sql.bak";
+        copyFile(sourceFile,targetFile);
     }
 }

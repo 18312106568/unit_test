@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 package com.creditcloud.jpa.unit_test.Thread;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
+import com.creditcloud.jpa.unit_test.proxy.RunTimeProxy;
+import com.creditcloud.jpa.unit_test.proxy.Ship;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -68,10 +71,21 @@ public class TestFuture {
 
         @Override
         public String call() throws Exception {
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder().url(url).build();
-            Response response = client.newCall(request).execute();
-            return response.body().string();
+
+            return doRequest(this.url);
         }
+    }
+
+    public static  String doRequest(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    @Test
+    public void testProxy(){
+        Ship ship = (Ship)new RunTimeProxy().getProxy(Ship.class);
+        ship.travel();
     }
 }

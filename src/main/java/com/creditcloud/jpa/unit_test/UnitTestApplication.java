@@ -8,8 +8,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.AbstractApplicationContext;
 
+import java.lang.instrument.Instrumentation;
+
 @SpringBootApplication
 public class UnitTestApplication {
+
+    public static Instrumentation instrumentation;
+
+    public static void premain(String agentArg, Instrumentation inst){
+        instrumentation = inst;
+    }
 
 	public static void main(String[] args) {
             System.out.println("============================>");
