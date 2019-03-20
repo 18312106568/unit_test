@@ -46,8 +46,10 @@ public class TestFuture {
         long start = System.currentTimeMillis();
         ExecutorService executorService = Executors.newFixedThreadPool(8);
         List<FutureTask<String>> futureTasks = new ArrayList<>();
-        for(int i=0;i<500;i++){
-            Callable<String> call = new HttpCallable("http://www.baidu.com");
+        for(int i=0;i<10;i++){
+            Thread.sleep(1000*i);
+            Callable<String> call = new HttpCallable("http://localhost:8700/user/autoAdd");
+            //Callable<String> call = new HttpCallable("http://www.baidu.com");
             FutureTask task = new FutureTask(call);
             futureTasks.add(task);
             executorService.submit(task);
@@ -57,7 +59,7 @@ public class TestFuture {
             System.out.println(task.get());
         }
         long end = System.currentTimeMillis();
-        System.out.println(String.format("the request cost %d",(end-start)));
+        System.out.println(String.format("the request cost %d ms",(end-start)));
 
     }
 
@@ -77,7 +79,10 @@ public class TestFuture {
     }
 
     public static  String doRequest(String url) throws IOException {
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .build();
         Request request = new Request.Builder().url(url).build();
         Response response = client.newCall(request).execute();
         return response.body().string();
