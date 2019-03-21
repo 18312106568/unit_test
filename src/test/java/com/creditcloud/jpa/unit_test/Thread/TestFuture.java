@@ -4,9 +4,20 @@
  * and open the template in the editor.
  */
 package com.creditcloud.jpa.unit_test.Thread;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.*;
+
+import com.creditcloud.jpa.unit_test.proxy.RunTimeProxy;
+import com.creditcloud.jpa.unit_test.proxy.Ship;
+import com.creditcloud.jpa.unit_test.utils.DateUtils;
+import com.creditcloud.jpa.unit_test.utils.ThreadStatisticsUtils;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.junit.Test;
 /**
  *
@@ -31,5 +42,85 @@ public class TestFuture {
         }
         num2=task.get();
         System.out.println(num1+num2);
+    }
+
+
+    @Test
+    public void testDoss() throws ExecutionException, InterruptedException {
+        long start = System.currentTimeMillis();
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        List<FutureTask<String>> futureTasks = new ArrayList<>();
+        for(int i=0;i<500;i++){
+            //Thread.sleep(1000*i);
+            //Callable<String> call = new HttpCallable(String.format("http://localhost:8700/user/autoAdd"));
+            //Callable<String> call = new HttpCallable("http://www.baidu.com");
+            Callable<String> call = new HttpCallable(
+                    String.format("http://localhost:8700/user/save?userName=%d",(System.currentTimeMillis()-(int)Math.random()*1000)));
+            FutureTask task = new FutureTask(call);
+            futureTasks.add(task);
+            executorService.submit(task);
+        }
+
+        int count =0;
+        for(FutureTask<String> task : futureTasks){
+            String result = task.get();
+            if(result.equals("success")){
+                count++;
+            }
+            //System.out.println(result);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(String.format("the request cost %d ms,success %d",(end-start),count));
+
+    }
+
+    @Slf4j
+    static class HttpCallable implements  Callable<String>{
+
+        private String url;
+
+        public HttpCallable(String url){
+            this.url = url;
+        }
+
+        @Override
+        public String call() throws Exception {
+            long start = System.currentTimeMillis();
+            log.info("=====>start the http request,now time : {} ", DateUtils.format(new Date(start)));
+            String result = doRequest(this.url);
+            long end = System.currentTimeMillis();
+            long cost = end - start;
+
+            ThreadStatisticsUtils.Statistics statistics = ThreadStatisticsUtils.getStatistics();
+            statistics.addCost(cost);
+            statistics.addCount(1);
+            log.info("======>this task cost:{} and all cost:{},count:{}",cost,statistics.getCost(),statistics.getCount());
+
+            return result;
+        }
+    }
+
+    @Test
+    public void testOnce() throws IOException {
+        long start = System.currentTimeMillis();
+        doRequest("http://www.baidu.com");
+        long end = System.currentTimeMillis();
+        System.out.println(String.format("do once request cost:%d ms",end-start));
+    }
+
+    public static  String doRequest(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .build();
+        Request request = new Request.Builder().url(url).build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    @Test
+    public void testProxy(){
+        Ship ship = (Ship)new RunTimeProxy().getProxy(Ship.class);
+        ship.travel();
     }
 }

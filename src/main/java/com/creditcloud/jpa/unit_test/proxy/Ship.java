@@ -10,7 +10,7 @@ package com.creditcloud.jpa.unit_test.proxy;
  * @author MRB
  */
 public class Ship {
-     public void travel(){
+     public  void travel(){
         System.out.println("轮船正在行驶");
     }
 }

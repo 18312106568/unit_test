@@ -183,7 +183,7 @@ public class TestJDBC {
             Map<String,Object> dataMap = new HashMap<>();
             dataMap.put("bean",table);
             Configuration cfg = getConfiguration(path);
-            Template temp = cfg.getTemplate("bean.ftl");
+            Template temp = cfg.getTemplate("");
             temp.process(dataMap,new OutputStreamWriter(System.out));
         }
 

@@ -1,0 +1,22 @@
+@startuml
+autonumber
+participant UploadTask
+participant UploadService
+participant DrugCodeUploadSettingService
+participant WmsMscService
+participant EmailService
+participant redis
+UploadTask ->UploadService:凌晨六点触发
+UploadService ->DrugCodeUploadSettingService:获取货品编码设置（①药监码品种为是，②状态为正常）
+
+DrugCodeUploadSettingService -> UploadService:返回当天需上传的货品编码
+UploadService -> WmsMscService: 传入货品编码设置,获取药监码的扫码信息，传入上次上传时间与当天六点
+WmsMscService -> UploadService: 按出入库分组返回药监码的扫码信息
+UploadService -> UploadService : 数据再分组，按出入库企业分组
+UploadService -> UploadService : 按模板加工数据
+UploadService -> EmailService : 组装邮件任务
+EmailService -> redis: 添加邮件任务进缓存队列
+UploadService -> DrugCodeUploadSettingService :同时更新最后上传时间
+
+UploadTask <-UploadService:定时结束
+@enduml

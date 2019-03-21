@@ -46,6 +46,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import com.creditcloud.jpa.unit_test.utils.RC4Util;
 import org.apache.directory.api.util.Base64;
 import org.junit.Test;
 
@@ -219,6 +221,40 @@ public class TestSecure {
         
         System.out.println(new String(decryptedContent));
         
+    }
+
+    @Test
+    public void testRC4() throws NoSuchAlgorithmException {
+        String Algorithm = "RC4";   // 定义 加密算法 , RC4
+        //加密信息
+        String myinfo = "ABC123";
+        //明文密钥
+        String encKey = "MTIzNDU=";
+        System.out.println(RC4Util.encry_RC4_string(myinfo,encKey));
+//        System.out.println(RC4Util.decry_RC4("10702804683d",encKey));
+//        System.out.println(new String(Base64.decode(encKey.toCharArray())));
+        SecretKey deskey = new SecretKeySpec(
+                encKey.getBytes(), Algorithm);
+
+//        KeyGenerator keyGenerator = KeyGenerator.getInstance(Algorithm);
+//        System.out.println(keyGenerator.generateKey().getEncoded().length);
+        Cipher cipher = null;
+        try {
+            cipher = Cipher.getInstance(Algorithm);
+            cipher.init(Cipher.ENCRYPT_MODE, deskey);
+            byte[] cipherByte=cipher.doFinal(myinfo.getBytes());
+            System.out.println("加密后的二进串 :"+converString(cipherByte));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -1,0 +1,24 @@
+@startuml
+autonumber
+actor "开发人员" as user
+participant dev as "dev-自定义"
+participant release as "Release"
+participant master  as "Master"
+
+user -->> dev : 接到需求，新增需求分支(分支名取决于需求)
+dev -->> master :同步当前master代码
+dev <<-- master :当前最新代码同步到此开发分支
+dev -->> dev :需求完成中，commit
+user -->> dev :需求完成，准备提测
+dev -->> master :将master 代码merge到dev分支
+user --> release :切换到release分支，此时获取一个独立的发布版本\r\n（每个项目有指定的版本管理人，避免线上版本冲突）
+release -->> dev :将dev分支merge到release
+release -->> release :需求测试通过，上线
+master -->> release : 需求成功上线后，将release分支merge到master
+
+legend left
+dev-自定义 :需求分支,每个需求有各自的分支
+release : 发布分支,仅有1个
+master:主分支，仅有1个
+endlegend
+@enduml

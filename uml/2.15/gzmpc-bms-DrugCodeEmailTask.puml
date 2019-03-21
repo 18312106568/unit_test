@@ -1,0 +1,16 @@
+@startuml
+autonumber
+participant EmailTask
+participant EmailService
+participant redis
+EmailTask ->EmailService:每间隔5分钟触发
+EmailService -> redis : 获取所有邮件任务
+EmailService <- redis : 返回所有邮件任务
+EmailService -> EmailService :是否有邮件任务
+alt 是
+    EmailService -> EmailService: 生成分卷压缩文件
+    EmailService -> EmailService: 发送邮件
+    EmailService -> redis :清除缓存
+end
+EmailTask <-EmailService:定时结束
+@enduml

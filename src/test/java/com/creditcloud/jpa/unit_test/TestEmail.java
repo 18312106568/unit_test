@@ -33,11 +33,11 @@ public class TestEmail {
         Message message = new MimeMessage(session);
          //设置邮件的基本信息
          message.setFrom(new InternetAddress("1795045875@qq.com"));
-         message.setRecipient(Message.RecipientType.TO, new InternetAddress("3602158526@qq.com"));
+         message.setRecipient(Message.RecipientType.TO, new InternetAddress("315077558@qq.com"));
          message.setSubject("普通邮件");
         //正文
          MimeBodyPart text = new MimeBodyPart();
-         message.setText("给你发送一个祝福!");
+         message.setText("元宵节快乐!");
          return message;
 
     }

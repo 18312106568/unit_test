@@ -152,7 +152,7 @@ public class TestSyncAndLock {
         System.out.println(stateOffset+"-"+state);
         return unsafe.compareAndSwapInt(this, stateOffset, expect, update);
     }
-    private static Unsafe getUnsafe()  {
+    public static Unsafe getUnsafe()  {
         
         Class<?> unsafeClass = Unsafe.class;
 

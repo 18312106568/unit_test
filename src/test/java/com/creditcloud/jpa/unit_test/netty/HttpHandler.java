@@ -27,11 +27,11 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> { 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
         System.out.println("requestContent:" + msg);
-        ByteBuf buf = msg.content();
-        int length = buf.readableBytes();  
-        byte[] content = new byte[length];
-        buf.getBytes(0, content);  
-        System.out.println(new String(content));
+//        ByteBuf buf = msg.content();
+//        int length = buf.readableBytes();
+//        byte[] content = new byte[length];
+//        buf.getBytes(0, content);
+//        System.out.println(new String(content));
         DefaultFullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
                 HttpResponseStatus.OK,
                 Unpooled.wrappedBuffer("你好".getBytes())); // 2
