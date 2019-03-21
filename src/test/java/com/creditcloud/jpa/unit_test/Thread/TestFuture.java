@@ -6,11 +6,15 @@
 package com.creditcloud.jpa.unit_test.Thread;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 
 import com.creditcloud.jpa.unit_test.proxy.RunTimeProxy;
 import com.creditcloud.jpa.unit_test.proxy.Ship;
+import com.creditcloud.jpa.unit_test.utils.DateUtils;
+import com.creditcloud.jpa.unit_test.utils.ThreadStatisticsUtils;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -44,25 +48,33 @@ public class TestFuture {
     @Test
     public void testDoss() throws ExecutionException, InterruptedException {
         long start = System.currentTimeMillis();
-        ExecutorService executorService = Executors.newFixedThreadPool(8);
+        ExecutorService executorService = Executors.newCachedThreadPool();
         List<FutureTask<String>> futureTasks = new ArrayList<>();
-        for(int i=0;i<10;i++){
-            Thread.sleep(1000*i);
-            Callable<String> call = new HttpCallable("http://localhost:8700/user/autoAdd");
+        for(int i=0;i<500;i++){
+            //Thread.sleep(1000*i);
+            //Callable<String> call = new HttpCallable(String.format("http://localhost:8700/user/autoAdd"));
             //Callable<String> call = new HttpCallable("http://www.baidu.com");
+            Callable<String> call = new HttpCallable(
+                    String.format("http://localhost:8700/user/save?userName=%d",(System.currentTimeMillis()-(int)Math.random()*1000)));
             FutureTask task = new FutureTask(call);
             futureTasks.add(task);
             executorService.submit(task);
         }
 
+        int count =0;
         for(FutureTask<String> task : futureTasks){
-            System.out.println(task.get());
+            String result = task.get();
+            if(result.equals("success")){
+                count++;
+            }
+            //System.out.println(result);
         }
         long end = System.currentTimeMillis();
-        System.out.println(String.format("the request cost %d ms",(end-start)));
+        System.out.println(String.format("the request cost %d ms,success %d",(end-start),count));
 
     }
 
+    @Slf4j
     static class HttpCallable implements  Callable<String>{
 
         private String url;
@@ -73,9 +85,27 @@ public class TestFuture {
 
         @Override
         public String call() throws Exception {
+            long start = System.currentTimeMillis();
+            log.info("=====>start the http request,now time : {} ", DateUtils.format(new Date(start)));
+            String result = doRequest(this.url);
+            long end = System.currentTimeMillis();
+            long cost = end - start;
 
-            return doRequest(this.url);
+            ThreadStatisticsUtils.Statistics statistics = ThreadStatisticsUtils.getStatistics();
+            statistics.addCost(cost);
+            statistics.addCount(1);
+            log.info("======>this task cost:{} and all cost:{},count:{}",cost,statistics.getCost(),statistics.getCount());
+
+            return result;
         }
+    }
+
+    @Test
+    public void testOnce() throws IOException {
+        long start = System.currentTimeMillis();
+        doRequest("http://www.baidu.com");
+        long end = System.currentTimeMillis();
+        System.out.println(String.format("do once request cost:%d ms",end-start));
     }
 
     public static  String doRequest(String url) throws IOException {
