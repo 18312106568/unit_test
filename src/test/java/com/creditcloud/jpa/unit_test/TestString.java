@@ -5,11 +5,15 @@
  */
 package com.creditcloud.jpa.unit_test;
 
+import com.creditcloud.jpa.unit_test.utils.DateUtils;
 import com.github.houbb.junitperf.core.annotation.JunitPerfConfig;
 import com.github.houbb.junitperf.core.rule.JunitPerfRule;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 import org.junit.Test;
@@ -106,6 +110,26 @@ public class TestString {
         private void test(){
             System.out.println(test);
         }
+    }
+
+    @Test
+    public  void editFileName(){
+        File dir = new File("E:\\tmp\\bms3_dzfgs");
+        File[] childFiles = dir.listFiles();
+        for(File file : childFiles){
+            if(file.getName().endsWith(".pbd")){
+                File newFile = new File(file.getAbsolutePath().replaceAll(".pbd",".pbl"));
+                file.renameTo(newFile);
+                System.out.println(file.getName());
+            }
+        }
+    }
+
+    @Test
+    public void testSystemTime(){
+        long timeS = 1555084800000L+24*60*60*1000L;
+        System.out.println(timeS);
+        System.out.println(DateUtils.format(new Date(timeS)));
     }
 
 

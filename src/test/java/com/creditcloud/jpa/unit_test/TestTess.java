@@ -6,6 +6,8 @@ import net.sourceforge.tess4j.TesseractException;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestTess {
 
@@ -25,16 +27,20 @@ public class TestTess {
     }
 
     @Test
-    public void testJpg(){
+    public void testChi(){
         ITesseract instance = new Tesseract();
         instance.setDatapath(System.getProperty("user.dir")+"//tess");
-        instance.setLanguage("eng");
-
-        try {
-            String result =  instance.doOCR(new File(System.getProperty("user.dir")+"/images/002.jpg"));
-            System.out.println(result);
-        } catch (TesseractException e) {
-            e.printStackTrace();
+        instance.setLanguage("chi_sim");
+        List<String> resultList = new ArrayList();
+        File dir = new File(System.getProperty("user.dir")+"/images");
+        File[] imageList = dir.listFiles();
+        for(File image:imageList) {
+            try {
+                String result = instance.doOCR(image);
+                System.out.println(result);
+            } catch (TesseractException e) {
+                e.printStackTrace();
+            }
         }
 
     }

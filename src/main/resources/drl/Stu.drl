@@ -5,13 +5,12 @@ import com.creditcloud.jpa.unit_test.TestDrools;
 //LHS：条件部分又被称之为 LeftHand Side，简称为 LHS，在一个规则当中 when 与 then 中间的部分就是 LHS 部分。
 //在 LHS 当中，可以包含 0~n 个条件，如果 LHS 部分没空的话，那么引擎会自动添加一个eval(true)的条件，由于该条件总是返回 true，所以 LHS 为空的规则总是返回 true。
 //RHS：结果部分又被称之为 RightHand Side，简称为 RHS，在一个规则当中 then后面部分就是 RHS，只有在 LHS 的所有条件都满足时 RHS 部分才会执行。
-
 rule "rule1"
     salience 1
-        when
-            $stu:Stu(age>30)//这里就是LHS
-        then
-            System.out.println("age>30岁的人:"+$stu.getName());//RHS
+    when
+        $stu:Stu(age>30)//这里就是LHS
+    then
+        System.out.println("age>30岁的人:"+$stu.getName());//RHS
 end
 
 
@@ -21,21 +20,21 @@ rule "rule2"
          $stu:Stu(gender=="male",age>25)
     then
         System.out.println("性别为男,age>25岁的人:"+$stu.getName());
-     end
+    end
 
 
 rule "rule3"
      salience 3
      when
         $stu:Stu(getName()=="张三")
-        then
-         System.out.println("名字为:"+$stu.getName());
-         end
+     then
+        System.out.println("名字为:"+$stu.getName());
+     end
 
 rule "rule4"
     salience 4
     when
         $stu:Stu(age<18)
-        then
-               TestDrools.alertStu();
-         end
+    then
+           TestDrools.alertStu();
+    end

@@ -18,5 +18,13 @@ public class TestInteger {
         System.out.println(Integer.toHexString(21>>2));
         System.out.println(Integer.toHexString(-21>>2));
         System.out.println(Integer.toHexString(-21>>>2));
+        System.out.println(0xd);
+    }
+
+    @Test
+    public void testCharToInt(){
+        char c33 = 3*16+3;
+        char c3f = 3*16+11;
+        System.out.println(c3f);
     }
 }

@@ -548,4 +548,34 @@ public class TestHttp {
            ex.printStackTrace();
         }
     }
+
+    @Test
+    public void studyCar(){
+        OkHttpClient.Builder clientBuilder = new OkHttpClient().newBuilder();
+        OkHttpClient client = clientBuilder.build();
+        String param = "{\"values\":{\"_widget_1510412023749\":{\"data\":\"2019-04-14 星期天\",\"visible\":true},\"_widget_1510491138916\":{\"data\":\"17638581226\",\"visible\":true},\"_widget_1456732020881\":{\"data\":\"郎晓伟\",\"visible\":true}},\"appId\":\"5ae88ad4e6772129e072bc14\",\"entryId\":\"56d3f774569fe8573b02be2f\",\"formId\":\"56d3f774569fe8573b02be2f\",\"hasResult\":true,\"fx_access_token\":\"5ae88ad4e6772129e072bc15\",\"fx_access_type\":\"form_public\"}";
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody.create(mediaType,param);
+        Request request = new Request.Builder()
+                .url("https://www.jiandaoyun.com/_/data/create")
+                .post(body)
+                .addHeader("content-type", "application/json")
+                .addHeader("x-csrf-token", "8p9PJODZ-KNnRmY1-aqxsNzhJ8i7O6U9GzfE")
+                //.addHeader("accept-encoding", "gzip, deflate, br")
+                .addHeader("referer", "https://www.jiandaoyun.com/f/5ae88ad4e6772129e072bc15")
+                .addHeader("x-requested-with", "XMLHttpRequest")
+                .addHeader("origin", "https://www.jiandaoyun.com")
+                .addHeader("x-jdy-ver", "1.97.3")
+                .addHeader("cookie", "Hm_lvt_48ee90f250328e7eaea0c743a4c3a339=1554866573; JDY_SID=s%3A81Ae089vxXHLMnBclNNrgnQxC_z0iKa3.7cvwfzo1vYZAX5FVkTLFNtAMRHrquPTktfnFwEqXI2E; Hm_lpvt_48ee90f250328e7eaea0c743a4c3a339=1554971769")
+                .addHeader("user-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String result = new String(response.body().string().getBytes(),"UTF-8");
+            System.out.println(result);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 }

@@ -5,51 +5,21 @@
  */
 package com.creditcloud.jpa.unit_test;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Reader;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.SecureRandom;
-import java.security.Security;
-import javax.crypto.SecretKey;
-import java.security.Signature;
-import java.security.SignatureException;
+import com.creditcloud.jpa.unit_test.utils.RC4Util;
+import org.apache.directory.api.util.Base64;
+import org.junit.Test;
+
+import javax.crypto.*;
+import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.*;
+import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-
-import com.creditcloud.jpa.unit_test.utils.RC4Util;
-import org.apache.directory.api.util.Base64;
-import org.junit.Test;
 
 /**
  *
@@ -60,10 +30,10 @@ public class TestSecure {
     @Test
     public void testSecure() throws NoSuchAlgorithmException{
         MessageDigest md = MessageDigest.getInstance("MD5");
-        byte[] datas = "abc".getBytes();
+        byte[] datas = "qywhb".getBytes();
         byte[] result = md.digest(datas);
         System.out.println(new String(Base64.encode(result)));
-        
+        System.out.println(new String(converString(result)));
         md = MessageDigest.getInstance("SHA-1");
         result = md.digest(datas);
         System.out.println(converString(result));
@@ -80,6 +50,24 @@ public class TestSecure {
             }
         }
         return sb.toString();
+    }
+
+    public byte[] hexToStr(String hexStr){
+        int dataLen = hexStr.length()/2;
+        byte[] data = new byte[dataLen];
+        for(int i=0;i<dataLen;i++){
+            data[i]= (byte)Integer.parseInt(hexStr.substring(2*i,2*i+2),16);
+        }
+        return data;
+    }
+
+    @Test
+    public void testHex(){
+        String hexStr = converString("123".getBytes());
+        System.out.println(hexStr);
+
+        String str = new String(hexToStr(hexStr));
+        System.out.println(str);
     }
     
     @Test
@@ -229,8 +217,9 @@ public class TestSecure {
         //加密信息
         String myinfo = "ABC123";
         //明文密钥
-        String encKey = "MTIzNDU=";
+        String encKey = "2235";
         System.out.println(RC4Util.encry_RC4_string(myinfo,encKey));
+        System.out.println(RC4Util.decry_RC4("7d1944ffce3e",encKey));
 //        System.out.println(RC4Util.decry_RC4("10702804683d",encKey));
 //        System.out.println(new String(Base64.decode(encKey.toCharArray())));
         SecretKey deskey = new SecretKeySpec(
@@ -243,7 +232,12 @@ public class TestSecure {
             cipher = Cipher.getInstance(Algorithm);
             cipher.init(Cipher.ENCRYPT_MODE, deskey);
             byte[] cipherByte=cipher.doFinal(myinfo.getBytes());
-            System.out.println("加密后的二进串 :"+converString(cipherByte));
+            System.out.println("加密后的16进制串 :"+converString(cipherByte));
+
+            cipher = Cipher.getInstance(Algorithm);
+            cipher.init(Cipher.DECRYPT_MODE,deskey);
+            byte[] decryptByte = cipher.doFinal(cipherByte);
+            System.out.println("解密后的字符串："+new String(decryptByte));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
@@ -285,5 +279,13 @@ public class TestSecure {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void testMysql(){
+        System.out.println(converString("123abc123abc".getBytes()));
+        System.out.println(converString("403c204e2e7f147d".getBytes()));
+        System.out.println("b86f576ce4cfb82b41c9b8c9b89b7b67fd7d5467".length());
+        System.out.println("4DCEF8D94E42F4CE7205BB12C6670C12DAB96E46".length());
     }
 }

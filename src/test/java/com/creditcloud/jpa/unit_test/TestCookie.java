@@ -13,28 +13,26 @@ import com.creditcloud.jpa.unit_test.vo.tp.CrackVo;
 import com.google.gson.Gson;
 import io.netty.util.NettyRuntime;
 import io.netty.util.internal.SystemPropertyUtil;
+import okhttp3.*;
 import org.junit.Test;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.*;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+
 import org.springframework.util.ResourceUtils;
 import java.util.Arrays;
 import java.util.Date;
 //import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.zip.GZIPInputStream;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 import javax.servlet.SessionTrackingMode;
@@ -237,4 +235,48 @@ public class TestCookie {
         aint.compareAndSet(10, 11);
         System.out.println(aint);
     }
+
+    @Test
+    public void testImitateExam() throws IOException {
+        Integer pid = 480;
+        //String loginSign="PHPSESSID=og0n6eovq3qr8br6955gmn3hm7;cdb_auth=2316elvypnl6%2FJ913%2BXo3SSPhW0SP8PL7iAyGOCODx9apIwQskN9TJH93DsYScQ4sJguachOsvW6wC0Kvce7EaJQ4EU;uchome_loginuser=20233;cdb_sid=E80NhA;";
+        String loginSign="cdb_auth=8bcfzKMk7CQgWpgqj7LSNTVTq3f0dJan%2F%2FQaOTrTjQwT%2F%2FSvtyb1gJxe9jE7zNRIf9pKAP8LjJ3hBE5uUZphcEzQJqQ; uchome_loginuser=20233; PHPSESSID=srm0ts1jp0l9j2gencps9odnm5; cdb_sid=nvL9CP";
+                //"PHPSESSID=h64dluvs5ndqs1078figt1p6d0; cdb_auth=e150EeNt3D7w7ML%2B3Dzfi69AAnjFa2pizSfOoZisqnD0IgPSv%2BE7a5XNyPFt3NdVkPWfi76ymunNwaoMeZhRkWVMFb0; uchome_loginuser=20233;cdb_sid=99vq1H;";
+        String url = String.format("http://173.1.1.2/train/its_exam.php?action=submit&id=%d",pid);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .build();
+        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+        RequestBody body = RequestBody.create(mediaType, "subVal=%CC%E1%BD%BB&choice-1=0&choice-2=0&choice-3=1&choice-4=0&choice-5=1&radio-1=D&radio-2=E&radio-3=C&radio-4=B&radio-5=C&radio-6=C&radio-7=D&radio-8=D&radio-9=A&checkbox-1-A=A&checkbox-1-B=B&checkbox-1-C=C&checkbox-1-D=D&checkbox-2-A=A&checkbox-2-B=B&checkbox-2-C=C&checkbox-2-D=D&checkbox-2-E=E&checkbox-3-A=A&checkbox-3-B=B&checkbox-3-C=C&checkbox-3-D=D&checkbox-4-A=A&checkbox-4-B=B&checkbox-4-C=C&checkbox-4-D=D&checkbox-4-E=E&checkbox-5-C=C&checkbox-5-D=D&checkbox-6-A=A&checkbox-6-C=C&checkbox-6-D=D&checkbox-6-E=E&checkbox-7-A=A&checkbox-7-C=C&checkbox-7-E=E&checkbox-8-A=A&checkbox-8-B=B&checkbox-8-C=C&checkbox-8-D=D&checkbox-9-A=A&checkbox-9-B=B&checkbox-9-C=C&checkbox-9-E=E&checkbox-10-A=A&checkbox-10-B=B&checkbox-10-C=C&checkbox-10-D=D&checkbox-11-A=A&checkbox-11-B=B&checkbox-11-C=C&checkbox-11-D=D");
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("content-type", "application/x-www-form-urlencoded")
+                .addHeader("Accept-Encoding", "gzip, deflate")
+                .addHeader("Accept-Language","zh-CN,zh;q=0.9,en;q=0.8")
+                .addHeader("Referer",String.format("http://173.1.1.2/train/its_exam.php?action=enter&id=%d",pid))
+                .addHeader("User-Agent","Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
+                .addHeader("Cookie", loginSign)
+                //"PHPSESSID=og0n6eovq3qr8br6955gmn3hm7;cdb_auth=2316elvypnl6%2FJ913%2BXo3SSPhW0SP8PL7iAyGOCODx9apIwQskN9TJH93DsYScQ4sJguachOsvW6wC0Kvce7EaJQ4EU;uchome_loginuser=20233;cdb_sid=E80NhA;"
+                .build();
+        Response response = client.newCall(request).execute();
+        byte[] data = response.body().bytes();
+        ByteArrayInputStream bis = new ByteArrayInputStream(data);
+        GZIPInputStream gzip = new GZIPInputStream(bis);
+        byte[] buf = new byte[1024];
+        int num = -1;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        while ((num = gzip.read(buf, 0, buf.length)) != -1) {
+            bos.write(buf, 0, num);
+        }
+        gzip.close();
+        bis.close();
+        byte[] ret = bos.toByteArray();
+        bos.flush();
+        bos.close();
+        String result = new String(new String(ret,"GB2312").getBytes(),"UTF-8");
+        System.out.println(result);
+    }
+
 }
