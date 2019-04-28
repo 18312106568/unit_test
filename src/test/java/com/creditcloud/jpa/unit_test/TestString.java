@@ -8,6 +8,8 @@ package com.creditcloud.jpa.unit_test;
 import com.creditcloud.jpa.unit_test.utils.DateUtils;
 import com.github.houbb.junitperf.core.annotation.JunitPerfConfig;
 import com.github.houbb.junitperf.core.rule.JunitPerfRule;
+import org.junit.Rule;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,9 +18,6 @@ import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
-import org.junit.Test;
-import org.junit.Rule;
-import org.springframework.util.ResourceUtils;
 
 /**
  *
@@ -26,6 +25,7 @@ import org.springframework.util.ResourceUtils;
  */
 public class TestString {
 
+    public static String name = "123";
 
 
     public TestString(){}

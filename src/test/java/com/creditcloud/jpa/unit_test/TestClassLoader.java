@@ -5,12 +5,14 @@
  */
 package com.creditcloud.jpa.unit_test;
 
+import org.junit.Test;
+
+import javax.tools.JavaCompiler;
+import javax.tools.ToolProvider;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Map;
 import java.util.Properties;
-import org.junit.Test;
-
 /**
  *
  * @author MRB
@@ -71,6 +73,24 @@ public class TestClassLoader {
     public void testClassLoader(){
         System.out.println(String.class.getClassLoader());
         System.out.println(TestClassLoader.class.getClassLoader());
+    }
+
+
+    @Test
+    public void testCompilerAndRun() {
+        System.out.println(TestString.name);
+        JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
+        String javaAbsolutePath = "E:\\tmp\\TestString.java";
+        int status = javac.run(null, null, null, "-encoding", "UTF-8", "-classpath", javaAbsolutePath.toString(), javaAbsolutePath);
+        if(status!=0){
+            System.out.println("没有编译成功！");
+        }
+        try {
+            this.getClass().getClassLoader().loadClass("com.creditcloud.jpa.unit_test.TestString");
+            System.out.println(TestString.name);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
     
 }

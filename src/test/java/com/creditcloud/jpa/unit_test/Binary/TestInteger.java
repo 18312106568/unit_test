@@ -12,7 +12,12 @@ import org.junit.Test;
  * @author MRB
  */
 public class TestInteger {
-    
+
+    @Test
+    public void testInteger(){
+        System.out.println((((3*0.998)*1.0774*0.998)-(2*1.002))*13260-13260);
+    }
+
     @Test
     public void testToBinary(){
         System.out.println(Integer.toHexString(21>>2));

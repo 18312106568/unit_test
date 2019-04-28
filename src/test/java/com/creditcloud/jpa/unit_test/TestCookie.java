@@ -15,28 +15,20 @@ import io.netty.util.NettyRuntime;
 import io.netty.util.internal.SystemPropertyUtil;
 import okhttp3.*;
 import org.junit.Test;
+import org.springframework.util.ResourceUtils;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 import java.io.*;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.security.cert.CertificateFactory;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.util.ResourceUtils;
-import java.util.Arrays;
-import java.util.Date;
-//import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
-import javax.servlet.SessionTrackingMode;
-import org.apache.catalina.Globals;
+
+//import java.util.HashSet;
 
 /**
  *
@@ -194,7 +186,7 @@ public class TestCookie {
            client.socketFactory(sslContext.getSocketFactory());
             
             final Request request = new Request.Builder()
-                .url("http://localhost:8091")
+                .url("http://www.baidu.com")
                 .build();
             Response response = client.build().newCall(request).execute();
             System.out.println(response.body().string());
@@ -279,4 +271,23 @@ public class TestCookie {
         System.out.println(result);
     }
 
+    @Test
+    public void headToMap(){
+        String requestHeads = "Accept: */*\n" +
+                "Accept-Encoding: gzip, deflate, br\n" +
+                "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8\n" +
+                "Connection: keep-alive\n" +
+                "Content-Length: 135\n" +
+                "Content-Type: application/x-www-form-urlencoded; charset=UTF-8\n" +
+                "Cookie: BAIDUID=FCB94DB885A48050416D64B2BC80D53D:FG=1; BIDUPSID=FCB94DB885A48050416D64B2BC80D53D; PSTM=1547449951; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; BDUSS=Qzb3Q1SmxIMHB6N2ZCTk1-LU5qa1ZkOFd3eWNBeHJDQ0ZOUktWYURyYW1mN3BjQVFBQUFBJCQAAAAAAAAAAAEAAADmyHE50dXQobymAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKbyklym8pJcRV; BDSFRCVID=0KKOJeC624GIAD69R9w-UCuILZ_LPOJTH6aIedtMVlBhEMemOxpDEG0PDx8g0KubzID5ogKK3gOTH4DF_2uxOjjg8UtVJeC6EG0P3J; H_BDCLCKID_SF=tJIeoIIatI_3fP36q4QV-JIehxQfbK62aJ0jahvvWJ5TMC_mQUrNQ55-0GrfelQmbm5rhf71Lp7kShPC-frqbb0I3xvGaUQu5Cj9XPJg3l02Vhb9e-t2ynLV24rRt4RMW20e0h7mWIbUsxA45J7cM4IseboJLfT-0bc4KKJxthF0HPonHj_-e5oW3f; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1554791761,1555381331,1555482509,1555576313; to_lang_often=%5B%7B%22value%22%3A%22zh%22%2C%22text%22%3A%22%u4E2D%u6587%22%7D%2C%7B%22value%22%3A%22en%22%2C%22text%22%3A%22%u82F1%u8BED%22%7D%5D; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; H_PS_PSSID=1449_21109_28775_28724_28836_28585_26350_28603_28892; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; delPer=0; PSINO=7; locale=zh; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1555990862; from_lang_often=%5B%7B%22value%22%3A%22est%22%2C%22text%22%3A%22%u7231%u6C99%u5C3C%u4E9A%u8BED%22%7D%2C%7B%22value%22%3A%22en%22%2C%22text%22%3A%22%u82F1%u8BED%22%7D%2C%7B%22value%22%3A%22zh%22%2C%22text%22%3A%22%u4E2D%u6587%22%7D%5D\n" +
+                "Host: fanyi.baidu.com\n" +
+                "Origin: https://fanyi.baidu.com\n" +
+                "Referer: https://fanyi.baidu.com/\n" +
+                "User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36\n" +
+                "X-Requested-With: XMLHttpRequest";
+        Map<String,String> cookieMap = ConverUtil.converToMap(requestHeads,"\n",":");
+        for(String key : cookieMap.keySet()){
+            System.out.println(String.format("%s=%s",key,cookieMap.get(key)));
+        }
+    }
 }

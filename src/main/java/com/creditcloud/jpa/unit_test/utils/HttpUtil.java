@@ -5,18 +5,22 @@
  */
 package com.creditcloud.jpa.unit_test.utils;
 
+import okhttp3.*;
+
+import javax.net.ssl.*;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.SecureRandom;
+import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
-import okhttp3.OkHttpClient;
+import java.util.Map;
+import java.util.zip.GZIPInputStream;
 
 /**
  *
@@ -44,6 +48,50 @@ public class HttpUtil {
         }
 
         return builder.build();
+    }
+
+    public static OkHttpClient createOkHttps(){
+        OkHttpClient.Builder clientBuilder = new OkHttpClient().newBuilder();
+
+        try {
+            final TrustManager[] trustAllCerts = new TrustManager[] {
+                    new X509TrustManager() {
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+
+                        @Override
+                        public void checkClientTrusted(X509Certificate[] xcs, String string) throws CertificateException {
+                        }
+
+                        @Override
+                        public void checkServerTrusted(X509Certificate[] xcs, String string) throws CertificateException {
+                        }
+
+
+                    }
+            };
+
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            final javax.net.ssl.SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+
+            clientBuilder.sslSocketFactory(sslSocketFactory);
+            clientBuilder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        OkHttpClient client = clientBuilder.build();
+        return client;
     }
 
 
@@ -81,4 +129,44 @@ public class HttpUtil {
         }
         return null;
     }
+
+
+    public static String doPost(String url,String heads,String params,Boolean isZip) throws IOException {
+        return doPost(url,heads,params,"application/x-www-form-urlencoded",isZip);
+    }
+
+    public static String doPost(String url,String heads,String params,String mediaTypeStr,Boolean isZip) throws IOException {
+
+        MediaType mediaType = MediaType.parse(mediaTypeStr);
+        RequestBody body = RequestBody.create(mediaType,params);
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .post(body);
+
+        Map<String,String> headMap = ConverUtil.converToMap(heads,"\n",":");
+        for(String key : headMap.keySet()){
+            requestBuilder.addHeader(key,headMap.get(key));
+        }
+        Request request = requestBuilder.build();
+        Response response = createOkHttps().newCall(request).execute();
+        byte[] data = response.body().bytes();
+        if(!isZip){
+            return new String(data);
+        }
+        ByteArrayInputStream bis = new ByteArrayInputStream(data);
+        GZIPInputStream gzip = new GZIPInputStream(bis);
+        byte[] buf = new byte[1024];
+        int num = -1;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        while ((num = gzip.read(buf, 0, buf.length)) != -1) {
+            bos.write(buf, 0, num);
+        }
+        gzip.close();
+        bis.close();
+        byte[] ret = bos.toByteArray();
+        return new String(ret);
+
+    }
+
+
 }

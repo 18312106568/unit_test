@@ -5,13 +5,14 @@
  */
 package com.creditcloud.jpa.unit_test.utils;
 
+import org.springframework.util.StringUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.util.StringUtils;
 
 /**
  *
@@ -89,6 +90,27 @@ public class ConverUtil {
     }
 
     /**
+     * 分割字符串成Map
+     *
+     * @param data
+     * @param seporator
+     * @return
+     */
+    public static Map<String,String> converToMap(String data, String seporator,String subSeporator) {
+        Map<String, String> result = new HashMap();
+        String[] dataArr = data.split(seporator);
+        for (int i = 0; i < dataArr.length; i++) {
+            String[] entry = dataArr[i].split(subSeporator,2);
+            if (entry.length > 1) {
+                result.put(entry[0], entry[1]);
+            } else {
+                result.put(entry[0], "");
+            }
+        }
+        return result;
+    }
+
+    /**
      * Map拼接成字符串
      *
      * @param dataMap
@@ -148,6 +170,30 @@ public class ConverUtil {
                 continue;
             }
             sb.append((char) c);
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * 短语转峰驼式命名
+     */
+    public static String phraseToChangCame(String phrase){
+        boolean flag = false;
+        phrase = phrase.toLowerCase();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<phrase.length();i++){
+            int c = phrase.charAt(i);
+            if(c==' '){
+                flag = true;
+                continue;
+            }
+            if(flag){
+                sb.append((char)(c-32));
+                flag=false;
+                continue;
+            }
+            sb.append((char)c);
         }
         return sb.toString();
     }
