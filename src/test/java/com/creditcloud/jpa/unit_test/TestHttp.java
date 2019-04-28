@@ -12,7 +12,9 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+import lombok.Data;
 import okhttp3.*;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -587,6 +589,125 @@ public class TestHttp {
         System.out.println(TranslateUtils.translate("英文"));
     }
 
+    @Test
+    public void testGateIoMarket(){
+        OkHttpClient client = HttpUtil.createOkHttps();
+        Request request = new Request.Builder()
+                .url("https://data.gateio.co/api2/1/marketlist")
+                .get()
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String result = response.body().string();
+            System.out.println(result);
+            Gson gson = new Gson();
+            GateIoResult<GateIoMarket> gateIoResult = gson.fromJson(result,new TypeToken<GateIoResult<GateIoMarket>>(){}.getType());
+            System.out.println(gateIoResult);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
 
+    }
+
+    /**
+     *  symbol : 币种标识
+     *     name: 币种名称
+     *     name_en: 英文名称
+     *     name_cn: 中文名称
+     *     pair: 交易对
+     *     rate: 当前价格
+     *     vol_a: 被兑换货币交易量
+     *     vol_b: 兑换货币交易量
+     *     curr_a: 被兑换货币
+     *     curr_b: 兑换货币
+     *     curr_suffix: 货币类型后缀
+     *     rate_percent: 涨跌百分百
+     *     trend: 24小时趋势 up涨 down跌
+     *     supply: 币种供应量
+     *     marketcap: 总市值
+     *     plot: 趋势数据
+     */
+    @Data
+    public static class GateIoMarket{
+        private Integer no;
+        /**
+         * 币种标识
+         */
+        private String symbol;
+
+        /**
+         * 总市值
+         */
+        private String marketcap;
+
+        /**
+         * 被兑换货币
+         */
+        private String curr_a;
+
+        /**
+         * 兑换货币
+         */
+        private String curr_b;
+
+        /**
+         * 被兑换货币交易量
+         */
+        private Double vol_a;
+
+        /**
+         * 兑换货币交易量
+         */
+        private String vol_b;
+
+        /**
+         * 涨跌百分比
+         */
+        private String rate_percent;
+
+        /**
+         * 24小时趋势 up涨 down跌
+         */
+        private String trend;
+
+
+
+        /**
+         *  币种供应量
+         */
+        private Long supply;
+
+        /**
+         * 交易对
+         */
+        private String pair;
+
+        /**
+         * 货币类型后缀
+         */
+        private String curr_suffix;
+
+        /**
+         * 当前价格
+         */
+        private String rate;
+
+        /**
+         * 趋势数据
+         */
+        private String plot;
+
+        private String name;
+
+        private String name_cn;
+
+        private String name_en;
+    }
+
+    @Data
+    public static class GateIoResult<T>{
+        private Boolean result;
+        private List<T> data;
+    }
 
 }
