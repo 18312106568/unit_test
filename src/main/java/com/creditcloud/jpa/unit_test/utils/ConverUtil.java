@@ -174,6 +174,26 @@ public class ConverUtil {
         return sb.toString();
     }
 
+    public static String hungToChangeCame(String hung){
+        boolean flag = false;
+        hung = hung.toLowerCase();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<hung.length();i++){
+            int c = hung.charAt(i);
+            if(c=='_'){
+                flag = true;
+                continue;
+            }
+            if(flag){
+                sb.append((char)(c-32));
+                flag=false;
+                continue;
+            }
+            sb.append((char)c);
+        }
+        return sb.toString();
+    }
+
 
     /**
      * 短语转峰驼式命名

@@ -12,33 +12,20 @@ import com.creditcloud.jpa.unit_test.vo.DeclarationForm;
 import com.creditcloud.jpa.unit_test.vo.ResponseForm;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.Gson;
-import com.sun.javafx.css.Declaration;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.math.BigInteger;  
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-  
-import javax.crypto.Cipher;  
-import javax.crypto.KeyGenerator;  
-import javax.crypto.spec.SecretKeySpec;  
-   
-import org.apache.commons.lang3.StringUtils;  
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
-
 import org.junit.Test;
 import org.springframework.util.ResourceUtils;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.*;
+import java.lang.reflect.Field;
+import java.math.BigInteger;
+import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -313,6 +300,18 @@ public class TestDecode {
             System.out.println("@JsonProperty(\""+columns[1]+"\")");
             System.out.println("private String "+columns[1]+";");
             System.out.println();
+        }
+    }
+
+
+    @Test
+    public void testProperties()throws  IOException{
+        Properties properties = new Properties();
+        File file = ResourceUtils.getFile("classpath:gateio-comment.properties");
+        BufferedReader bufReader = new BufferedReader(new FileReader(file));
+        properties.load(bufReader);
+        for(Object key:properties.keySet()){
+            System.out.println(key+"-"+properties.get(key));
         }
     }
     

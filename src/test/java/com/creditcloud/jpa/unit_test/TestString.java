@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
@@ -130,6 +132,15 @@ public class TestString {
         long timeS = 1555084800000L+24*60*60*1000L;
         System.out.println(timeS);
         System.out.println(DateUtils.format(new Date(timeS)));
+    }
+
+    @Test
+    public void testDateTimeStamp() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH:mm:ss SSS");
+        Date date = sdf.parse("20190430 12:00:00 000");
+        Long timeDiff = date.getTime()-System.currentTimeMillis();
+        System.out.println(date.getTime());
+        System.out.println((date.getTime()-System.currentTimeMillis())/(1000*3600));
     }
 
 

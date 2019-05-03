@@ -88,7 +88,7 @@ public class TestXssheet {
     @Test
     public void exportColumn() throws IOException {
         Workbook wb = null;
-        File file = new File("E:\\doc\\4.22-运费核算\\附件6.“点运费+件运费+出车费”计费模式相关表格.xlsx");
+        File file = new File("E:\\doc\\4.22-运费核算\\附件7.“件运费+配送费”计费模式相关表格.xlsx");
         InputStream in = new FileInputStream(file);
         long start = System.currentTimeMillis();
         wb = new XSSFWorkbook(in);

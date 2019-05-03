@@ -15,4 +15,6 @@ import lombok.Data;
 public class Field {
     private String name;
     private String type;
+    private String alias;
+    private String comment;
 }

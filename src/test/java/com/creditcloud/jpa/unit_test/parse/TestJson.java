@@ -5,25 +5,14 @@
  */
 package com.creditcloud.jpa.unit_test.parse;
 
+import com.creditcloud.jpa.unit_test.utils.ConverUtil;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.zip.GZIPInputStream;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +20,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ResourceUtils;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.*;
+import java.util.*;
+import java.util.zip.GZIPInputStream;
 
 /**
  *
@@ -46,14 +36,29 @@ public class TestJson {
     Configuration cfg;
     
     char[] jsonArrays;
+
+    Properties properties = new Properties();
     
-    final String BEAN_FTL = "bean.ftl";
+    final String BEAN_FTL = "bean-json.ftl";
     
     final String JAVA_FIX = ".java";
     
     final String ENCODE = "UTF-8";
     
     final String TEMP_DIR = "/tmp";
+
+    @Before
+    public void init(){
+
+        try{
+            File file = ResourceUtils.getFile("classpath:gateio-comment.properties");
+            BufferedReader bufReader = new BufferedReader(new FileReader(file));
+            properties.load(bufReader);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+
+    }
     
     //@Test
     public static void main(String args[]) throws IOException{
@@ -107,7 +112,7 @@ public class TestJson {
     
     @Test
     public void testParseJson(){
-            String json = "{\"key1\":\"val,:ue1\",\"key2\":1,\"key3\":\"200\"}";
+            String json = "{\"orderNumber\":\"30032151\",\"type\":\"buy\",\"rate\":21367.521367521,\"amount\":\"0.0936\",\"total\":\"2000\",\"initialRate\":21367.521367521,\"initialAmount\":\"0.0936\",\"filledRate\":0,\"filledAmount\":0,\"currencyPair\":\"eth_btc\",\"timestamp\":\"1407828913\",\"status\":\"open\"}";//"{\"key1\":\"val,:ue1\",\"key2\":1,\"key3\":\"200\"}";
             System.out.println(json);	
             jsonArrays = json.toCharArray();
             transMapToBean(parseJson(jsonArrays,0,jsonArrays.length),"com.test","TestJson");
@@ -289,10 +294,11 @@ public class TestJson {
 			return name;
 		}
 	}
-        
-        
-        public void transMapToBean(Map<String,JsonObject> parseMap,String packageName,String className){
+
+
+    public void transMapToBean(Map<String,JsonObject> parseMap,String packageName,String className){
             BeanTemplate beanTemplate = new BeanTemplate();
+
            
             List<String> importList = new ArrayList();
             List<Field> fieldList = new ArrayList();
@@ -312,7 +318,9 @@ public class TestJson {
                     case JsonC:
                         Field field = new Field();
                         String subClassName = new StringBuilder(className).append(entry.getKey()).toString();
-                        field.setName(entry.getKey());
+                        field.setAlias(entry.getKey());
+                        field.setName(ConverUtil.hungToChangeCame(entry.getKey()));
+                        field.setComment(properties.getProperty(entry.getKey()));
                         field.setType(subClassName);
                         importList.add(new StringBuilder(packageName)
                                         .append('.').append(subClassName).append(';').toString());
@@ -322,7 +330,9 @@ public class TestJson {
                     case JsonCArr:
                         Field field2 = new Field();
                         String subClassName2 = new StringBuilder(className).append(entry.getKey()).toString();
-                        field2.setName(entry.getKey());
+                        field2.setAlias(entry.getKey());
+                        field2.setName(ConverUtil.hungToChangeCame(entry.getKey()));
+                        field2.setComment(properties.getProperty(entry.getKey()));
                         field2.setType(JsonType.JsonCArr.name.replaceAll("Type", subClassName2));
                         importList.add(new StringBuilder(packageName)
                                         .append('.').append(subClassName2).append(';').toString());
@@ -349,12 +359,14 @@ public class TestJson {
                 
                 Map<String, Object> root = new HashMap<>();
                 root.put("bean", beanTemplate);
-                OutputStream fos = new FileOutputStream(new File(TEMP_DIR,fileName));
-                Writer out = new OutputStreamWriter(fos,ENCODE);
+                //生成Java文件
+//                OutputStream fos = new FileOutputStream(new File(TEMP_DIR,fileName));
+//                Writer out = new OutputStreamWriter(fos,ENCODE);
+                Writer out = new OutputStreamWriter(System.out);
                 temp.process(root, out);
 
-                fos.flush();
-                fos.close();
+//                fos.flush();
+//                fos.close();
             } catch (IOException|TemplateException ex ) {
                 ex.printStackTrace();
             }
@@ -363,7 +375,9 @@ public class TestJson {
         
         private Field strField(String name,JsonObject jsonObject){
              Field fieldType = new Field();
-             fieldType.setName(name);
+             fieldType.setAlias(name);
+             fieldType.setName(ConverUtil.hungToChangeCame(name));
+             fieldType.setComment(properties.getProperty(name));
              int lastIndex = jsonObject.start;
 //             while(jsonArrays[lastIndex]==' '||jsonArrays[lastIndex]=='\t'
 //                            ||jsonArrays[lastIndex]=='\r'||jsonArrays[lastIndex]=='\n'
@@ -382,14 +396,16 @@ public class TestJson {
         
         private Field numField(String name,JsonObject jsonObject){
             Field fieldType = new Field();
-            fieldType.setName(name);
+            fieldType.setAlias(name);
+            fieldType.setName(ConverUtil.hungToChangeCame(name));
+            fieldType.setComment(properties.getProperty(name));
             for(int i=0;i<jsonObject.count;i++){
                 if(jsonArrays[jsonObject.start+i]=='.'){
                     fieldType.setType(JsonType.DoubleC.name);
                     return fieldType;
                 }
             }
-            if(jsonObject.count>=9){
+            if(jsonObject.count>=8){
                 fieldType.setType(JsonType.LongC.name);
             }else{
                 fieldType.setType(JsonType.IntC.name);
