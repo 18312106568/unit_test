@@ -1,5 +1,4 @@
 @startuml
-
 start
     :输入账号oAccount及密码oPwd;
     ->转字母算法;
@@ -10,7 +9,6 @@ start
     ->cal取模13;
     :生成ical;
 while (i<30,i初始值为0)
-
   ->转字母算法(ical+ca2+i+1);
   :生成新的ical;
   if (position==1 && pwdSeq.length<30?,position初始值为1) then (yes)

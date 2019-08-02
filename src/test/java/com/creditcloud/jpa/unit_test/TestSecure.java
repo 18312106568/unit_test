@@ -26,19 +26,38 @@ import java.security.spec.X509EncodedKeySpec;
  * @author MRB
  */
 public class TestSecure {
-    
+
+    private static final char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd','e', 'f' };
+
+    private static String byteArrayToHex(byte[] byteArray) {
+        // new一个字符数组，这个就是用来组成结果字符串的（解释一下：一个byte是八位二进制，也就是2位十六进制字符（2的8次方等于16的2次方））
+        char[] resultCharArray = new char[byteArray.length * 2];
+        // 遍历字节数组，通过位运算（位运算效率高），转换成字符放到字符数组中去
+        int index = 0;
+        for (byte b : byteArray) {
+            resultCharArray[index++] = hexDigits[b >>> 4 & 0xf];
+            resultCharArray[index++] = hexDigits[b & 0xf];
+        }
+
+        // 字符数组组合成字符串返回
+        return new String(resultCharArray);
+
+    }
+
     @Test
     public void testSecure() throws NoSuchAlgorithmException{
         MessageDigest md = MessageDigest.getInstance("MD5");
-        byte[] datas = "qywhb".getBytes();
+        byte[] datas = "2015063000000001apple143566028812345678".getBytes();
         byte[] result = md.digest(datas);
         System.out.println(new String(Base64.encode(result)));
         System.out.println(new String(converString(result)));
+        System.out.println(byteArrayToHex(result));
         md = MessageDigest.getInstance("SHA-1");
         result = md.digest(datas);
         System.out.println(converString(result));
+        System.out.println(byteArrayToHex(result));
     }
-    
+
     public String converString(byte[] datas){
         StringBuilder sb = new StringBuilder();
         for(byte data:datas){
@@ -69,13 +88,41 @@ public class TestSecure {
         String str = new String(hexToStr(hexStr));
         System.out.println(str);
     }
-    
+
+    @Test
+    public void testProdRSAKey() throws NoSuchAlgorithmException, IOException {
+        String algorithm = "RSA";
+        final String SIGN_ALGORITHMS = "SHA1withRSA";
+        KeyPairGenerator keygen = KeyPairGenerator.getInstance(algorithm);
+
+        SecureRandom secrand = new SecureRandom();
+        secrand.setSeed("abc".getBytes());
+        keygen.initialize(512, secrand);
+        keygen.initialize(512);
+        //生成密钥对
+        KeyPair keys = keygen.generateKeyPair();
+        PublicKey pubkey = keys.getPublic();
+        PrivateKey prikey = keys.getPrivate();
+
+        System.out.println(pubkey.toString());
+        System.out.println(prikey.toString());
+
+        BufferedWriter out = new BufferedWriter(
+                new FileWriter(new File("E:\\tmp\\rsapubkey.dat")));
+        out.write(Base64.encode(pubkey.getEncoded()));
+        out.close();
+        out = new BufferedWriter(
+                new FileWriter(new File("E:\\tmp\\rsaprikey.dat")));
+        out.write(Base64.encode(prikey.getEncoded()));
+        out.close();
+    }
+
     @Test
     public void testSHA1withRSA() throws NoSuchAlgorithmException, FileNotFoundException, IOException, InvalidKeyException, SignatureException, ClassNotFoundException, InvalidKeySpecException{
         String algorithm = "RSA";
         final String SIGN_ALGORITHMS = "SHA1withRSA";
 //        KeyPairGenerator keygen = KeyPairGenerator.getInstance(algorithm);
-//        
+//
 //        SecureRandom secrand = new SecureRandom();
 //        secrand.setSeed("abc".getBytes());
 //        keygen.initialize(512, secrand);
@@ -84,10 +131,10 @@ public class TestSecure {
 //        KeyPair keys = keygen.generateKeyPair();
 //        PublicKey pubkey = keys.getPublic();
 //        PrivateKey prikey = keys.getPrivate();
-//        
+//
 //        System.out.println(pubkey.toString());
 //        System.out.println(prikey.toString());
-//        
+//
 //        BufferedWriter out = new BufferedWriter(
 //                new FileWriter(new File("E:\\tmp\\rsapubkey.dat")));
 //        out.write(Base64.encode(pubkey.getEncoded()));
@@ -96,36 +143,36 @@ public class TestSecure {
 //                new FileWriter(new File("E:\\tmp\\rsaprikey.dat")));
 //        out.write(Base64.encode(prikey.getEncoded()));
 //        out.close();
-        
+
         BufferedReader in = new BufferedReader(
                 new FileReader(new File("E:\\tmp\\rsaprikey.dat")));
         String prikeyStr =  in.readLine();
-        PKCS8EncodedKeySpec keyspec = 
+        PKCS8EncodedKeySpec keyspec =
                 new PKCS8EncodedKeySpec(Base64.decode(prikeyStr.toCharArray()));
         PrivateKey prikey = KeyFactory.getInstance(algorithm).generatePrivate(keyspec);
         in = new BufferedReader(
                 new FileReader(new File("E:\\tmp\\rsapubkey.dat")));
         String pubkeyStr = in.readLine();
-        X509EncodedKeySpec pubspec = new X509EncodedKeySpec(Base64.decode(pubkeyStr.toCharArray())); 
+        X509EncodedKeySpec pubspec = new X509EncodedKeySpec(Base64.decode(pubkeyStr.toCharArray()));
         PublicKey pubKey = KeyFactory.getInstance(algorithm).generatePublic(pubspec);
         byte[] info = "测试信息123".getBytes();
         Signature signature = Signature.getInstance(SIGN_ALGORITHMS);
         signature.initSign(prikey);
         signature.update(info);
-        
+
         byte[] result = signature.sign();
-        
+
         char[] encrypt = Base64.encode(result);
         System.out.println(encrypt);
         //System.out.println(Base64.decode(encrypt));
-        
+
         Signature sigcheck = Signature.getInstance(SIGN_ALGORITHMS);
         sigcheck.initVerify(pubKey);
         sigcheck.update(info);
         System.out.println(sigcheck.verify(Base64.decode(encrypt)));
     }
-    
-    
+
+
     @Test
     public void testRSA() throws Exception{
         String RSA_ALGORITHM = "RSA";
@@ -133,8 +180,6 @@ public class TestSecure {
         KeyPairGenerator kpg = KeyPairGenerator.getInstance(RSA_ALGORITHM);
         kpg.initialize(512);
         String data = "123";
-        
-        
         //生成密匙对
         KeyPair keyPair = kpg.generateKeyPair();
         //得到公钥
@@ -145,19 +190,19 @@ public class TestSecure {
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         byte[] buffer = cipher.doFinal(data.getBytes());
         System.out.println(new String(buffer));
-        
+
         Cipher cipher2 = Cipher.getInstance(RSA_ALGORITHM);
         cipher2.init(Cipher.DECRYPT_MODE, privateKey);
         buffer = cipher2.doFinal(buffer);
         System.out.println(new String(buffer));
     }
-    
+
     @Test
     public void testDes() throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException{
-         Security.addProvider(new com.sun.crypto.provider.SunJCE()); 
-         String Algorithm="DES"; // 定义 加密算法 , 可用 DES,DESede,Blowfish 
-         String myinfo="-3a6a7d35994df1081eb7f2dda3a2255"; 
-//         KeyGenerator keygen = KeyGenerator.getInstance(Algorithm); 
+         Security.addProvider(new com.sun.crypto.provider.SunJCE());
+         String Algorithm="DES"; // 定义 加密算法 , 可用 DES,DESede,Blowfish
+         String myinfo="-3a6a7d35994df1081eb7f2dda3a2255";
+//         KeyGenerator keygen = KeyGenerator.getInstance(Algorithm);
 //         SecretKey deskey = keygen.generateKey();
 //         byte[] deskeyEncodes = deskey.getEncoded();
          String encKey="jyys si eth yaw";
@@ -168,47 +213,47 @@ public class TestSecure {
          SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(Algorithm);
          DESKeySpec desSpect = new DESKeySpec(desSpecStr.getBytes());
          SecretKey deskey = keyFactory.generateSecret(desSpect);
-         System.out.println("加密前的二进串 :"+new String(Base64.encode(myinfo.getBytes()))); 
-         System.out.println("加密前的信息 :"+myinfo); 
-         
-         Cipher c1 = Cipher.getInstance(Algorithm); 
-         c1.init(Cipher.ENCRYPT_MODE,deskey); 
-         byte[] cipherByte=c1.doFinal(myinfo.getBytes()); 
-         System.out.println("加密后的二进串 :"+new String(Base64.encode(cipherByte))); 
-         
+         System.out.println("加密前的二进串 :"+new String(Base64.encode(myinfo.getBytes())));
+         System.out.println("加密前的信息 :"+myinfo);
+
+         Cipher c1 = Cipher.getInstance(Algorithm);
+         c1.init(Cipher.ENCRYPT_MODE,deskey);
+         byte[] cipherByte=c1.doFinal(myinfo.getBytes());
+         System.out.println("加密后的二进串 :"+new String(Base64.encode(cipherByte)));
+
         // 解密
-         Cipher c2 = Cipher.getInstance(Algorithm); 
+         Cipher c2 = Cipher.getInstance(Algorithm);
          deskey = keyFactory.generateSecret(desSpect);
-         c2.init(Cipher.DECRYPT_MODE,deskey); 
-//        c1 = Cipher.getInstance(Algorithm); 
-//        c1.init(Cipher.DECRYPT_MODE,deskey); 
-        byte[] clearByte=c2.doFinal(cipherByte); 
-        System.out.println("解密后的二进串 :"+new String(Base64.encode(clearByte))); 
+         c2.init(Cipher.DECRYPT_MODE,deskey);
+//        c1 = Cipher.getInstance(Algorithm);
+//        c1.init(Cipher.DECRYPT_MODE,deskey);
+        byte[] clearByte=c2.doFinal(cipherByte);
+        System.out.println("解密后的二进串 :"+new String(Base64.encode(clearByte)));
         System.out.println("解密后的信息 :"+(new String(clearByte)));
     }
-    
+
     @Test
     public void testAes() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, NoSuchPaddingException, BadPaddingException, NoSuchPaddingException{
-        String Algorithm="AES"; // 定义 加密算法 
+        String Algorithm="AES"; // 定义 加密算法
         String AES_CBC_PKCS5_PADDING = "AES/CBC/PKCS5Padding";
         String password = "123456";
         String privilageKey = "2018121323411234";
         String ivKey = "2018121323411234";
-        
+
         SecretKeySpec secretKeySpec = new SecretKeySpec(privilageKey.getBytes(),Algorithm);
         IvParameterSpec ivSpec = new IvParameterSpec(ivKey.getBytes());
         Cipher cipher = Cipher.getInstance(AES_CBC_PKCS5_PADDING);
-        
+
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec,ivSpec);
-        
+
         byte[] encryptedContent = cipher.doFinal(password.getBytes());
-        
+
         Cipher cipher2 = Cipher.getInstance(AES_CBC_PKCS5_PADDING);
         cipher2.init(Cipher.DECRYPT_MODE, secretKeySpec,ivSpec);
         byte[] decryptedContent = cipher2.doFinal(encryptedContent);
-        
+
         System.out.println(new String(decryptedContent));
-        
+
     }
 
     @Test

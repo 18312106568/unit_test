@@ -2,6 +2,7 @@ package com.creditcloud.jpa.unit_test;
 
 import com.creditcloud.jpa.unit_test.driver.ExproderDriver;
 import com.creditcloud.jpa.unit_test.model.PtuiCheckVK;
+import com.creditcloud.jpa.unit_test.utils.BDtranslator;
 import com.creditcloud.jpa.unit_test.utils.HttpUtil;
 import com.creditcloud.jpa.unit_test.utils.LoginUtil;
 import com.creditcloud.jpa.unit_test.utils.TranslateUtils;
@@ -561,18 +562,18 @@ public class TestHttp {
 
     @Test
     public void testBaiduFanYi() throws IOException {
-        String heads = "Accept: */*\n" +
-                "Accept-Encoding: gzip, deflate, br\n" +
-                "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8\n" +
-                "Connection: keep-alive\n" +
-                "Content-Length: 135\n" +
-                "Content-Type: application/x-www-form-urlencoded; charset=UTF-8\n" +
-                "Cookie: BAIDUID=FCB94DB885A48050416D64B2BC80D53D:FG=1; BIDUPSID=FCB94DB885A48050416D64B2BC80D53D; PSTM=1547449951; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; BDUSS=Qzb3Q1SmxIMHB6N2ZCTk1-LU5qa1ZkOFd3eWNBeHJDQ0ZOUktWYURyYW1mN3BjQVFBQUFBJCQAAAAAAAAAAAEAAADmyHE50dXQobymAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKbyklym8pJcRV; BDSFRCVID=0KKOJeC624GIAD69R9w-UCuILZ_LPOJTH6aIedtMVlBhEMemOxpDEG0PDx8g0KubzID5ogKK3gOTH4DF_2uxOjjg8UtVJeC6EG0P3J; H_BDCLCKID_SF=tJIeoIIatI_3fP36q4QV-JIehxQfbK62aJ0jahvvWJ5TMC_mQUrNQ55-0GrfelQmbm5rhf71Lp7kShPC-frqbb0I3xvGaUQu5Cj9XPJg3l02Vhb9e-t2ynLV24rRt4RMW20e0h7mWIbUsxA45J7cM4IseboJLfT-0bc4KKJxthF0HPonHj_-e5oW3f; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1554791761,1555381331,1555482509,1555576313; to_lang_often=%5B%7B%22value%22%3A%22zh%22%2C%22text%22%3A%22%u4E2D%u6587%22%7D%2C%7B%22value%22%3A%22en%22%2C%22text%22%3A%22%u82F1%u8BED%22%7D%5D; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; H_PS_PSSID=1449_21109_28775_28724_28836_28585_26350_28603_28892; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; delPer=0; PSINO=7; locale=zh; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1555990862; from_lang_often=%5B%7B%22value%22%3A%22est%22%2C%22text%22%3A%22%u7231%u6C99%u5C3C%u4E9A%u8BED%22%7D%2C%7B%22value%22%3A%22en%22%2C%22text%22%3A%22%u82F1%u8BED%22%7D%2C%7B%22value%22%3A%22zh%22%2C%22text%22%3A%22%u4E2D%u6587%22%7D%5D\n" +
-                "Host: fanyi.baidu.com\n" +
-                "Origin: https://fanyi.baidu.com\n" +
-                "Referer: https://fanyi.baidu.com/\n" +
-                "User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36\n" +
-                "X-Requested-With: XMLHttpRequest";
+        String heads = "accept: */*\n" +
+                "accept-encoding: gzip, deflate, br\n" +
+                "accept-language: zh-CN,zh;q=0.9,en;q=0.8\n" +
+                "cache-control: no-cache\n" +
+                "content-length: 121\n" +
+                "content-type: application/x-www-form-urlencoded; charset=UTF-8\n" +
+                "cookie: BAIDUID=FCB94DB885A48050416D64B2BC80D53D:FG=1; BIDUPSID=FCB94DB885A48050416D64B2BC80D53D; PSTM=1547449951; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; BDUSS=Qzb3Q1SmxIMHB6N2ZCTk1-LU5qa1ZkOFd3eWNBeHJDQ0ZOUktWYURyYW1mN3BjQVFBQUFBJCQAAAAAAAAAAAEAAADmyHE50dXQobymAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKbyklym8pJcRV; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1557297824,1557994668,1558403021,1558494919; sideAdClose=18044; BDSFRCVID=N3POJeC626vdWRr9nh45UCuIQB_vy33TH6aobt7wzt9apyV8lxbiEG0PjM8g0KubvnQHogKK3gOTH4DF_2uxOjjg8UtVJeC6EG0P3J; H_BDCLCKID_SF=tJkD_I_hJKt3qn7I5KToh4Athxob2bbXHDo-LIvLtDncOR5JhfA-3R-e04C82tkJKHTmLlT1alvvhb3O3M7ShbKP3a7lbtTx-HTDKfQF5l8-sq0x0bOte-bQypoa0q3TLDOMahkM5h7xOKQoQlPK5JkgMx6MqpQJQeQ-5KQN3KJmhpFuD6_Wj5b3Da8s-bbfHDn0WJ32KRROKROvhjRFDp8gyxomtjDqbDnUbt_XaJPMMf5J5frGLl4B2H-eLUkqKCOaLI35Mt-BHtJw367S2-DtQttjQPTufIkja-5tbJrGOb7TyU45bU47yaOR0q4Hb6b9BJcjfU5MSlcNLTjpQT8rDPCE5bj2qRu8VCIK3J; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; H_PS_PSSID=1449_21109_29135_29237_28518_29098_29134_28836_28585_26350; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1559796355; yjs_js_security_passport=40671ad420456fc24920bbfacab47fc4a72ac453_1559796426_js; delPer=0; PSINO=7; locale=zh; to_lang_often=%5B%7B%22value%22%3A%22en%22%2C%22text%22%3A%22%u82F1%u8BED%22%7D%2C%7B%22value%22%3A%22zh%22%2C%22text%22%3A%22%u4E2D%u6587%22%7D%5D; from_lang_often=%5B%7B%22value%22%3A%22it%22%2C%22text%22%3A%22%u610F%u5927%u5229%u8BED%22%7D%2C%7B%22value%22%3A%22zh%22%2C%22text%22%3A%22%u4E2D%u6587%22%7D%2C%7B%22value%22%3A%22en%22%2C%22text%22%3A%22%u82F1%u8BED%22%7D%5D\n" +
+                "origin: https://fanyi.baidu.com\n" +
+                "pragma: no-cache\n" +
+                "referer: https://fanyi.baidu.com/\n" +
+                "user-agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36\n" +
+                "x-requested-with: XMLHttpRequest";
         String url = "https://fanyi.baidu.com/v2transapi";
         String params = "from=zh&to=en&query=%E4%B8%AD%E6%96%87&transtype=realtime&simple_means_flag=3&sign=567986.805251&token=2e3030089a45be932f9060f4a8c53950";
         String result = HttpUtil.doPost(url,heads,params,true);
@@ -587,6 +588,11 @@ public class TestHttp {
 //        System.out.println(System.getProperty("file.encoding"));
 //        System.out.println(URLEncoder.encode("运输计费","UTF-8"));
         System.out.println(TranslateUtils.translate("英文"));
+    }
+
+    @Test
+    public void testBDTranslator(){
+        System.out.println(BDtranslator.translate("你是谁"));
     }
 
     @Test

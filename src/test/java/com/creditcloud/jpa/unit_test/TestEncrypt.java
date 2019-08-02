@@ -8,7 +8,6 @@ package com.creditcloud.jpa.unit_test;
 //import com.creditcloud.common.utils.AesEncryptUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 /**
  *
@@ -59,5 +58,9 @@ public class TestEncrypt {
             }
         }
         return result;
+    }
+
+    public void testGbkToUtf8(){
+        System.out.println();
     }
 }

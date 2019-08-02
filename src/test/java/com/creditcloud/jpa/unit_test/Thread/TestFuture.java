@@ -4,12 +4,6 @@
  * and open the template in the editor.
  */
 package com.creditcloud.jpa.unit_test.Thread;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.*;
-
 import com.creditcloud.jpa.unit_test.proxy.RunTimeProxy;
 import com.creditcloud.jpa.unit_test.proxy.Ship;
 import com.creditcloud.jpa.unit_test.utils.DateUtils;
@@ -19,12 +13,18 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.*;
 /**
  *
  * @author MRB
  */
 public class TestFuture {
-    
+
     @Test
     public void testFuture() throws InterruptedException, ExecutionException{
         Callable<Integer> call = new Callable(){
@@ -49,7 +49,7 @@ public class TestFuture {
     public void testDoss() throws ExecutionException, InterruptedException {
         long start = System.currentTimeMillis();
         ExecutorService executorService = Executors.newCachedThreadPool();
-        List<FutureTask<String>> futureTasks = new ArrayList<>();
+        List<Future> futures = new ArrayList<>();
         for(int i=0;i<500;i++){
             //Thread.sleep(1000*i);
             //Callable<String> call = new HttpCallable(String.format("http://localhost:8700/user/autoAdd"));
@@ -57,13 +57,13 @@ public class TestFuture {
             Callable<String> call = new HttpCallable(
                     String.format("http://localhost:8700/user/save?userName=%d",(System.currentTimeMillis()-(int)Math.random()*1000)));
             FutureTask task = new FutureTask(call);
-            futureTasks.add(task);
-            executorService.submit(task);
+            futures.add(task);
+            futures.add(executorService.submit(task));
         }
 
         int count =0;
-        for(FutureTask<String> task : futureTasks){
-            String result = task.get();
+        for(Future<String> future : futures){
+            String result = future.get();
             if(result.equals("success")){
                 count++;
             }

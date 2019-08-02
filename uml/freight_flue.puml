@@ -1,0 +1,36 @@
+@startuml
+
+start
+    :获取所有模式 modeList;
+    ->遍历模式，并获取出每种模式需要计算的运费信息 transportBaseList;
+  while (i<modeList.size(),i初始值为0)
+    :获取对应模式的细单分组;
+    :获取需要统计的细单数据;
+    -[#00cc66]->按分组配置将transportBaseList 分组成 transportBaseMap;
+    :开始计算细单结果 docResultAllList;
+    while (i<transportBaseMap.values().size(),i初始值为0)
+        :获取细单公式参数来源;
+        :获取细单配置表信息;
+        :获取需要计算的细单公式;
+        :获取细单回填配置;
+        :将每个公式计算的结果回填入 docResultMap;
+        :docResultMapList.add(docResultMap);
+    endwhile
+
+     :获取对应模式的总单分组;
+     :获取需要统计的细单数据;
+     -[#00cc66]->按分组配置将docResultAllList分组成 docResultAllMap;
+     :开始计算总单结果 dtlResultAllList;
+     while(i<docResultAllMap.values().size(),i初始值为0)
+        :获取总单公式参数来源;
+        :获取总单配置表;
+        :获取总单需要计算的总单公式;
+        :获取总单回填配置;
+        :将每个公式计算的结果回填入 dtlResultMap;
+     endwhile
+  endwhile
+
+
+stop
+
+@enduml

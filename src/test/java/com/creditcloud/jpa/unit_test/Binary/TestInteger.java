@@ -32,4 +32,18 @@ public class TestInteger {
         char c3f = 3*16+11;
         System.out.println(c3f);
     }
+
+    @Test
+    public void testFibonacc(){
+        int ALL_SIZE = 2019;
+        long[] a = new long[ALL_SIZE];
+        a[0]=1;
+        a[1]=1;
+        for(int i=2;i<ALL_SIZE;i++){
+            a[i]=a[i-1]+a[i-2];
+        }
+        for(int i=0;i<ALL_SIZE;i++){
+            System.out.println(i+"-"+a[i]);
+        }
+    }
 }

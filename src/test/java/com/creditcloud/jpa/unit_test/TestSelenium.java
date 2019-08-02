@@ -1,9 +1,7 @@
 package com.creditcloud.jpa.unit_test;
 
-import com.google.common.util.concurrent.SimpleTimeLimiter;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -31,8 +29,15 @@ public class TestSelenium {
         driver.get("https://www.baidu.com");
         Thread.sleep(1000);
 
-        WebElement element = driver.findElement(By.tagName("body"));
-        System.out.println(element.getText());
+
+        WebElement kw = driver.findElement(By.id("kw"));
+        WebElement su = driver.findElement(By.id("su"));
+        kw.sendKeys("selenium");
+        su.click();
+        WebElement element = driver.findElement(By.tagName("html"));
+        System.out.println(driver.manage().getCookies());
+        System.out.println(element.getAttribute("innerHTML"));
+        //System.out.println(element.getText());
         driver.quit();
         service.stop();
     }

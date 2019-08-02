@@ -6,6 +6,7 @@
 package com.creditcloud.jpa.unit_test.utils;
 
 import okhttp3.*;
+import org.drools.core.util.StringUtils;
 
 import javax.net.ssl.*;
 import java.io.ByteArrayInputStream;
@@ -143,9 +144,13 @@ public class HttpUtil {
                 .url(url)
                 .post(body);
 
-        Map<String,String> headMap = ConverUtil.converToMap(heads,"\n",":");
-        for(String key : headMap.keySet()){
-            requestBuilder.addHeader(key,headMap.get(key));
+        if(!StringUtils.isEmpty(heads)){
+            Map<String,String> headMap = ConverUtil.converToMap(heads,"\n",":");
+            if(!headMap.isEmpty()){
+                for(String key : headMap.keySet()){
+                    requestBuilder.addHeader(key,headMap.get(key));
+                }
+            }
         }
         Request request = requestBuilder.build();
         Response response = createOkHttps().newCall(request).execute();

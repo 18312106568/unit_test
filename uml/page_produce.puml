@@ -1,0 +1,18 @@
+@startuml
+autonumber
+actor "开发人员" as user
+participant entityManager as "实体管理"
+participant dsManager as "数据库连接管理"
+participant pageTemple  as "页面模板生成"
+participant project as "前端项目"
+
+user -> entityManager :选择实体
+entityManager -> dsManager :查询实体信息
+
+user -> dsManager : 查询所有数据库连接
+dsManager -> user: 显示所有数据库以及连接状态
+
+user -> pageTemple : 页面生成
+pageTemple -> project :输出到前端项目中
+
+@enduml
