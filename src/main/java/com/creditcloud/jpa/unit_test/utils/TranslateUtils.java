@@ -30,7 +30,7 @@ public class TranslateUtils {
     public static String translate(String queryName){
         try {
             String heads = "accept: */*\n" +
-                    "accept-encoding: gzip, deflate, br\n" +
+//                    "accept-encoding: gzip, deflate, br\n" +
                     "accept-language: zh-CN,zh;q=0.9,en;q=0.8\n" +
                     "cache-control: no-cache\n" +
                     "content-length: 135\n" +
@@ -44,7 +44,7 @@ public class TranslateUtils {
             String url = "https://fanyi.baidu.com/v2transapi";
             String sign = TranslateUtils.getSign(queryName);
             String params = String.format("from=zh&to=en&query=%s&transtype=realtime&simple_means_flag=3&sign=%s&token=2e3030089a45be932f9060f4a8c53950", URLEncoder.encode(queryName, "UTF-8"), sign);
-            String result = HttpUtil.doPost(url, heads, params, true);
+            String result = HttpUtil.doPost(url, heads, params, false);
             if(StringUtils.isEmpty(result)){
                 System.out.println("request baidufanyi error!");
                 return "";

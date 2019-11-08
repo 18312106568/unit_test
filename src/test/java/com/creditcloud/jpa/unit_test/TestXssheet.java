@@ -5,8 +5,8 @@
  */
 package com.creditcloud.jpa.unit_test;
 
+import com.creditcloud.jpa.unit_test.utils.BDtranslator;
 import com.creditcloud.jpa.unit_test.utils.ConverUtil;
-import com.creditcloud.jpa.unit_test.utils.TranslateUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -94,7 +94,7 @@ public class TestXssheet {
     @Test
     public void exportColumn() throws IOException {
         Workbook wb = null;
-        File file = new File("E:\\doc\\4.22-运费核算\\附件1.运费基础信息数据库表格.xlsx");
+        File file = new File("E:\\doc\\8.01-运输计费\\附件1.运费基础信息数据库表格-1.xlsx");
         InputStream in = new FileInputStream(file);
         long start = System.currentTimeMillis();
         wb = new XSSFWorkbook(in);
@@ -120,7 +120,8 @@ public class TestXssheet {
                columnName=it.next().toString();
                if(row.getRowNum()==sheet.getFirstRowNum()){
                    try {
-                       enColumnNames.add(TranslateUtils.translate(columnName));
+                       enColumnNames.add(BDtranslator.translate(columnName));
+                       Thread.sleep(1000);
                    }catch (Exception ex){
                         ex.printStackTrace();
                    }
@@ -137,23 +138,37 @@ public class TestXssheet {
         System.out.println(sb.toString());
         //int size = columnComments.size()>columnNotes.size()?columnNotes.size():columnComments.size();
         int size = columnComments.size();
-        if(columnComments.size()!=columnNotes.size()){
-            for(int i=0;i<size;i++){
-                System.out.println(String.format("    /**\n" +
-                        "     * %s\n" +
-                        "     */\n" +
-                        "    private String %s;",columnComments.get(i),ConverUtil.phraseToChangCame(enColumnNames.get(i))));
-            }
-            return;
-        }
+//        if(columnComments.size()!=columnNotes.size()){
+//            for(int i=0;i<size;i++){
+//                System.out.println(String.format("    /**\n" +
+//                        "     * %s\n" +
+//                        "     */\n" +
+//                        "    private String %s;",columnComments.get(i),ConverUtil.phraseToChangCame(enColumnNames.get(i))));
+//            }
+//            return;
+//        }
         for(int i=0;i<size;i++){
-            System.out.println(String.format("    /**\n" +
-                    "     * %s(%s)\n" +
-                    "     */\n" +
-                    "    private String %s;",columnComments.get(i),columnNotes.get(i), ConverUtil.phraseToChangCame(enColumnNames.get(i))));
+            String column = ConverUtil.phraseToChangCame(enColumnNames.get(i));
+            String tableColumn = ConverUtil.changeCameToHung(column);
+            System.out.println(converToJColumn(columnComments.get(i),columnNotes.get(i),tableColumn,column));
+//            System.out.println(String.format("    /**\n" +
+//                    "     * %s(%s)\n" +
+//                    "     */\n" +
+//                    "    private String %s;",columnComments.get(i),columnNotes.get(i), ConverUtil.phraseToChangCame(enColumnNames.get(i))));
         }
     }
 
+
+    private String converToJColumn(String comment,String note,String tableColumn,String column){
+        String temp = "    /**\n" +
+                "     * %s(%s)\n" +
+                "     */\n" +
+                "    @FieldName(name = \"%s\")\n" +
+                "    @Column( name = \"%s\")\n" +
+                "    private Boolean %s;\n";
+        return String.format(temp,comment,note,comment,tableColumn,column);
+
+    }
 
     @Test
     public void testDocx() throws IOException {

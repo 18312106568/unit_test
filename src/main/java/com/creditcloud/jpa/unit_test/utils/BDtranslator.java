@@ -45,6 +45,9 @@ public class BDtranslator {
         try {
            Result result = gson.fromJson(translate(param),Result.class) ;
            List<TransResult> transResults = result.getTransResult();
+           if(transResults==null || transResults.isEmpty()){
+               return "";
+           }
            return transResults.get(0).dst;
         } catch (IOException e) {
             return "";
@@ -53,7 +56,8 @@ public class BDtranslator {
 
     public static String translate(Param param) throws IOException {
         String paramStr = format(param);
-        return HttpUtil.doPost(HTTP_URL,"",paramStr,Boolean.FALSE);
+        String result = HttpUtil.doPost(HTTP_URL,"",paramStr,Boolean.FALSE);
+        return result;
     }
 
     public static String format(Param param){

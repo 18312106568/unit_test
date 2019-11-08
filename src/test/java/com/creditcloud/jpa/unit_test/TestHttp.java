@@ -78,7 +78,7 @@ public class TestHttp {
                 .build();
         Response response = client.newCall(request).execute();
         System.out.println(response.headers());
-        
+
         //System.out.println(response.body().string());
     }
 
@@ -120,9 +120,9 @@ public class TestHttp {
         String addHeader = "confirmuin=0;Path=/;Domain=ptlogin2.qq.com;ptdrvs=FVPDrwZaT2TE17XENxjR*sWkEyJqZWe3VoKL8wBayeY_;Path=/;Domain=ptlogin2.qq.com;ptvfsession=f4b021442528007ec70e6e0fc4f5731ec2c7e60c5aea5638959b54b528ee652b0652df77af8cde4105d6482467d4480ad05eab8190aea217;Path=/;Domain=ptlogin2.qq.com;ptisp=ctc;Path=/;Domain=qq.com;";
         Request request = new Request.Builder()
                 .url("https://ssl.ptlogin2.qq.com/login?u="+uin
-                        +"&verifycode=" + verifycode 
+                        +"&verifycode=" + verifycode
                         + "&pt_vcode_v1=0&pt_verifysession_v1=" + ptVerifySession
-                        + "&p=" + entryPassword 
+                        + "&p=" + entryPassword
                         + "&pt_randsalt=2&pt_jstoken=915971442&u1=http%3A%2F%2Fgamesafe.qq.com%2F&ptredirect=1&h=1&t=1&g=1&from_ui=1&ptlang=2052&action=2-13-1524339500088&js_ver=10270&js_type=1"
                         + "&login_sig="+loginSig
                         +"&pt_uistyle=40&aid=21000109&daid=8&")
@@ -158,7 +158,7 @@ public class TestHttp {
         System.out.println(cookieBuilder.toString());
     }
 
-    public static long getUnsignedIntt(int data) { //将int数据转换为0~4294967295 (0xFFFFFFFF即DWORD)。 
+    public static long getUnsignedIntt(int data) { //将int数据转换为0~4294967295 (0xFFFFFFFF即DWORD)。
         byte arr[] = intToByteArray(data);
         for (int i = arr.length - 1; i >= 0; i--) {
             System.out.print(arr[i]);
@@ -217,7 +217,7 @@ public class TestHttp {
         ScriptEngine engine = manager.getEngineByName("javascript");
         Bindings bindings = engine.getBindings(ScriptContext.ENGINE_SCOPE);
 
-        File jsFileName = ResourceUtils.getFile("classpath:encry.js");   // 读取js文件   
+        File jsFileName = ResourceUtils.getFile("classpath:encry.js");   // 读取js文件
         System.out.println(jsFileName.isFile() + "-" + jsFileName.exists());
         // 执行指定脚本
         try (FileReader reader = new FileReader(jsFileName)) {
@@ -241,7 +241,7 @@ public class TestHttp {
 
             final String pageText = page.getBody().asText();
             webClient.close();
-            //$.Encryption.getEncryption('123abc123abc', undefined,'!SZH', undefined).length+   
+            //$.Encryption.getEncryption('123abc123abc', undefined,'!SZH', undefined).length+
            // System.out.println(new String(pageText.getBytes("ISO-8859-1"), "UTF-8"));
            System.out.println(pageText);
            System.out.println(new String(Base64.decode(pageText)));
@@ -276,13 +276,13 @@ public class TestHttp {
 
     @Test
     public void testChrome1() {
-        System.setProperty("webdriver.chrome.driver", 
+        System.setProperty("webdriver.chrome.driver",
                 "C:\\Program Files\\internet explorer\\IEDriverServer.exe");
         WebDriver driver = new FirefoxDriver();; //新建一个WebDriver 的对象，但是new 的是FirefoxDriver的驱动
         driver.get("http://www.baidu.com");//打开指定的网站
         System.out.println( driver.getCurrentUrl());
         try {
-           
+
             /**
              * WebDriver自带了一个智能等待的方法。
              * dr.manage().timeouts().implicitlyWait(arg0, arg1）；
@@ -299,8 +299,8 @@ public class TestHttp {
          */
         driver.quit();//退出浏览器
     }
-    
-    
+
+
     @Test
     public void testSeleniumEncrypt() throws UnsupportedEncodingException{
         String res = "ptui_checkVC('0','!TMA','\\x00\\x00\\x00\\x00\\xc1\\xbf\\x44\\x9e','f4b021442528007ec70e6e0fc4f5731ec2c7e60c5aea5638959b54b528ee652b0652df77af8cde4105d6482467d4480ad05eab8190aea217','2')";
@@ -314,10 +314,10 @@ public class TestHttp {
         //关闭浏览器
         //driver.quit();
         System.out.println("=====>"+encryption);
-        
+
     }
-    
-    @Test 
+
+    @Test
     public void testClass() throws NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
        Class<PtuiCheckVK> clazz = PtuiCheckVK.class;
        PtuiCheckVK vk = clazz.newInstance();
@@ -333,26 +333,26 @@ public class TestHttp {
 //           System.out.println(method.getName());
 //       }
     }
-    
+
     @Test
     public void testChangeCameToHung(){
         System.out.println(changeCameToHung("cameString"));
     }
-    
+
     /**
      * 首字母大写
      * @param str
-     * @return 
+     * @return
      */
-    public String upperCase(String str) {  
-        return str.substring(0, 1).toUpperCase() + str.substring(1);  
-    }  
-    
+    public String upperCase(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
     /**
      * 峰驼式转匈牙利命名
-     * 
+     *
      * @param cameString
-     * @return 
+     * @return
      */
     public String changeCameToHung(String cameString){
         StringBuilder sb = new StringBuilder();
@@ -366,12 +366,12 @@ public class TestHttp {
         }
         return sb.toString();
     }
-    
+
     @Test
     public void testDoLogin(){
-        
+
     }
-    
+
     @Test
     public void testGetDeclarations() throws FileNotFoundException, IOException{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -381,7 +381,7 @@ public class TestHttp {
         MediaType mediaType = MediaType.parse("application/json");
         File file = ResourceUtils.getFile("classpath:YHX000.txt");
         BufferedReader bufReader = new BufferedReader(new FileReader(file));
-        String orgCode ; 
+        String orgCode ;
         while ((orgCode=bufReader.readLine())!=null) {
            ObjectMapper mapper = new ObjectMapper();
            for(int i=0;i<30;i++){
@@ -389,7 +389,7 @@ public class TestHttp {
                 String start = sdf.format(new Date(searchTimestamp));
                 String end = sdf.format(new Date(searchTimestamp+dayTimestamp*15));
                 System.out.println("查询"+orgCode+"时间："+start+"-"+end);
-                RequestBody body = RequestBody.create(mediaType, 
+                RequestBody body = RequestBody.create(mediaType,
                         String.format("{\n\t\"CustomsTenCode\":\"%s\",\n\t\"StartTime\":\"%s\",\n\t\"EndTime\":\"%s\"\n}",orgCode, start,end));
                 Request request = new Request.Builder()
                   .url("https://test.21eline.com/apidae/Apimeter/Declaration")
@@ -411,10 +411,10 @@ public class TestHttp {
                     Logger.getLogger(TestHttp.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
+
         }
     }
-    
+
     @Test
     public void testSvn(){
         System.setProperty ("jsse.enableSNIExtension", "false");
@@ -455,7 +455,7 @@ public class TestHttp {
 //                    trustManagerFactory.getTrustManagers(),
 //                    new SecureRandom()
 //            );
-//              clientBuilder.socketFactory(sslContext.getSocketFactory());   
+//              clientBuilder.socketFactory(sslContext.getSocketFactory());
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
@@ -463,8 +463,8 @@ public class TestHttp {
             // Create a trust manager that does not validate certificate chains
             final TrustManager[] trustAllCerts = new TrustManager[] {
                     new X509TrustManager() {
-                        
- 
+
+
                         @Override
                         public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                             return new java.security.cert.X509Certificate[]{};
@@ -478,17 +478,17 @@ public class TestHttp {
                         public void checkServerTrusted(X509Certificate[] xcs, String string) throws CertificateException {
                         }
 
-                       
+
                     }
             };
- 
+
             // Install the all-trusting trust manager
             final SSLContext sslContext = SSLContext.getInstance("SSL");
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
             // Create an ssl socket factory with our all-trusting manager
             final javax.net.ssl.SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
- 
-           
+
+
             clientBuilder.sslSocketFactory(sslSocketFactory);
             clientBuilder.hostnameVerifier(new HostnameVerifier() {
                 @Override
@@ -581,6 +581,27 @@ public class TestHttp {
         Map<String, LinkedTreeMap> resultMap = gson.fromJson(result,Map.class);
         String transDst = ((LinkedTreeMap)((List)resultMap.get("trans_result").get("data")).get(0)).get("dst").toString();
         System.out.println(transDst);
+    }
+
+    @Test
+    public void testMobileRequest() throws IOException {
+        String url = "http://125.78.252.156/gchatpic_new/E11FBFEE284EBDFA6C635F194ABCFE9D35F01FE7E0CB4841FCA959BDBF33069FAA461A0E49DCCB25199A281E1408D3B076F8465733718A6D9AEF54FB0F9E8AE51C1772F6A7D10B9A80073806D8570E8860536A43B891DDFB/198?vuin=315077558&term=2&cldver=8.1.0.4150&rf=naio&msgTime=1565664085&mType=picGd";
+        String heads = "Cookie: ST=00015D51ECF000586E47143ED075D8691735A9067EBB7BD10A4BAB68CDA78CC05C6F65F445FC7DBDAF7FDE0E7C2D7FB2E59A4D0C3512DBCDC11903E14D70D0C59DF93BCF1A9ED71C81C02186BE3E33CCAF1CB45AD43D2EBCEE5020ABCC943870\n" +
+                "Referer: http://im.qq.com/mobileqq\n" +
+                "Accept-Encoding: identity\n" +
+                "Range: bytes=0-\n" +
+                "User-Agent: Dalvik/2.1.0 (Linux; U; Android 8.0.0; MI 6 MIUI/V10.0.2.0.OCACNFH)\n" +
+                "Host: 125.78.252.156\n" +
+                "Connection: Keep-Alive";
+        String result = HttpUtil.doPost(url,heads,"",false);
+        System.out.println(result);
+    }
+
+    @Test
+    public void testHttps() throws IOException {
+        String url = "https://www.baidu.com";
+        String result = HttpUtil.doGet(url);
+        System.out.println(result);
     }
 
     @Test

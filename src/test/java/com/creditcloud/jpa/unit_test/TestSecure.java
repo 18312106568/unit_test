@@ -58,6 +58,11 @@ public class TestSecure {
         System.out.println(byteArrayToHex(result));
     }
 
+    /**
+     * 转为16进制
+     * @param datas
+     * @return
+     */
     public String converString(byte[] datas){
         StringBuilder sb = new StringBuilder();
         for(byte data:datas){
@@ -239,6 +244,8 @@ public class TestSecure {
         String password = "123456";
         String privilageKey = "2018121323411234";
         String ivKey = "2018121323411234";
+        /*String privilageKey = "2018121323411234";
+        String ivKey = "2018121323411234";*/
 
         SecretKeySpec secretKeySpec = new SecretKeySpec(privilageKey.getBytes(),Algorithm);
         IvParameterSpec ivSpec = new IvParameterSpec(ivKey.getBytes());

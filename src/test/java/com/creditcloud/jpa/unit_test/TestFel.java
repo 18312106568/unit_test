@@ -8,7 +8,27 @@ import com.greenpineyu.fel.function.CommonFunction;
 import com.greenpineyu.fel.function.Function;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class TestFel {
+
+    @Test
+    public void testRegex(){
+        String REGEX = "F(\\d+)";
+        String exp = "F1123<1?($('Math').max(F2*F3+F4,70000)):70000";
+        Pattern pattern = Pattern.compile(REGEX);
+        Matcher matcher = pattern.matcher(exp);
+        List<String> paramList = new ArrayList<>();
+        while(matcher.find()){
+            paramList.add(matcher.group());
+        }
+        for(String param : paramList){
+            System.out.println(param.replaceAll(REGEX,"$1"));
+        }
+    }
 
     @Test
     public void testCalculate(){
@@ -16,24 +36,27 @@ public class TestFel {
         long start = System.currentTimeMillis();
         FelEngine fel = new FelEngineImpl();
         FelContext ctx = fel.getContext();
+        ctx.set("A1","中文");
+        ctx.set("A2","英文");
         ctx.set("单价", 5000);
         ctx.set("数量", 12);
         ctx.set("运费", 7500);
-        Expression exp = fel.compile("$('Math').max(单价*数量+运费,70000)",ctx);
+        Expression exp = fel.compile("A1==A2?($('Math').max(单价*数量+运费,70000)):1",ctx);
         Object result = exp.eval(ctx);
-
-        FelEngine fel2 = new FelEngineImpl();
+    System.out.println(result);
+      /*  FelEngine fel2 = new FelEngineImpl();
         FelContext ctx2 = fel2.getContext();
+        ctx.set("是否",true);
         ctx2.set("单价", 5000);
         ctx2.set("数量", 12);
         ctx2.set("运费", 12500);
         ctx2.set("运费", 15500);
-        long end = System.currentTimeMillis();
+        long end = System.currentTimeMillis();*/
 //        System.out.println(String.format("cost:%d",end-start));
 //        System.out.println(result);
 //        System.out.println(addMethod(100,1000,500));
 //        System.out.println(MAX(100,50));
-        System.out.println(exp.eval(ctx2));
+ //       System.out.println(exp.eval(ctx2));
     }
 
     @Test
@@ -70,6 +93,18 @@ public class TestFel {
         System.out.println("hello "+eval);
     }
 
+    @Test
+    public void returnBoolean(){
+        FelEngine fel = new FelEngineImpl();
+        FelContext ctx = fel.getContext();
+        String str1 = "GT215";
+        String str2 = "GT215";
+        ctx.set("P_A_",str1);
+        ctx.set("B",str2);
+        Expression exp = fel.compile("P_A_==\"GT215\"?true:false",ctx);
+        Object result = exp.eval(ctx);
+        System.out.println(result);
+    }
 
     public Object addMethod(int a,int b,int c){
         FelEngine fel = new FelEngineImpl();
@@ -125,6 +160,10 @@ public class TestFel {
         ctx.set("P0", 0.0012D);
         ctx.set("T0", 0.5D);
         ctx.set("TS15", 900.0D);
+
+        ctx.set("TS12", 800.0D);
+        ctx.set("TS13", 900.0D);
+        ctx.set("TS14", 900.0D);
         return ctx;
     }
 

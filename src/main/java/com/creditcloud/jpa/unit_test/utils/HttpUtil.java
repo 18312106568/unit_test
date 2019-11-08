@@ -132,6 +132,13 @@ public class HttpUtil {
     }
 
 
+    public static String doGet(String url) throws IOException {
+        OkHttpClient client = createOkHttps();
+        Request.Builder builder = new Request.Builder().url(url).get();
+        Response response = client.newCall(builder.build()).execute();
+        return response.body().string();
+    }
+
     public static String doPost(String url,String heads,String params,Boolean isZip) throws IOException {
         return doPost(url,heads,params,"application/x-www-form-urlencoded",isZip);
     }

@@ -7,4 +7,11 @@ public class RemoteServiceImpl implements RemoteService {
     public String call(String name)throws RemoteException {
         return String.format("hi,i am %s",name);
     }
+
+    @Override
+    public DataEntity changeData(DataEntity dataEntity) throws RemoteException {
+        dataEntity.setName("321");
+        System.out.println(dataEntity);
+        return dataEntity;
+    }
 }

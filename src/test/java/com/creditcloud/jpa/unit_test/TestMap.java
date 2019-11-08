@@ -5,12 +5,17 @@
  */
 package com.creditcloud.jpa.unit_test;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Map;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import org.junit.Test;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -64,13 +69,34 @@ public class TestMap {
         map.put(str11, Integer.MIN_VALUE);
         map.put(str12, Integer.MIN_VALUE);
         map.put(str13, Integer.MIN_VALUE);
-        
+
     }
-    
+
     public void testConrrentMap(){
         ConcurrentMap<String,Object> map =  new ConcurrentHashMap();
         Hashtable<String,Object> table = new Hashtable();
         table.put("1", 1);
         map.put("1", 1);
+    }
+
+
+    @Test
+    public void testReplace(){
+        List<Name> nameList = new ArrayList<Name>();
+        Name name1 = new Name("1");
+        Name name2 = new Name("2");
+        Name name3 = new Name("1");
+        nameList.add(name1);
+        nameList.add(name2);
+        nameList.add(name3);
+
+        String result = nameList.stream().map(Name::getName).distinct().collect(Collectors.joining(","));
+        System.out.println(result);
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class Name{
+        String name;
     }
 }

@@ -11,13 +11,15 @@ public class ServiceClient {
         try {
             registry = LocateRegistry.getRegistry("192.168.200.43",1099);
             RemoteService remoteService =(RemoteService) registry.lookup(RemoteServer.SERVER_REGISTER_NAME);
+            DataEntity entity = new DataEntity();
+            System.out.println(remoteService.changeData(entity));
+            System.out.println(entity);
+            //System.out.println(remoteService.call("晓123"));
 
-            System.out.println(remoteService.call("晓123"));
-
-            String[] serviceList = registry.list();
-            for(String service:serviceList){
-                System.out.println(service);
-            }
+//            String[] serviceList = registry.list();
+//            for(String service:serviceList){
+//                System.out.println(service);
+//            }
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (NotBoundException e) {
