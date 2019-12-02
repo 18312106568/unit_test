@@ -6,8 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb2e9bb2-6fcd-4b4d-a663-5063d9c085df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Dijkstra.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Dijkstra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Dijkstra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestMap.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,11 +48,76 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Dijkstra.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="33" column="64" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="64" />
+            <state relative-caret-position="207">
+              <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/note/运输计费服务.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor>
+                <folding>
+                  <element signature="imports" expanded="true" />
+                </folding>
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/note/运输计费系统环境部署.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="382">
+                <caret line="65" column="13" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="13" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-315">
+              <caret line="102" column="24" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-591">
+              <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.m2/repository/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/builders/JUnit4Builder.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -68,10 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sys_dataitemcfg</find>
-      <find>private %s</find>
-      <find>FelConte</find>
-      <find>set</find>
       <find>String.format</find>
       <find>FutureTask</find>
       <find>baidu</find>
@@ -98,6 +163,10 @@
       <find>threadLists</find>
       <find>2018121323411234</find>
       <find>threadLists.set(</find>
+      <find>Student</find>
+      <find>Seria</find>
+      <find>ObjectI</find>
+      <find>Serializable</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -109,7 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/note/运输计费系统.md" />
         <option value="$PROJECT_DIR$/note/运输计费服务.md" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/js/BaiduSign.js" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/js/TestJS.java" />
@@ -152,14 +220,15 @@
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/rmi/RemoteService.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/rmi/RemoteServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/rmi/ServiceClient.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/creditcloud/jpa/unit_test/utils/HttpUtil.java" />
         <option value="$PROJECT_DIR$/note/运输计费系统环境部署.md" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestHttp.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSecure.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestFel.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Dijkstra.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestObject.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestMap.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java" />
       </list>
     </option>
   </component>
@@ -186,10 +255,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1050" />
-    <option name="height" value="470" />
+    <option name="x" value="175" />
+    <option name="y" value="175" />
+    <option name="width" value="1325" />
+    <option name="height" value="585" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -210,28 +279,7 @@
             <path>
               <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
               <item name="unit_test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
+              <item name="note" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
@@ -351,7 +399,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573376929925" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575274964935" />
     <property name="last_opened_file_path" value="E:/study/gz-corn-timer" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -386,7 +434,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Dijkstra">
+  <component name="RunManager" selected="JUnit.TestSort.testClone">
     <configuration name="Dijkstra" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.Dijkstra" />
       <module name="unit_test" />
@@ -416,7 +464,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSecure.testAes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestMap.testDfs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="unit_test" />
       <extension name="coverage">
         <pattern>
@@ -425,14 +473,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test" />
-      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestSecure" />
-      <option name="METHOD_NAME" value="testAes" />
+      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestMap" />
+      <option name="METHOD_NAME" value="testDfs" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSecure.testRC4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestObject.testDfs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="unit_test" />
       <extension name="coverage">
         <pattern>
@@ -441,14 +489,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test" />
-      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestSecure" />
-      <option name="METHOD_NAME" value="testRC4" />
+      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestObject" />
+      <option name="METHOD_NAME" value="testDfs" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSort.testStable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSort.testClone" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="unit_test" />
       <extension name="coverage">
         <pattern>
@@ -458,26 +506,26 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test" />
       <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestSort" />
-      <option name="METHOD_NAME" value="testStable" />
+      <option name="METHOD_NAME" value="testClone" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.TestSecure.testAes" />
-      <item itemvalue="JUnit.TestSecure.testRC4" />
-      <item itemvalue="JUnit.TestSort.testStable" />
       <item itemvalue="JUnit.TestFel.testCalculate" />
       <item itemvalue="Application.Dijkstra" />
+      <item itemvalue="JUnit.TestObject.testDfs" />
+      <item itemvalue="JUnit.TestMap.testDfs" />
+      <item itemvalue="JUnit.TestSort.testClone" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestSort.testClone" />
+        <item itemvalue="JUnit.TestMap.testDfs" />
+        <item itemvalue="JUnit.TestObject.testDfs" />
         <item itemvalue="Application.Dijkstra" />
         <item itemvalue="JUnit.TestFel.testCalculate" />
-        <item itemvalue="JUnit.TestSecure.testRC4" />
-        <item itemvalue="JUnit.TestSecure.testAes" />
-        <item itemvalue="JUnit.TestSort.testStable" />
       </list>
     </recent_temporary>
   </component>
@@ -537,50 +585,49 @@
       <workItem from="1571100488365" duration="1067000" />
       <workItem from="1571190525140" duration="8959000" />
       <workItem from="1572310080384" duration="23684000" />
-      <workItem from="1573112017428" duration="5588000" />
+      <workItem from="1573112017428" duration="15363000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestSort_testStable - 2019.11.06 at 17h 58m 38s.xml">
-      <configuration name="TestSort.testStable" configurationId="JUnit" />
+    <history-entry file="TestMap_testDfs - 2019.11.21 at 22h 31m 09s.xml">
+      <configuration name="TestMap.testDfs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSort_testStable - 2019.11.06 at 18h 01m 47s.xml">
-      <configuration name="TestSort.testStable" configurationId="JUnit" />
+    <history-entry file="TestMap_testDfs - 2019.11.21 at 22h 31m 32s.xml">
+      <configuration name="TestMap.testDfs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSort_testStable - 2019.11.06 at 18h 59m 37s.xml">
-      <configuration name="TestSort.testStable" configurationId="JUnit" />
+    <history-entry file="TestMap_testDfs - 2019.11.21 at 22h 33m 58s.xml">
+      <configuration name="TestMap.testDfs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSecure_testAes - 2019.11.06 at 19h 05m 59s.xml">
-      <configuration name="TestSecure.testAes" configurationId="JUnit" />
+    <history-entry file="TestMap_testDfs - 2019.11.21 at 22h 34m 56s.xml">
+      <configuration name="TestMap.testDfs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSecure_testAes - 2019.11.06 at 19h 12m 45s.xml">
-      <configuration name="TestSecure.testAes" configurationId="JUnit" />
+    <history-entry file="TestMap_testDfs - 2019.11.21 at 22h 35m 16s.xml">
+      <configuration name="TestMap.testDfs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSecure_testAes - 2019.11.06 at 19h 15m 46s.xml">
-      <configuration name="TestSecure.testAes" configurationId="JUnit" />
+    <history-entry file="TestMap_testDfs - 2019.11.21 at 22h 35m 56s.xml">
+      <configuration name="TestMap.testDfs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSecure_testRC4 - 2019.11.08 at 10h 36m 06s.xml">
-      <configuration name="TestSecure.testRC4" configurationId="JUnit" />
+    <history-entry file="TestMap_testDfs - 2019.11.21 at 22h 38m 12s.xml">
+      <configuration name="TestMap.testDfs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestFel_testCalculate - 2019.11.08 at 10h 37m 23s.xml">
-      <configuration name="TestFel.testCalculate" configurationId="JUnit" />
+    <history-entry file="TestMap_testDfs - 2019.11.21 at 22h 39m 31s.xml">
+      <configuration name="TestMap.testDfs" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestFel_testCalculate - 2019.11.08 at 10h 37m 46s.xml">
-      <configuration name="TestFel.testCalculate" configurationId="JUnit" />
+    <history-entry file="TestSort_testClone - 2019.11.25 at 15h 29m 01s.xml">
+      <configuration name="TestSort.testClone" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestFel_testCalculate - 2019.11.08 at 10h 38m 00s.xml">
-      <configuration name="TestFel.testCalculate" configurationId="JUnit" />
+    <history-entry file="TestSort_testClone - 2019.11.25 at 15h 35m 46s.xml">
+      <configuration name="TestSort.testClone" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="523238000" />
+    <option name="totallyTimeSpent" value="533013000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14910026" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14910026" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -590,16 +637,16 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.89203084" visible="true" weight="0.32166892" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.65359896" weight="0.30955586" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89203084" visible="true" weight="0.31090176" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.65359896" weight="0.22341858" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4974293" weight="0.04037685" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4974293" weight="0.46433377" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.16288953" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.46786633" weight="0.32839838" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.46786633" weight="0.3281471" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49865952" weight="0.16288953" />
       <window_info anchor="bottom" id="Code Review" order="14" />
@@ -959,38 +1006,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.m2/repository/com/squareup/okhttp3/okhttp/3.10.0/okhttp-3.10.0-sources.jar!/okhttp3/internal/http/RealInterceptorChain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="146" selection-start-line="146" selection-end-line="146" />
-          <folding>
-            <element signature="e#3971#3972#0" expanded="true" />
-            <element signature="e#3995#3996#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/com/squareup/okhttp3/okhttp/3.10.0/okhttp-3.10.0-sources.jar!/okhttp3/internal/cache/CacheInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="96" selection-start-line="96" selection-end-line="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/com/squareup/okhttp3/okhttp/3.10.0/okhttp-3.10.0-sources.jar!/okhttp3/internal/http/RetryAndFollowUpInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="144" selection-start-line="144" selection-end-line="144" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/com/squareup/okhttp3/okhttp/3.10.0/okhttp-3.10.0-sources.jar!/okhttp3/RealCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="80" column="40" lean-forward="true" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/src.zip!/java/util/StringTokenizer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2728">
@@ -1084,16 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/note/运输计费系统环境部署.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="247">
-            <caret line="40" column="27" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="75" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/jre/lib/ext/sunjce_provider.jar!/com/sun/crypto/provider/CipherCore.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
@@ -1137,20 +1142,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="143" column="9" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2020#2029#0" expanded="true" />
-            <element signature="e#2797#2806#0" expanded="true" />
-            <element signature="e#2857#2866#0" expanded="true" />
-            <element signature="e#2917#2926#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1339,6 +1330,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/builders/JUnit4Builder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestHttp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1346,10 +1344,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-591">
+          <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="102" column="24" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Dijkstra.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="33" column="64" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="64" />
+        <state relative-caret-position="207">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/note/运输计费服务.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <folding>
+              <element signature="imports" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/note/运输计费系统环境部署.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="382">
+            <caret line="65" column="13" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

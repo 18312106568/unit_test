@@ -1,13 +1,8 @@
 package com.creditcloud.jpa.unit_test;
 
-import com.creditcloud.jpa.unit_test.entity.Product;
-import com.creditcloud.jpa.unit_test.entity.QQLogin;
-import com.creditcloud.jpa.unit_test.entity.TbTeacher;
-import com.creditcloud.jpa.unit_test.entity.base.EntityId;
 import org.junit.Test;
 
-import java.io.*;
-import java.lang.instrument.Instrumentation;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -170,4 +165,6 @@ public class TestObject {
         }
         return visited.contains(obj);
     }
+
+
 }

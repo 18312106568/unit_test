@@ -1,11 +1,15 @@
 package com.creditcloud.jpa.unit_test;
 
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 import org.junit.Test;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestSort {
@@ -97,6 +101,25 @@ public class TestSort {
         for(Student stu : students){
             System.out.println(stu);
         }
+    }
+
+    @Test
+    public void testClone(){
+        Student stu= new Student("小白",170);
+        List<Student> stuList = Arrays.asList(stu);
+        List<Student> stuList2 =  cloneData(stuList,new TypeToken<List<Student>>(){}.getType());
+        stuList2.get(0).name="小绿";
+        stuList2.get(0).height=120;
+        System.out.println(stuList);
+        System.out.println(stuList2);
+
+    }
+
+
+    public <T>T cloneData(T data, Type type){
+        Gson gson = new Gson();
+        String dataStr = gson.toJson(data);
+        return gson.fromJson(dataStr,type);
     }
 
 

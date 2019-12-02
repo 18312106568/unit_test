@@ -57,7 +57,7 @@ public class Dijkstra {
             // 以k为中间点，修正从start到未访问各点的距离
             for (int i = 0; i < n; i++) {
                 //如果 '起始点到当前点距离' + '当前点到某点距离' < '起始点到某点距离', 则更新
-                if (visited[i] == 0 && weight[start][k] + weight[k][i] < weight[start][i]) {
+                if (visited[i] == 0 && (weight[start][k] + weight[k][i]) < weight[start][i]) {
                     weight[start][i] = weight[start][k] + weight[k][i];
                     path[i] = path[k] + "-->" + i;
                 }

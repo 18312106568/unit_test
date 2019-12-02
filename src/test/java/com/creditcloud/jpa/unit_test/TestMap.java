@@ -7,12 +7,10 @@ package com.creditcloud.jpa.unit_test;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
@@ -98,5 +96,38 @@ public class TestMap {
     @AllArgsConstructor
     static class Name{
         String name;
+    }
+
+
+    @Test
+    public  void testDfs() {
+
+        String[] array = {"1","3","2"};
+        List<String> list = Arrays.asList(array);
+        Set<String> hs = new HashSet<>();
+        dfs(list, "", hs);
+        for(String str : hs){
+            System.out.println(str);
+        }
+    }
+
+
+    private  void dfs(List<String> candidate,String prefix, Set<String> result){
+        if(!StringUtils.isEmpty(prefix) && !result.contains(prefix) && candidate.isEmpty()){
+            result.add(prefix);
+        }
+        for(int i=0; i<candidate.size(); i++){
+            List<String> temp = new LinkedList<>(candidate);
+
+            String item = temp.remove(i);
+            dfs(temp,appendKey(prefix,item) , result);
+        }
+    }
+
+    private String appendKey(String prefix,String nextfix){
+        if(StringUtils.isEmpty(prefix)){
+            return String.valueOf(nextfix);
+        }
+        return String.format("%s,%s",prefix,nextfix);
     }
 }
