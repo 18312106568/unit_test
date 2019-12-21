@@ -1,0 +1,73 @@
+@startuml
+
+sprite $bProcess  [16x16/16] {
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFF0FFFFF
+    FFFFFFFFFF00FFFF
+    FF00000000000FFF
+    FF000000000000FF
+    FF00000000000FFF
+    FFFFFFFFFF00FFFF
+    FFFFFFFFFF0FFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+}
+sprite $aService jar:archimate/application-service
+sprite $aComponent jar:archimate/application-component
+
+
+rectangle  "wms管理系统"  as wms {
+       rectangle " " <<$businessProcess>>
+       rectangle " " <<$businessProcess>>
+}
+rectangle  "费用核算管理系统"  as boss {
+       rectangle "基础数据" <<$businessProcess>>
+       rectangle "运输计费" <<$businessProcess>>
+}
+archimate #APPLICATION "数据同步服务"  as sysc2 <<application-service>>
+archimate #APPLICATION "数据同步服务"  as sysc1 <<application-service>>
+archimate #APPLICATION "计费系统数据接口"  as appserver <<application-service>>
+archimate #APPLICATION "计费服务"  as fee1 <<application-service>>
+archimate #APPLICATION "计费服务"  as fee2 <<application-service>>
+cloud "注册中心" as center{
+    [dubbo]
+    [zookeeper]
+}
+frame #COMPONENT "配置中心" as  nacos
+queue #COMPONENT "消息队列" as  rabbitmq
+database  #COMPONENT "运输计费数据库" as db
+database  #COMPONENT "缓存" as redis
+frame #COMPONENT "反向代理服务" as  nginx
+
+wms -down-> appserver
+appserver -> rabbitmq
+rabbitmq *-down- sysc1
+rabbitmq *-down- sysc2
+
+sysc2 -down--> center
+sysc1 -down--> center
+fee1 -down--> center
+fee2 -down--> center
+
+sysc2 *-down-- nacos
+sysc1 *-down-- nacos
+fee1 *-down-- nacos
+fee2 *-down-- nacos
+
+fee1 -up-> redis
+fee1 -up-> db
+
+fee2 -up-> redis
+fee2 -up-> db
+
+boss -up-> center
+nginx -up-> boss
+
+
+@enduml

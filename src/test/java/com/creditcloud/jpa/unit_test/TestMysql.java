@@ -7,16 +7,11 @@ package com.creditcloud.jpa.unit_test;
 
 
 import com.google.gson.Gson;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.junit.Test;
+
+import java.sql.*;
+import java.util.List;
 
 
 /**
@@ -24,7 +19,7 @@ import org.junit.Test;
  * @author MRB
  */
 public class TestMysql {
-    
+
     @Test
     public void testJdbc() throws SQLException{
         Gson gson = new Gson();
@@ -48,7 +43,7 @@ public class TestMysql {
             }
         }
     }
-    
+
     @Test
     public void testQueryRunner() throws SQLException{
         org.apache.commons.dbutils.QueryRunner qr = new org.apache.commons.dbutils.QueryRunner();
@@ -66,7 +61,35 @@ public class TestMysql {
                 }
                 System.out.println();
             }
-            
+
+        } catch (SQLException ex) {
+            System.out.println("获取连接异常"+ex.toString());
+        }finally{
+            if(con!=null){
+                con.close();
+            }
+        }
+    }
+
+
+    @Test
+    public void testSeachIn() throws SQLException{
+        Gson gson = new Gson();
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.11.152)(PORT = 1521)) (CONNECT_DATA = (SID = dbtest) ) )", "gzmpcysjf", "gzmpcysjf");
+            String sql = "select ID from JF_FEE_BASE_MAPPING t where (t.RECEIPT_ID,t.LOADING_LIST_ID) in (?)";//定义一个要执行的SQL语句
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            Array array = con.createArrayOf("NUMBER",new Object[]{7319525,1535227});
+            Array array1 =  con.createArrayOf("ARRAY",new Object[]{array});
+            ps.setArray(1, array1);
+            ResultSet row = ps.executeQuery();
+            if(row.next()){
+                System.out.println(row.getObject(0));
+            }else{
+                System.out.println("结果为空");
+            }
         } catch (SQLException ex) {
             System.out.println("获取连接异常"+ex.toString());
         }finally{

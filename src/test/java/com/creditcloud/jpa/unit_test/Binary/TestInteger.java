@@ -7,6 +7,8 @@ package com.creditcloud.jpa.unit_test.Binary;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  *
  * @author MRB
@@ -45,5 +47,16 @@ public class TestInteger {
         for(int i=0;i<ALL_SIZE;i++){
             System.out.println(i+"-"+a[i]);
         }
+    }
+
+    @Test
+    public void testArraysFill(){
+        Integer[] newArr = new Integer[2];
+         Arrays.fill(newArr, 50);
+        System.out.println(newArr);
+        for(Integer integer : newArr){
+            System.out.println(integer);
+        }
+
     }
 }

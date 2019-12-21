@@ -123,4 +123,5 @@ public class TestFuture {
         Ship ship = (Ship)new RunTimeProxy().getProxy(Ship.class);
         ship.travel();
     }
+
 }
