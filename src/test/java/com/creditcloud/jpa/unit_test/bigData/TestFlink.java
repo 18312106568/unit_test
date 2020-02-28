@@ -6,15 +6,21 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.io.OutputFormat;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.io.CsvOutputFormat;
 import org.apache.flink.api.java.operators.DataSource;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.core.fs.Path;
+import org.apache.flink.streaming.api.functions.source.SourceFunction;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010;
 import org.apache.flink.util.Collector;
 
+import java.io.File;
 import java.util.List;
+import java.util.Properties;
 
 public class TestFlink {
 
@@ -61,5 +67,33 @@ public class TestFlink {
 //        dataset.addSink(new FlinkKafkaProducer011<>("localhost:9092", "wiki-result", new SimpleStringSchema()));
 //        dataset.print();
         System.out.println(dataset.count());
+    }
+
+    public  static String deleteAndGetOutput(ParameterTool params){
+        String outputName = params.get("output");
+        File dir = new File(outputName);
+        if(dir.exists()){
+            if(dir.isDirectory()) {
+                File[] tempFiles = dir.listFiles();
+                for (File tempFile : tempFiles) {
+                    tempFile.delete();
+                }
+            }
+            dir.delete();
+        }
+        return outputName;
+    }
+
+
+
+    public static SourceFunction<String> getKafkaSource(String brokers, String kafkaTopic){
+
+        Properties kafkaProps = new Properties();
+        kafkaProps.setProperty("bootstrap.servers", brokers);
+
+        FlinkKafkaConsumer010<String> kafka = new FlinkKafkaConsumer010(kafkaTopic, new SimpleStringSchema(), kafkaProps);
+        kafka.setStartFromLatest();
+        kafka.setCommitOffsetsOnCheckpoints(true);
+        return  kafka;
     }
 }

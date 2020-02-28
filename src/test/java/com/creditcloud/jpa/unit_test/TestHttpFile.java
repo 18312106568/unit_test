@@ -7,20 +7,15 @@ package com.creditcloud.jpa.unit_test;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.*;
+import org.junit.Test;
+
+import java.io.*;
+import java.util.Scanner;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import lombok.extern.slf4j.Slf4j;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import org.junit.Test;
 
 /**
  *
@@ -55,7 +50,7 @@ public class TestHttpFile {
         .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时时间
         .readTimeout(60, TimeUnit.SECONDS)//设置读取超时时间
         .build();
-        
+
         // MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
         //RequestBody body = RequestBody.create(mediaType, "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"pac.txt\"; filename=\"gfwlist.pac\"\r\nContent-Type: application/x-ns-proxy-autoconfig\r\n\r\n\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--");
         MediaType type = MediaType.parse("application/octet-stream");//"text/xml;charset=utf-8"
@@ -111,6 +106,21 @@ public class TestHttpFile {
         fw.flush();
         fw.close();
 
+    }
+
+    @Test
+    public void testFile() throws FileNotFoundException {
+        String REGEX = ".*user-select: none;";
+        File file = new File("D:\\BaiduNetdiskDownload\\极客时间-设计模式之美\\22丨理论八：如何用迪米特法则（LOD）实现“高内聚、松耦合”？ .html");
+        Scanner scanner = new Scanner(new FileInputStream(file));
+        Integer lineNum =1;
+        while(scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            if(line.matches(REGEX)){
+                System.out.println(lineNum+":"+line);
+            }
+            lineNum++;
+        }
     }
 
 }

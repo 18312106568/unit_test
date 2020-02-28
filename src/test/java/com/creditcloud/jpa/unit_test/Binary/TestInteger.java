@@ -8,6 +8,7 @@ package com.creditcloud.jpa.unit_test.Binary;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  *
@@ -57,6 +58,13 @@ public class TestInteger {
         for(Integer integer : newArr){
             System.out.println(integer);
         }
+    }
 
+    @Test
+    public void testNextInt(){
+        Random random = new Random();
+        for(int i=0;i<100;i++){
+            System.out.println(random.nextInt(100));
+        }
     }
 }

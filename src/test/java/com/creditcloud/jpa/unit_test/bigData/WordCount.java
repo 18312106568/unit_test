@@ -4,6 +4,7 @@ package com.creditcloud.jpa.unit_test.bigData;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.utils.ParameterTool;
+import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
@@ -34,6 +35,7 @@ public class WordCount {
 
     public static void main(String[] args) throws Exception {
         // Checking input parameters
+        //Log4jConfigurer.initLogging("E:\\project\\unit_test\\src\\main\\resources\\log4j.properties");
         final ParameterTool params = ParameterTool.fromArgs(args);
         String[] inputArr = {};
 
@@ -42,6 +44,7 @@ public class WordCount {
 
         // make parameters available in the web interface
         env.getConfig().setGlobalJobParameters(params);
+        env.setParallelism(1);
 
         // get input data
         DataStream<String> text = null;
@@ -59,7 +62,8 @@ public class WordCount {
             System.out.println("Executing WordCount example with default input data set.");
             System.out.println("Use --input to specify file input.");
             // get default test text data
-            text = env.fromElements(WordCountData.WORDS);
+           // text = env.fromElements(WordCountData.WORDS);
+            text = env.addSource(TestFlink.getKafkaSource("192.168.11.207:9092","miniPJ-log"));
         }
 
         DataStream<Tuple2<String, Integer>> counts =
@@ -70,7 +74,7 @@ public class WordCount {
 
         // emit result
         if (params.has("output")) {
-            counts.writeAsText(params.get("output"));
+            counts.writeAsText(params.get("output"), FileSystem.WriteMode.OVERWRITE);
         } else {
             System.out.println("Printing result to stdout. Use --output to specify output path.");
             counts.print();
