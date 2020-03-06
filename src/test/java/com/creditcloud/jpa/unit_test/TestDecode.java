@@ -211,6 +211,37 @@ public class TestDecode {
         System.out.println("1[2]3,".replaceAll("[12\\[\\],]", ""));
     }
 
+    @Test
+    public void testRegex2(){
+
+//        String content2 = "123456789";
+
+//        //匹配字符串是否没有包含&
+//        System.out.println(content.matches(regex));
+//        System.out.println(content2.matches(regex));
+        //找出这个字符串中没有&的所有子字符串
+        //需要匹配的字符串
+        String content = "123&456&&789&";
+        String content2 = "123456789";
+
+        String regex = "([^&]+)";
+        Pattern p = Pattern.compile(regex);
+        Matcher m1 = p.matcher(content);
+        System.out.println("匹配字符串content是否没有包含& : "+m1.matches());
+        while(m1.find()){
+           String str =  m1.group();
+           System.out.println("content子字符串符合规则"+str);
+        }
+
+        Matcher m2 = p.matcher(content2);
+        System.out.println("匹配字符串content2是否没有包含& : "+m2.matches());
+        while(m2.find()){
+            String str =  m2.group();
+            System.out.println("content2子字符串符合规则"+str);
+        }
+
+    }
+
 //    @Test
 //    public void testRegex2() throws ParseException{
 //        //System.out.println("1[2]31,".replace("[12\\[\\],]", ""));
