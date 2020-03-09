@@ -6,16 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb2e9bb2-6fcd-4b4d-a663-5063d9c085df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/creditcloud/jpa/unit_test/utils/FileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/creditcloud/jpa/unit_test/vo/FileStorageVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestXpath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestDecode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestDecode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestDecode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestDecode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/unit_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helix1.cdm" beforeDir="false" afterPath="$PROJECT_DIR$/helix1.cdm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestGuava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestGuava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,7 +72,7 @@
         <entry file="jar://$MAVEN_REPOSITORY$/net/sourceforge/htmlcleaner/htmlcleaner/2.9/htmlcleaner-2.9.jar!/org/htmlcleaner/TagNode.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="103">
-              <caret line="24" column="54" lean-forward="true" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+              <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -86,7 +81,7 @@
         <entry file="jar://$MAVEN_REPOSITORY$/net/sourceforge/htmlcleaner/htmlcleaner/2.9/htmlcleaner-2.9.jar!/org/htmlcleaner/HtmlNode.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="84">
-              <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+              <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -101,15 +96,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/net/sourceforge/htmlcleaner/htmlcleaner/2.9/htmlcleaner-2.9.jar!/org/htmlcleaner/Serializer.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/net/sourceforge/htmlcleaner/htmlcleaner/2.9/htmlcleaner-2.9.jar!/org/htmlcleaner/HtmlSerializer.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-44">
@@ -119,34 +105,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/creditcloud/jpa/unit_test/vo/FileStorageVo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestString.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2232">
-              <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+            <state relative-caret-position="-1413">
+              <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestFile.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestGuava.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="35" column="47" lean-forward="true" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="546">
+              <caret line="91" column="24" lean-forward="true" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="47" column="72" selection-start-line="47" selection-start-column="72" selection-end-line="47" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -166,7 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Arrays</find>
       <find>rand</find>
       <find>E:</find>
       <find>cglib</find>
@@ -196,6 +175,7 @@
       <find>XPAth</find>
       <find>CleanerProperties</find>
       <find>Line</find>
+      <find>va</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -210,8 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/bigData/IncrementalLearningSkeleton.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/bigData/TwitterExampleData.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/bigData/TwitterExample.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/bigData/KafkaStandaloneGenerator.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/bigData/Event.java" />
@@ -247,7 +225,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestHttpFile.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/VolatileExample.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestLock.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestCopyOnWrite.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestCompile.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Tester.java" />
@@ -261,6 +238,9 @@
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestFile.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestXpath.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestString.java" />
+        <option value="$PROJECT_DIR$/helix1.cdm" />
+        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestGuava.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java" />
       </list>
     </option>
   </component>
@@ -288,7 +268,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="3" />
     <option name="width" value="1050" />
     <option name="height" value="622" />
@@ -319,6 +299,27 @@
               <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
               <item name="unit_test" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -335,6 +336,15 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="unit_test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="unit_test" type="462c0819:PsiDirectoryNode" />
+              <item name="Thread" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="unit_test" type="b2602c69:ProjectViewProjectNode" />
@@ -349,30 +359,31 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583459780218" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583717622186" />
     <property name="dynamic.classpath" value="true" />
-    <property name="last_opened_file_path" value="E:/source/flink" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/helix1.cdm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.42413792" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/helix1.cdm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\project\unit_test" />
+      <recent name="E:\project\unit_test\src\test\java\com\creditcloud\jpa\unit_test\bigData\kafka" />
+      <recent name="E:\project\unit_test\src\test\java\com\creditcloud\jpa\unit_test\bigData" />
       <recent name="E:\project\unit_test\uml" />
-      <recent name="E:\project\unit_test\note" />
+      <recent name="E:\project\unit_test\src\main\resources\templates" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.creditcloud.jpa.unit_test.bigData.kafka" />
       <recent name="com.creditcloud.jpa.unit_test.bigData" />
       <recent name="com.creditcloud.jpa.unit_test.utils" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\project\unit_test\src\test\java\com\creditcloud\jpa\unit_test\bigData\kafka" />
-      <recent name="E:\project\unit_test\src\test\java\com\creditcloud\jpa\unit_test\bigData" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\project\unit_test\uml" />
-      <recent name="E:\project\unit_test\src\main\resources\templates" />
       <recent name="E:\project\unit_test\note" />
     </key>
   </component>
@@ -388,24 +399,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestString.testSdf">
-    <configuration name="TestFile.readFileStorage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestFuture.testFuture2">
+    <configuration name="TestFuture.testFuture2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="unit_test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.creditcloud.jpa.unit_test.*" />
+          <option name="PATTERN" value="com.creditcloud.jpa.unit_test.Thread.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test" />
-      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestFile" />
-      <option name="METHOD_NAME" value="readFileStorage" />
+      <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test.Thread" />
+      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.Thread.TestFuture" />
+      <option name="METHOD_NAME" value="testFuture2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestFile.testDeepFiles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGuava.testGuava" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="unit_test" />
       <extension name="coverage">
         <pattern>
@@ -414,8 +425,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test" />
-      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestFile" />
-      <option name="METHOD_NAME" value="testDeepFiles" />
+      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestGuava" />
+      <option name="METHOD_NAME" value="testGuava" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGuava.testRateLimiter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="unit_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.creditcloud.jpa.unit_test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test" />
+      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestGuava" />
+      <option name="METHOD_NAME" value="testRateLimiter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -453,36 +480,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestXpath.testScanPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="unit_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.creditcloud.jpa.unit_test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test" />
-      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestXpath" />
-      <option name="METHOD_NAME" value="testScanPath" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="JUnit.TestFile.testDeepFiles" />
-      <item itemvalue="JUnit.TestFile.readFileStorage" />
       <item itemvalue="JUnit.TestXpath.testReadXml" />
-      <item itemvalue="JUnit.TestXpath.testScanPath" />
       <item itemvalue="JUnit.TestString.testSdf" />
+      <item itemvalue="JUnit.TestGuava.testGuava" />
+      <item itemvalue="JUnit.TestGuava.testRateLimiter" />
+      <item itemvalue="JUnit.TestFuture.testFuture2" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestFuture.testFuture2" />
+        <item itemvalue="JUnit.TestGuava.testRateLimiter" />
+        <item itemvalue="JUnit.TestGuava.testGuava" />
         <item itemvalue="JUnit.TestString.testSdf" />
         <item itemvalue="JUnit.TestXpath.testReadXml" />
-        <item itemvalue="JUnit.TestXpath.testScanPath" />
-        <item itemvalue="JUnit.TestFile.readFileStorage" />
-        <item itemvalue="JUnit.TestFile.testDeepFiles" />
       </list>
     </recent_temporary>
   </component>
@@ -563,32 +574,11 @@
       <workItem from="1579579089487" duration="10204000" />
       <workItem from="1582783451712" duration="3772000" />
       <workItem from="1582795218013" duration="13417000" />
-      <workItem from="1583226397776" duration="18848000" />
+      <workItem from="1583226397776" duration="25435000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestString_testSdf - 2020.03.04 at 16h 01m 39s.xml">
-      <configuration name="TestString.testSdf" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestString_testSdf - 2020.03.04 at 16h 02m 43s.xml">
-      <configuration name="TestString.testSdf" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestString_testSdf - 2020.03.04 at 16h 03m 44s.xml">
-      <configuration name="TestString.testSdf" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestString_testSdf - 2020.03.04 at 16h 04m 17s.xml">
-      <configuration name="TestString.testSdf" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestString_testSdf - 2020.03.04 at 16h 05m 11s.xml">
-      <configuration name="TestString.testSdf" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestString_testSdf - 2020.03.04 at 16h 09m 41s.xml">
-      <configuration name="TestString.testSdf" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestString_testSdf - 2020.03.04 at 16h 09m 57s.xml">
-      <configuration name="TestString.testSdf" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestString_testSdf - 2020.03.04 at 16h 10m 15s.xml">
       <configuration name="TestString.testSdf" configurationId="JUnit" />
     </history-entry>
@@ -598,9 +588,30 @@
     <history-entry file="TestString_testSdf - 2020.03.04 at 16h 10m 41s.xml">
       <configuration name="TestString.testSdf" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestGuava_testGuava - 2020.03.06 at 11h 39m 29s.xml">
+      <configuration name="TestGuava.testGuava" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestGuava_testRateLimiter - 2020.03.06 at 11h 48m 38s.xml">
+      <configuration name="TestGuava.testRateLimiter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestGuava_testRateLimiter - 2020.03.06 at 11h 50m 45s.xml">
+      <configuration name="TestGuava.testRateLimiter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestGuava_testRateLimiter - 2020.03.06 at 11h 52m 49s.xml">
+      <configuration name="TestGuava.testRateLimiter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestFuture_testFuture2 - 2020.03.09 at 09h 31m 29s.xml">
+      <configuration name="TestFuture.testFuture2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestFuture_testFuture2 - 2020.03.09 at 09h 31m 41s.xml">
+      <configuration name="TestFuture.testFuture2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestFuture_testFuture2 - 2020.03.09 at 09h 31m 50s.xml">
+      <configuration name="TestFuture.testFuture2" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="708213000" />
+    <option name="totallyTimeSpent" value="714800000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -612,10 +623,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1552" height="840" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2077748" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1992288" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -625,18 +636,18 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8679625" visible="true" weight="0.28995755" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6497429" weight="0.27860028" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8669666" weight="0.2987887" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.64910024" visible="true" weight="0.27860028" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4993573" weight="0.32974428" />
       <window_info anchor="bottom" id="Spring" order="7" sideWeight="0.4993573" weight="0.32974428" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49485862" weight="0.2395693" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49357328" weight="0.2395693" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.13203754" side_tool="true" visible="true" weight="0.28995755" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.44987145" weight="0.35935396" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.35089976" side_tool="true" visible="true" weight="0.27860028" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.4492288" weight="0.35935396" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49865952" weight="0.16288953" />
+      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49807197" weight="0.1628533" />
       <window_info anchor="bottom" id="Code Review" order="14" />
       <window_info anchor="bottom" id="Java Enterprise" order="15" weight="0.06864065" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="16" />
@@ -859,6 +870,18 @@
           <properties />
           <option name="timeStamp" value="88" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -964,41 +987,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/bigData/WordCount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1596">
-          <caret line="76" column="74" selection-start-line="76" selection-start-column="74" selection-end-line="76" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/jre/lib/rt.jar!/sun/security/util/SignatureFileVerifier.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3192">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/note/谈谈微服务.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/bigData/kafka/kafka/EventDeSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/note/运输计费表格设计-流程表.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1108,13 +1096,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1491">
           <caret line="86" selection-start-line="86" selection-end-line="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3696">
-          <caret line="196" column="23" selection-start-line="196" selection-start-column="16" selection-end-line="196" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1272,7 +1253,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="35" column="47" lean-forward="true" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
+          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1282,7 +1263,7 @@
     <entry file="jar://$MAVEN_REPOSITORY$/net/sourceforge/htmlcleaner/htmlcleaner/2.9/htmlcleaner-2.9.jar!/org/htmlcleaner/Serializer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1324,7 +1305,7 @@
     <entry file="jar://$MAVEN_REPOSITORY$/net/sourceforge/htmlcleaner/htmlcleaner/2.9/htmlcleaner-2.9.jar!/org/htmlcleaner/TagNode.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
-          <caret line="24" column="54" lean-forward="true" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+          <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -1338,7 +1319,7 @@
     <entry file="jar://$MAVEN_REPOSITORY$/net/sourceforge/htmlcleaner/htmlcleaner/2.9/htmlcleaner-2.9.jar!/org/htmlcleaner/HtmlNode.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
-          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1363,10 +1344,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/helix1.cdm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2000">
+          <caret line="151754" column="7" selection-start-line="151754" selection-start-column="3" selection-end-line="151754" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestString.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2232">
-          <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+        <state relative-caret-position="-1413">
+          <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/creditcloud/jpa/unit_test/entity/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/creditcloud/jpa/unit_test/repository/ProductRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestGuava.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="91" column="24" lean-forward="true" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Thread/TestFuture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="47" column="72" selection-start-line="47" selection-start-column="72" selection-end-line="47" selection-end-column="72" />
         </state>
       </provider>
     </entry>

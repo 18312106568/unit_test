@@ -43,6 +43,28 @@ public class TestFuture {
         System.out.println(num1+num2);
     }
 
+    @Test
+    public void testFuture2() throws ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        FutureTask<Integer> task1 = new FutureTask(new Callable() {
+            @Override
+            public Integer call() throws Exception {
+                return 1;
+            }
+        });
+        FutureTask<Integer> task2 = new FutureTask<>(new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                return 2;
+            }
+        });
+        executorService.submit(task1);
+        executorService.submit(task2);
+        Integer result = task1.get()+task2.get();
+        System.out.println(result);
+    }
+
 
     @Test
     public void testDoss() throws ExecutionException, InterruptedException {

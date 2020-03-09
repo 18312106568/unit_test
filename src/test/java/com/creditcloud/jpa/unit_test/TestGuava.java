@@ -6,30 +6,26 @@
 package com.creditcloud.jpa.unit_test;
 
 import com.creditcloud.jpa.unit_test.entity.Product;
-import com.creditcloud.jpa.unit_test.entity.base.EntityId;
 import com.creditcloud.jpa.unit_test.repository.ProductRepository;
+import com.google.common.util.concurrent.RateLimiter;
 import com.google.common.util.concurrent.Striped;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import lombok.Data;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author MRB
  */
 public class TestGuava extends UnitTestApplicationTests {
-    
+
     private static final Striped<Lock> striped = Striped.lazyWeakLock(127);
 
+    private static volatile long   prev;
     @Autowired
     ProductRepository productRepository;
 
@@ -58,7 +54,7 @@ public class TestGuava extends UnitTestApplicationTests {
         } finally{
             lock.unlock();//释放锁
         }
-        
+
     }
 
     @Test
@@ -100,4 +96,28 @@ public class TestGuava extends UnitTestApplicationTests {
         System.out.println("运行时间为：【" + (System.currentTimeMillis() - startTime) + "】毫秒");
     }
 
+    @Test
+    public void testRateLimiter(){
+        // 限流器流速：2 个请求 / 秒
+        RateLimiter limiter =
+            RateLimiter.create(2.0);
+        // 执行任务的线程池
+        ExecutorService es = Executors
+                .newFixedThreadPool(1);
+        // 记录上一次执行时间
+        prev = System.nanoTime();
+        // 测试执行 20 次
+        for (int i=0; i<20; i++){
+            // 限流器限流
+            limiter.acquire();
+            // 提交任务异步执行
+            es.execute(()->{
+                long cur=System.nanoTime();
+                // 打印时间间隔：毫秒
+                System.out.println(
+                        String.format("prev:%d , duration: %d",prev/1000_000,(cur-prev)/1000_000));
+                prev = cur;
+            });
+        }
+    }
 }
