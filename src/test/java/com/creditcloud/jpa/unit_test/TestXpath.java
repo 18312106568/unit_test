@@ -14,7 +14,28 @@ public class TestXpath {
 
     public static String UPBIT_XPATH = "//library[@name='lib']//archive";
 
+    public static String DEPENDENCE_XPATH = "//dependency";
+
     public static String XML_FILE_1 = "E:\\project\\est\\lms\\wms\\wms\\WEB-INF\\_validation.xml";
+
+    public static String POM_XML = "E:\\project\\unit_test\\pom.xml";
+
+    @Test
+    public void testPom() throws FileNotFoundException, XPatherException {
+        String contents = readFile(POM_XML);
+        HtmlCleaner hc = new HtmlCleaner();
+        TagNode tn = hc.clean(contents);
+        Object[] objects = tn.evaluateXPath(DEPENDENCE_XPATH);
+
+        for(Object obj : objects){
+            TagNode tagNode = (TagNode)obj;
+            List<TagNode> childTagList= tagNode.getChildTagList();
+            TagNode[] grouIds = tagNode.getElementsByName("groupId",true);
+            if(grouIds.length!=0){
+                System.out.println(grouIds[0].getName()+"-"+grouIds[0].getText());
+            }
+        }
+    }
 
     @Test
     public void testScanPath(){

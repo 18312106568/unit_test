@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
@@ -66,5 +68,15 @@ public class TestInteger {
         for(int i=0;i<100;i++){
             System.out.println(random.nextInt(100));
         }
+    }
+
+    @Test
+    public void testAtomic(){
+        AtomicLong txnSeq = new AtomicLong(0);
+        System.out.println(txnSeq);
+        txnSeq.incrementAndGet();
+        System.out.println(txnSeq);
+
+        AtomicBoolean atomicBoolean = new AtomicBoolean(true);
     }
 }

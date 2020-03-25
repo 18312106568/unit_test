@@ -9,8 +9,6 @@ package com.creditcloud.jpa.unit_test.netty;
  *
  * @author MRB
  */
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.CompositeByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -24,6 +22,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> { 
 
     private AsciiString contentType = HttpHeaderValues.TEXT_PLAIN;
 
+    //处理读事件
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
         System.out.println("requestContent:" + msg);
@@ -42,6 +41,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> { 
         ctx.write(response);
     }
 
+    //处理读完成事件
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         System.out.println("channelReadComplete");
@@ -49,6 +49,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> { 
         ctx.flush(); // 4
     }
 
+    //处理异常事件
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         System.out.println("exceptionCaught");

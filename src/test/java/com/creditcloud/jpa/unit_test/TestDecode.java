@@ -242,6 +242,17 @@ public class TestDecode {
 
     }
 
+    @Test
+    public void testRegex4(){
+        String regex = "\\w+(?<!th)$";
+        String content = "th123th a123th";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher m = pattern.matcher(content);
+        while(m.find()){
+            System.out.println(m.group());
+        }
+    }
+
 //    @Test
 //    public void testRegex2() throws ParseException{
 //        //System.out.println("1[2]31,".replace("[12\\[\\],]", ""));

@@ -6,10 +6,7 @@ import com.google.gson.Gson;
 import org.junit.Test;
 
 import java.io.*;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class TestFile {
 
@@ -31,6 +28,27 @@ public class TestFile {
     }
 
     @Test
+    public void testDeepFilesJar() throws FileNotFoundException {
+        List<String> deepArr = FileUtils.deepFiles("E:\\project\\est\\lms\\lib");
+        String fileName = "E:\\project\\est\\lms\\classpath.txt";
+        Scanner scanner = new Scanner(new FileInputStream(new File(fileName)));
+        Set<String> fileSet = new HashSet<>();
+        while(scanner.hasNextLine()){
+            fileSet.add(scanner.nextLine());
+        }
+        for(String deep : deepArr){
+            if(fileName.endsWith(".jar")){
+                fileSet.add(deep);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+       for(String filePath : fileSet){
+            sb.append(filePath).append(";");
+        }
+        System.out.println(sb.toString());
+    }
+
+    @Test
     public void readFileStorage() throws FileNotFoundException {
         Scanner scanner = new Scanner(new FileInputStream(FILE_STORAGE_PATH));
         StringBuilder sb = new StringBuilder();
@@ -46,5 +64,17 @@ public class TestFile {
                 System.out.println(fileName);
             }
         }
+    }
+
+    @Test
+    public void readFile() throws FileNotFoundException {
+        String fileName = "E:\\project\\est\\lms\\classpath.txt";
+        Scanner scanner = new Scanner(new FileInputStream(new File(fileName)));
+        StringBuilder sb =new StringBuilder();
+        while(scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            sb.append(line).append(";");
+        }
+        System.out.println(sb.toString());
     }
 }
