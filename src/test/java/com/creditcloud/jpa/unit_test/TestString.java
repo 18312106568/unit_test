@@ -203,5 +203,12 @@ public class TestString {
 
     }
 
+    @Test
+    public void testPrint(){
+        for(int i=0;i<Short.MAX_VALUE*2-1;i++){
+            System.out.print((int)(Math.random()*10));
+        }
+    }
+
 
 }

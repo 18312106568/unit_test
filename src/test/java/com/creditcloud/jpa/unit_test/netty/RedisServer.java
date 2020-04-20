@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.creditcloud.jpa.unit_test.netty;
-
-/**
- *
- * @author MRB
- */
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -17,18 +7,18 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.http.HttpObjectAggregator;
-import io.netty.handler.codec.http.HttpRequestDecoder;
-import io.netty.handler.codec.http.HttpResponseEncoder;
-/**
- * Created by RoyDeng on 17/7/20.
- */
-public class HttpServer {
+import io.netty.handler.codec.redis.RedisBulkStringAggregator;
+import io.netty.handler.codec.redis.RedisDecoder;
+import io.netty.handler.codec.redis.RedisEncoder;
 
+/**
+ * editor MRB
+ */
+public class RedisServer {
 
 
     public static void main(String args[]) throws Exception {
-        int port = 4702;
+        int port = 4774;
         System.out.println("程序开始=====>>");
         start(port);
     }
@@ -45,10 +35,10 @@ public class HttpServer {
                             throws Exception {
                         System.out.println("initChannel ch:" +channel);
                         channel.pipeline()
-                                .addLast("decoder", new HttpRequestDecoder())   // 1
-                                .addLast("encoder", new HttpResponseEncoder())  // 2
-                                .addLast("aggregator", new HttpObjectAggregator(512 * 1024))    // 3
-                                .addLast("handler", new HttpHandler());        // 4
+                                .addLast("decoder",new RedisDecoder())   // 1
+                                .addLast("encoder",new RedisEncoder())  // 2
+                                .addLast("aggregator", new RedisBulkStringAggregator())    // 3
+                                .addLast("handler", new RedisHandler());        // 4
                     }
                 })
                 .option(ChannelOption.SO_BACKLOG, 128) // determining the number of connections queued

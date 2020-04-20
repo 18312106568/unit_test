@@ -33,10 +33,7 @@ import java.net.URLEncoder;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -634,6 +631,66 @@ public class TestHttp {
             ex.printStackTrace();
         }
 
+    }
+
+    //okhttp提交文件到服务器
+    @Test
+    public void testPostFile() throws IOException {
+//        OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
+//
+//        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888));
+//        builder.proxy(proxy);
+//        //cookie管理器
+//        CookieManager cookieManager = new CookieManager();
+//        OkHttpClient client = builder
+//                .cookieJar(new JavaNetCookieJar(cookieManager))
+//                .build();
+
+
+
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("multipart/form-data");
+        RequestBody body = new MultipartBody.Builder("--"+ UUID.randomUUID().toString()).setType(mediaType)
+                .addFormDataPart("file1","out4",
+                        RequestBody.create(MediaType.parse("application/octet-stream"),
+                                new File("E:/tmp/flink/out4")))
+                .build();
+        Request request = new Request.Builder()
+                .url("http://add-uat.elecadd.com/api/upload.string?sessionID=d942789f04c30b02d64be81940c999a1")
+                .method("POST", body)
+                .addHeader("Content-Type","multipart/form-data; ")
+                .addHeader("boundary","--518387266801040454087085 ")
+                .build();
+
+        Response response = client.newCall(request).execute();
+        System.out.println(response.body().string());
+    }
+
+    @Test
+    public void testStrangeServer() throws IOException {
+        MediaType mediaType = MediaType.parse("multipart/form-data; boundary=--------------------------518387266801040454087085");
+        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("","/E:/tmp/flink/out4",
+                        RequestBody.create(MediaType.parse("application/octet-stream"),
+                                new File("/E:/tmp/flink/out4")))
+                .build();
+        String result = HttpUtil.doPost(
+                "http://add-uat.elecadd.com/api/upload.string?sessionID=518387266801040454087085",
+                "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\n" +
+                        "Accept-Encoding: gzip, deflate\n" +
+                        "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8\n" +
+                        "Cache-Control: max-age=0\n" +
+                        "Content-Length: 2268936\n" +
+                        "Content-Type: multipart/form-data; boundary=----518387266801040454087085\n" +
+                        "Cookie: .User=se=qcKY7xT7iJcLYTufUXQKLiWv%2FJc0yD0j\n" +
+                        "Host: add-uat.elecadd.com\n" +
+                        "Origin: null\n" +
+                        "Proxy-Connection: keep-alive\n" +
+                        "Upgrade-Insecure-Requests: 1\n" +
+                        "User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36",
+                "","",true);
+        System.out.println(result);
     }
 
     /**

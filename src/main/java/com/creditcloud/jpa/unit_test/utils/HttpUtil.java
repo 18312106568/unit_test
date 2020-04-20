@@ -143,10 +143,18 @@ public class HttpUtil {
         return doPost(url,heads,params,"application/x-www-form-urlencoded",isZip);
     }
 
+
     public static String doPost(String url,String heads,String params,String mediaTypeStr,Boolean isZip) throws IOException {
 
         MediaType mediaType = MediaType.parse(mediaTypeStr);
         RequestBody body = RequestBody.create(mediaType,params);
+        return doPost(url,heads,params,body,isZip);
+
+    }
+
+
+    public static String doPost(String url,String heads,String params,RequestBody body,Boolean isZip) throws IOException {
+
         Request.Builder requestBuilder = new Request.Builder()
                 .url(url)
                 .post(body);

@@ -5,37 +5,26 @@
  */
 package com.creditcloud.jpa.unit_test;
 
-import com.mysql.jdbc.Field;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Statement;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.sql.*;
+import java.util.*;
 
 /**
  *
  * @author MRB
  */
 public class TestJDBC {
-    
+
     @Test
     public void testConn() throws SQLException{
         String dbName = "test";
@@ -65,7 +54,7 @@ public class TestJDBC {
             System.out.println(
                     metaData.getColumnName(i+1)+"-"+metaData.getColumnTypeName(i+1)+"-"
                             +metaData.getColumnClassName(i+1));
-            
+
         }
         System.out.println(metaData.getClass());
         System.out.println(metaData);
@@ -77,9 +66,9 @@ public class TestJDBC {
             e.printStackTrace();
         }
     }
-    
-    
-    
+
+
+
     private static Connection getConn() {
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/test";
@@ -96,24 +85,24 @@ public class TestJDBC {
         }
         return conn;
     }
-    
+
     public static class MysqlExcutor{
-        
+
         private final static String TABLE_INFO_SQL = "select table_name, table_comment from information_schema.tables where table_schema = '%s' and table_name = '%s'";
-        
+
         private final static String COLUMN_INFO_SQL = "select * from  %s limit 0,1";
-        
+
         private final static String COMMENT_INFO_SQL = "select column_name, column_comment from information_schema.columns where table_schema = '%s' and table_name = '%s' ;";
-        
+
         private final static String NO_NEED_IMPORT = "java\\.lang.*";
-        
+
         public static MysqlTable createTableEntity(Connection conn,String dbName,String tableName) throws SQLException{
             MysqlTable mysqlTable = new MysqlTable();
             mysqlTable.setClassName(StringUtls.upperCase(StringUtls.changeHungToCame(tableName)));
             mysqlTable.setTableName(tableName);
             Map<String,MysqlColumn> columnMap = new HashMap();
             Map<String,String> importMap = new HashMap();
-            
+
             //获取数据库列信息
             ResultSetMetaData columnMetaData = getColumnInfo(conn, tableName);
             for(int i=0;i<columnMetaData.getColumnCount();i++){
@@ -127,16 +116,16 @@ public class TestJDBC {
                     importMap.put(columnType, columnType);
                 }
             }
-            
+
             //获取列注释
             ResultSet commentRs = getCommentInfo(conn,dbName,tableName);
             while(commentRs.next()){
                 String key = commentRs.getString("column_name");
                 String comment = commentRs.getString("column_comment");
-        
+
                 columnMap.get(key).setComment(comment);
             }
-            
+
             //获取表注释
             ResultSet tableRs = getTablefo(conn,dbName, tableName);
 
@@ -144,38 +133,38 @@ public class TestJDBC {
                 String comment = tableRs.getString("table_comment");
                 mysqlTable.setTableComment(comment);
             }
-            
+
             mysqlTable.setImportList(importMap.values());
             mysqlTable.setColumns(columnMap.values());
             return mysqlTable;
         }
-        
+
         public static ResultSetMetaData getColumnInfo(Connection conn,String tableName) throws SQLException{
             return conn.createStatement()
                     .executeQuery(String.format(COLUMN_INFO_SQL, tableName))
                     .getMetaData();
         }
-        
+
         public static ResultSet getCommentInfo(Connection conn,String dbName,String tableName) throws SQLException{
              return conn.createStatement()
                     .executeQuery(String.format(COMMENT_INFO_SQL,dbName, tableName));
         }
-        
+
         public static ResultSet getTablefo(Connection conn,String dbName,String tableName) throws SQLException{
              return conn.createStatement()
                     .executeQuery(String.format(TABLE_INFO_SQL,dbName, tableName));
         }
-        
+
         public static String converToSingleName(String classFullName){
             if(classFullName.lastIndexOf(".")>0){
                 return classFullName.substring(classFullName.lastIndexOf(".")+1);
             }
             return classFullName;
         }
-        
-        
+
+
     }
-    
+
 
     public static class TemplateGenerator{
         public static void generatorJava(MysqlTable table) throws IOException, TemplateException {
@@ -201,17 +190,17 @@ public class TestJDBC {
        /**
         * 首字母大写
         * @param str
-        * @return 
+        * @return
         */
-       public static String upperCase(String str) {  
-           return str.substring(0, 1).toUpperCase() + str.substring(1);  
-       }  
+       public static String upperCase(String str) {
+           return str.substring(0, 1).toUpperCase() + str.substring(1);
+       }
 
        /**
         * 峰驼式转匈牙利命名
-        * 
+        *
         * @param cameString
-        * @return 
+        * @return
         */
        public static String changeCameToHung(String cameString){
            StringBuilder sb = new StringBuilder();
@@ -225,7 +214,7 @@ public class TestJDBC {
            }
            return sb.toString();
        }
-       
+
         /**
         * 匈牙利转峰驼式命名
         *
@@ -247,14 +236,14 @@ public class TestJDBC {
            return sb.toString();
        }
     }
-    
+
     public static class MysqlUtils{
-        
+
         final static String DRIVER = "com.mysql.jdbc.Driver";
         final static String URL = "jdbc:mysql://%s:%s/%s";
         final static String LOCAL = "localhost";
         final static String DEFAULT_PORT = "3306";
-        
+
         public static Connection getConn(String dbName) {
             if(dbName==null){
                 return null;
@@ -265,7 +254,7 @@ public class TestJDBC {
             String password = "123abc123abc";
             return getConn(url,username,password);
         }
-        
+
         public static Connection getConn(String url,String userName,String password){
             Connection conn = null;
             try {
@@ -277,11 +266,11 @@ public class TestJDBC {
                 e.printStackTrace();
             }
             return conn;
-        } 
-        
-        
+        }
+
+
     }
-    
+
     @Data
     public static class MysqlTable{
         private String packageName;
@@ -291,7 +280,7 @@ public class TestJDBC {
         private Collection<String> importList;
         private Collection<MysqlColumn> columns;
     }
-    
+
     @Data
     public static class MysqlColumn{
         private String type;
@@ -299,7 +288,7 @@ public class TestJDBC {
         private String comment;
         private String columnName;
     }
-    
+
     public static final class MysqlDefs {
         static final int COM_BINLOG_DUMP = 18;
 
@@ -441,5 +430,139 @@ public class TestJDBC {
         static final int STATISTICS = 9;
 
         static final int TIME = 15;
+    }
+
+    public static Connection getConn(String url,String username,String password){
+        String driver = "oracle.jdbc.driver.OracleDriver";
+        Connection conn = null;
+        try{
+            Class.forName(driver);
+            conn =   DriverManager.getConnection(url, username,password);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+
+    public static List<Map<String,Object>> parseData(ResultSet rs) throws SQLException {
+        ResultSetMetaData metaData = rs.getMetaData();
+        List<String> columnNames = new ArrayList();
+        List<Map<String,Object>> result = new ArrayList<Map<String, Object>>();
+        for(int i=0;i<metaData.getColumnCount();i++){
+            columnNames.add(metaData.getColumnName(i+1));
+        }
+        while(rs.next()){
+            Map<String,Object> data = new HashMap<String, Object>();
+            for(String columnName: columnNames){
+                String value = rs.getString(columnName);
+                data.put(columnName, StringUtils.isEmpty(value)?value:value.trim());
+            }
+            result.add(data);
+        }
+        return result;
+    }
+
+
+    private void insertIntoDevMultilangMsg(Connection connection
+            ,String tableName) throws SQLException {
+        String sql = "select *  from user_col_comments  where TABLE_NAME=?";
+
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1,tableName);
+        ResultSet rs = ps.executeQuery();
+
+        List<Map<String,Object>> result = parseData(rs);
+        for(Map<String,Object> item : result){
+            String devMultilangmsgSql =
+                    "select t.* from dev_multilangmsg t where t.MULTI_LANG_MSG_ID = 'di.%s'";
+            PreparedStatement devMultilangmsgPs = connection.prepareStatement(
+                    String.format(devMultilangmsgSql,item.get("COLUMN_NAME")
+                            .toString().toLowerCase().trim())) ;
+
+            ResultSet devRs = devMultilangmsgPs.executeQuery();
+            List devResult = parseData(devRs);
+            if(devResult.isEmpty()){
+                String insertDevSql =
+                        "INSERT INTO dev_multilangmsg" +
+                                "(\"MULTI_LANG_MSG_ID\", \"ZH_CN\", \"ZH_TW\", \"EN_MSG\", \"JP_MSG\", \"FR_MSG\")" +
+                                " VALUES ('di.%s', '%s', NULL, NULL, NULL, NULL)";
+                PreparedStatement insertDevPs = connection.prepareStatement(
+                        String.format(insertDevSql,item.get("COLUMN_NAME").toString().toLowerCase().trim(),item.get("COMMENTS").toString())) ;
+                insertDevPs.execute();
+
+            }else{
+                System.out.println(devResult);
+            }
+        }
+    }
+
+    public static List<Field> listTableFields(Connection connection,String tableName) throws SQLException {
+        String sql = "select * from user_tab_columns t where t.TABLE_NAME=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1,tableName);
+        ResultSet rs = ps.executeQuery();
+
+        List<Map<String,Object>> result = parseData(rs);
+        List<Field> fieldList = new ArrayList<>();
+        for(Map<String,Object> item : result){
+            Field field = new Field();
+            field.setName(item.get("COLUMN_NAME").toString().toLowerCase().trim());
+            field.setType(item.get("DATA_TYPE").toString().toLowerCase().trim());
+            fieldList.add(field);
+        }
+        return fieldList;
+    }
+
+    public static Connection getWmsConn(){
+        String url = "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST =192.168.11.168)(PORT = 1521))(CONNECT_DATA =(SID = wms)))";
+        String userName = "wms";
+        String password = "wms";
+        Connection connection = getConn(url,userName,password);
+        return connection;
+    }
+
+    @Test
+    public void testField() throws SQLException {
+        Connection wmsConn = getWmsConn();
+        String tableName = "ZX_RPT_IMG_DOC";
+        List<Field> fieldList = listTableFields(wmsConn,tableName);
+        for(Field field : fieldList){
+            System.out.println(field);
+        }
+        wmsConn.close();
+    }
+
+    @Test
+    public void testInsertDevMulti() throws SQLException {
+        Connection wmsConn = getWmsConn();
+        String tableNames[] = {"ZX_RPT_IMG_DOC","ZX_RPT_IMG_DTL"};
+        for(String tableName : tableNames){
+            insertIntoDevMultilangMsg(wmsConn,tableName);
+        }
+        wmsConn.close();
+    }
+
+    @Data
+    public static class Field{
+        String type;
+        String name;
+    }
+
+    @Data
+    public static class Module{
+        String id;
+        String target;
+    }
+
+    @Data
+    public static class ProjectModel{
+        String projectName;
+        List<Field> fieldList;
+        List<Field> pkList;
+        String sql;
+        List<Module> moduleList;
     }
 }

@@ -18,18 +18,18 @@ import java.util.Properties;
  * @author MRB
  */
 public class TestClassLoader {
-    
+
     public static void main(String[] args){
         System.out.println("BootstrapClassLoader 的加载路径: ");
-		
+
         URL[] urls = sun.misc.Launcher.getBootstrapClassPath().getURLs();
         for(URL url : urls) {
             System.out.println(url);
         }
         System.out.println("----------------------------");
-        
+
         URLClassLoader extClassLoader = (URLClassLoader)ClassLoader.getSystemClassLoader().getParent();
- 
+
         System.out.println(extClassLoader);
         System.out.println("扩展类加载器 的加载路径: ");
 
@@ -38,7 +38,7 @@ public class TestClassLoader {
                 System.out.println(url);
 
         System.out.println("----------------------------");
-        
+
         //取得应用(系统)类加载器
         URLClassLoader appClassLoader = (URLClassLoader)ClassLoader.getSystemClassLoader();
 
@@ -50,13 +50,13 @@ public class TestClassLoader {
             System.out.println(url);
         }
 
-        System.out.println("----------------------------");	
-        
+        System.out.println("----------------------------");
+
         URLClassLoader bootLoader = (URLClassLoader) extClassLoader.getParent();
         System.err.println(bootLoader);
-        
+
     }
-    
+
     @Test
     public void testSystemProperty() throws InterruptedException{
         Properties pros = System.getProperties();
@@ -92,5 +92,6 @@ public class TestClassLoader {
             ex.printStackTrace();
         }
     }
-    
+
+
 }
