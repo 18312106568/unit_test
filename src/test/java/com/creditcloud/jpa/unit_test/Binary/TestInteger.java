@@ -79,4 +79,108 @@ public class TestInteger {
 
         AtomicBoolean atomicBoolean = new AtomicBoolean(true);
     }
+
+    @Test
+    public void testNullPointer(){
+        Integer a = 1;
+        Integer b = 2;
+        Integer c = null;
+        Boolean flag = false;
+        Integer result = (flag ?  a * b  :  c);
+    }
+
+
+    public static byte[][] bitmaskArr = {
+             {0,0,0,0,0,0,0,1}
+            ,{0,0,0,1,1,1,1,0}
+            ,{0,1,1,0,0,1,1,0}
+            ,{1,0,1,0,1,0,1,0}
+    };
+
+    @Test
+    public void testBitMask(){
+        Integer poison =8;
+        Integer gressNum =0;
+        Integer MOVENUM = 3;
+        for(byte[] arr : bitmaskArr){
+            byte bit = arr[poison-1];
+            System.out.print(bit);
+            gressNum += bit<<MOVENUM;
+            MOVENUM--;
+        }
+        System.out.println();
+        System.out.println(gressNum);
+
+        Integer revrOne = ~1;
+        System.out.println(Integer.toBinaryString(1));
+        System.out.println(revrOne);
+        System.out.println(revrOne*1024);
+        System.out.println(Integer.toBinaryString(~1));
+        System.out.println(Integer.toBinaryString(~1+1));
+        System.out.println(Integer.toBinaryString(-1));
+        System.out.println(Integer.MAX_VALUE+1);
+        System.out.println(~Integer.MAX_VALUE);
+        System.out.println(-Integer.MAX_VALUE-2);
+        System.out.println(Integer.toBinaryString(Integer.MAX_VALUE+1));
+        System.out.println(Integer.toBinaryString(-Integer.MAX_VALUE));
+        System.out.println(Integer.toBinaryString(~~1));
+    }
+
+    public static enum Permission{
+        ALLOW_SELECT(1<<0),
+        ALLOW_CREATE(1<<1),
+        ALLOW_UPDATE(1<<2),
+        ALLOW_DELETE(1<<3)
+        ;
+        int code;
+        Permission(int code){
+            this.code =code;
+        }
+
+        public int getCode(){
+            return this.code;
+        }
+    }
+
+
+    public static class PermissionOp{
+        public static int addPermission(int permissionCode,Permission permisson){
+            return permissionCode |= permisson.getCode();
+        }
+
+        public static int deletePermission(int permissionCode,Permission permission){
+            return permissionCode &= ~permission.getCode();
+        }
+
+        public static boolean isAllow(int permissionCode,Permission permission){
+            return (permissionCode & permission.getCode()) == permission.getCode();
+        }
+    }
+
+
+    @Test
+    public void testPermission(){
+        int myCode = 0xE ;
+        System.out.println("how many permissions I have ?");
+        for(Permission permission : Permission.values()){
+            System.out.println(String.format("I have permission[%s] :%b"
+                    ,permission.name(),PermissionOp.isAllow(myCode,permission)));
+        }
+        myCode = PermissionOp.deletePermission(myCode,Permission.ALLOW_CREATE);
+        System.out.println(String.format(
+                "i dont need CREATE permission,now my permission is %d",myCode));
+
+        for(Permission permission : Permission.values()){
+            System.out.println(String.format("I have permission[%s] :%b"
+                    ,permission.name(),PermissionOp.isAllow(myCode,permission)));
+        }
+
+        myCode = PermissionOp.addPermission(myCode,Permission.ALLOW_SELECT);
+        System.out.println(String.format(
+                "i  need SELECT permission,now my permission is %d",myCode));
+        for(Permission permission : Permission.values()){
+            System.out.println(String.format("I have permission[%s] :%b"
+                    ,permission.name(),PermissionOp.isAllow(myCode,permission)));
+        }
+    }
 }
