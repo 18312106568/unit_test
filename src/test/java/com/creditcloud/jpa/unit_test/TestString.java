@@ -210,5 +210,11 @@ public class TestString {
         }
     }
 
+    @Test
+    public void testIntern(){
+        String str = Long.toString(System.currentTimeMillis());
+        System.out.println(str == str.intern());
+    }
+
 
 }

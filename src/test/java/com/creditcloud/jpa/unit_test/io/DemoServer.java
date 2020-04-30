@@ -66,7 +66,10 @@ public class DemoServer extends Thread {
             bufferedReader.lines().forEach(s -> System.out.println(s));
         }
     }
+
+
 }
+
 // 简化实现，不做读取，直接发送字符串
 
 class RequestHandler extends Thread {
@@ -87,3 +90,4 @@ class RequestHandler extends Thread {
         }
     }
 }
+

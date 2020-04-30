@@ -17,8 +17,22 @@ import java.util.*;
 
 public class TestObject {
 
-    public static void printTypeSize(Object obj){
+
+    public static  void printTypeSize(Object obj){
+
         System.out.println(String.format("%s类型占用%dB",obj.getClass(),sizeOf(obj)));
+    }
+
+    @Test
+    public void testIntArraySize() throws IllegalAccessException {
+        int[] intArr = new int[]{1,2,3,4};
+        Integer[] inttegerArr = new Integer[4];
+        char[] charArr = new char[]{'a','a','a','a','a','a','a','a','a','a','a','a','a'};
+        String str1 = "1588037485736";
+        System.out.println(String.format("%d个整型数组的长度大小%d",intArr.length,sizeOf(intArr)));
+        System.out.println(String.format("%d个整型类数组的长度大小%d",inttegerArr.length,fullSizeOf(inttegerArr)));
+        System.out.println(String.format("%d个字符串数组的长度大小%d",charArr.length,sizeOf(charArr)));
+        System.out.println(String.format("%d长度字符串的长度大小%d",str1.length(),fullSizeOf(str1)));
     }
 
 

@@ -63,6 +63,11 @@ public class TestInteger {
     }
 
     @Test
+    public void testIsPrimitive(){
+        System.out.println(int.class.isPrimitive());
+    }
+
+    @Test
     public void testNextInt(){
         Random random = new Random();
         for(int i=0;i<100;i++){
@@ -108,9 +113,13 @@ public class TestInteger {
             gressNum += bit<<MOVENUM;
             MOVENUM--;
         }
+
         System.out.println();
         System.out.println(gressNum);
+    }
 
+    @Test
+    public void testRerve(){
         Integer revrOne = ~1;
         System.out.println(Integer.toBinaryString(1));
         System.out.println(revrOne);
@@ -157,7 +166,7 @@ public class TestInteger {
         }
     }
 
-
+    //高效权限
     @Test
     public void testPermission(){
         int myCode = 0xE ;
@@ -182,5 +191,11 @@ public class TestInteger {
             System.out.println(String.format("I have permission[%s] :%b"
                     ,permission.name(),PermissionOp.isAllow(myCode,permission)));
         }
+    }
+
+
+    @Test
+    public void testPow(){
+        System.out.println(1 ^2);
     }
 }

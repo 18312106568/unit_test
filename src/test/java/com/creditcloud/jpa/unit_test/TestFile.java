@@ -7,6 +7,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -16,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@Slf4j
 public class TestFile {
 
     public static final String FILE_STORAGE_PATH = "E:\\project\\est\\lms\\filestorage.txt";
@@ -116,6 +118,7 @@ public class TestFile {
         StringBuilder sb = new StringBuilder();
         while(scanner.hasNextLine()){
             sb.append(scanner.nextLine());
+
         }
         Gson gson = new Gson();
         FileStorageVo fileStorageVo = gson.fromJson(sb.toString(),FileStorageVo.class);
@@ -376,6 +379,125 @@ public class TestFile {
         String filePath = "E:\\bak\\wms\\wms\\123\\222";
         File file = new File(filePath);
        createFile(file.getAbsolutePath());
+    }
+
+    @Test
+    public void printToFile() throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter(
+                new File("E:\\tmp\\phone.txt")));
+        for(int i=0;i<1000000;i++){
+            pw.println(System.currentTimeMillis()+"-"+i);
+        }
+
+        pw.flush();
+        pw.close();
+    }
+
+    @Test
+    public void readFileToObject() throws FileNotFoundException, IllegalAccessException {
+        Scanner scanner = new Scanner(
+                new FileInputStream( new File("E:\\tmp\\phone.txt")));
+        List<String> strList = new ArrayList();
+        Map<Integer,String> strMap = new HashMap<>();
+        Integer index=0;
+        while(scanner.hasNextLine()){
+            strList.add(scanner.nextLine());
+        }
+        System.out.println(String.format("时间戳占用%dB"
+                ,TestObject.fullSizeOf(System.currentTimeMillis())));
+        for(int i=0;i<strList.size();i++){
+            strMap.put(i,strList.get(i));
+        }
+
+        System.out.println(String.format("时间戳字符串占用%dB"
+                ,TestObject.fullSizeOf(String.valueOf(System.currentTimeMillis()))));
+        System.out.println(String.format("文件:phone.txt,读取到内存类型占用%dMB"
+                ,TestObject.fullSizeOf(strList)/(1000*1000)));
+
+
+    }
+
+    /**
+     * JVM内存变化测试
+     * @throws InterruptedException
+     * @throws IOException
+     */
+    @Test
+    public void testJvmUsageChange() throws InterruptedException, IOException {
+        List<String> array = new ArrayList<>();
+        Runtime run = Runtime.getRuntime();
+        String cmdRsLine = TestRunTime.execCmd("jps -lvm|findstr TestFile").trim();
+        String[] results = cmdRsLine.split("\\s+");
+        log.info("正在运行的进程ID:{}",results[0]);
+        log.info("init!sleep 30 second,jvm memory total usage: {}MB"
+                ,(run.totalMemory()- run.freeMemory())/(1000*1000));
+        TestRunTime.execCmd(String.format("jstat -gc  %s >> E:\\tmp\\jvm\\1.txt",results[0]));
+        Thread.sleep(30000);
+        for(int i=0;i<10;i++){
+            for(int j=0;j<500000;j++){
+                array.add(new String("1588037485736"));
+            }
+
+            log.info("add success!sleep 30 second,jvm memory total usage: {}MB"
+                    ,(run.totalMemory()- run.freeMemory())/(1000*1000));
+            TestRunTime.execCmd(String.format("jstat -gc  %s >> E:\\tmp\\jvm\\1.txt",results[0]));
+            Thread.sleep(5000);
+        }
+        testJvmUsage();
+    }
+
+    @Test
+    public void testJvmUsage() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new FileInputStream(new File("E:\\tmp\\jvm\\1.txt")));
+        Map<String,List<Double>> dataTableMap = new HashMap<>();
+        List<String> titleList = new ArrayList<>();
+
+        int dataLen = 0;
+        while(scanner.hasNextLine()){
+            String line = scanner.nextLine().trim();
+            if(line.startsWith("S0C") && titleList.isEmpty()){
+                String[] titles = line.split("\\s+");
+                for(String title : titles){
+                    dataTableMap.put(title,new ArrayList<>());
+                    titleList.add(title);
+                }
+            }
+            if(line.startsWith("S0C") || StringUtils.isEmpty(line)){
+                continue;
+            }
+            String[] contents = line.split("\\s+");
+            for(int i=0;i<titleList.size();i++){
+                List<Double> dataArr = dataTableMap.get(titleList.get(i));
+                dataArr.add(Double.valueOf(contents[i]));
+
+            }
+            dataLen++;
+
+        }
+        for(int i=1;i<dataLen;i++){
+            Double initialUsage = dataTableMap.get("S0U").get(0)
+                    +dataTableMap.get("S1U").get(0)
+                    +dataTableMap.get("EU").get(0)+
+                    dataTableMap.get("OU").get(0);
+            Double nowUsage = dataTableMap.get("S0U").get(i)
+                    +dataTableMap.get("S1U").get(i)
+                    +dataTableMap.get("EU").get(i)+
+                    dataTableMap.get("OU").get(i);
+
+            Double countUsage = dataTableMap.get("S0C").get(i)+
+                    dataTableMap.get("S1C").get(i)+
+                    dataTableMap.get("EC").get(i)+
+                    dataTableMap.get("OC").get(i)+
+                    dataTableMap.get("MC").get(i)+
+                    dataTableMap.get("CCSC").get(i);
+
+            System.out.println(String.format("总共占用内存%.2fMB,初始化值是%.2fMB" +
+                            ",当前使用是%.2fMB,内存变化:%.2fMB"
+                    ,countUsage*1024/(1000*1000)
+                    ,initialUsage*1024/(1000*1000)
+                    ,nowUsage*1024/(1000*1000)
+                    ,(nowUsage-initialUsage)*1024/(1000*1000)));
+        }
     }
 
     public File deepParent(File file){

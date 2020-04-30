@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package com.creditcloud.jpa.unit_test.nosql;
+
 import com.mongodb.MongoClient;
 import com.mongodb.client.ListCollectionsIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoIterable;
-import java.util.Iterator;
 import org.bson.Document;
 import org.junit.Test;
+
+import java.util.Iterator;
 
 /**
  *
@@ -45,5 +46,5 @@ public class TestMongodb {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
-    
+
 }

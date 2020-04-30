@@ -19,7 +19,7 @@ public class TestRunTime {
         execCmd("java -version");
     }
 
-    public void execCmd(String command) throws IOException {
+    public static String execCmd(String command) throws IOException {
         Process process = null;
         String[] cmd = { "cmd", "/c", command };
         process = Runtime.getRuntime().exec(cmd);
@@ -40,6 +40,7 @@ public class TestRunTime {
             sb.append(line + "\r\n");
         }
         System.out.println(sb.toString());
+        return sb.toString();
     }
 
     @Test
