@@ -693,6 +693,13 @@ public class TestHttp {
         System.out.println(result);
     }
 
+
+    @Test
+    public void testRoyaleApi() throws IOException {
+        String result = HttpUtil.doGet(
+                "https://royaleapi.com/player/P8LPVYPUJ/cards/levels");
+        System.out.println(result);
+    }
     /**
      *  symbol : 币种标识
      *     name: 币种名称

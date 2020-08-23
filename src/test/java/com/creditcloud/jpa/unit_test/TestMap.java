@@ -130,4 +130,97 @@ public class TestMap {
         }
         return String.format("%s,%s",prefix,nextfix);
     }
+
+    @Test
+    public void testIteratorRemove(){
+        List<String> names = new ArrayList<>();
+        names.add("a");
+        names.add("b");
+        names.add("c");
+        names.add("d");
+        Iterator<String> iterator1 = names.iterator();
+        Iterator<String> iterator2 = names.iterator();
+        iterator1.next();
+        iterator1.remove();
+        iterator2.next(); // 运行结果？
+    }
+
+    public static class AcTrie{
+        Map<Character,AcTrie> nodes;
+        AcTrie fail;
+        boolean isEnd;
+        int length;
+
+        public AcTrie(){
+            nodes = new HashMap<>();
+            isEnd = false;
+            length=1;
+        }
+
+    }
+
+    public void insert(AcTrie root,String temp){
+        char[] tempCharArr = temp.toCharArray();
+        AcTrie cursor = root;
+        for(Character character : tempCharArr){
+            if(cursor.nodes.get(character)==null){
+                AcTrie acTrie = new AcTrie();
+                acTrie.length = root.length+1;
+                cursor.nodes.put(character,acTrie);
+            }
+            cursor=cursor.nodes.get(character);
+        }
+        cursor.isEnd=true;
+    }
+
+
+    public void buildFailPointer(AcTrie root){
+        Queue<AcTrie> queue = new ArrayDeque<>();
+        queue.add(root);
+        root.fail=null;
+        while(!queue.isEmpty()){
+            AcTrie cursor = queue.remove();
+
+            for(Character character : cursor.nodes.keySet()){
+                if(cursor==root){
+                    cursor.nodes.get(character).fail = root;
+                    continue;
+                }
+                AcTrie cursorFail = cursor.fail;
+                while(cursorFail!=null){
+                    if(cursorFail.nodes.get(character)!=null){
+                        cursor.nodes.get(character).fail =
+                                cursorFail.nodes.get(character);
+                        break;
+                    }
+                    cursorFail =cursorFail.fail;
+                }
+                if(cursorFail==null){
+                    cursor.nodes.get(character).fail = root;
+                }
+                queue.add(cursor.nodes.get(character));
+            }
+        }
+    }
+
+    public void match(AcTrie root,String text){
+        char[] textArr = text.toCharArray();
+        AcTrie cursor = root;
+        for(int i=0;i<text.length();i++){
+            Character character = textArr[i];
+            while(cursor!=root && cursor.nodes.get(character) == null){
+                cursor = cursor.fail;
+
+            }
+            if(cursor.nodes.get(character)!=null){
+                cursor = cursor.nodes.get(character);
+            }
+
+            if(cursor.isEnd){
+                Integer index = i-cursor.length;
+                System.out.println(String.format("敏感词:%s,字符串位置:%d"
+                        ,text.substring(index,i),index));
+            }
+        }
+    }
 }

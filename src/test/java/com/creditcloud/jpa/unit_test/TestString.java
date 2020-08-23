@@ -15,9 +15,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  *
@@ -216,5 +214,158 @@ public class TestString {
         System.out.println(str == str.intern());
     }
 
+    @Test
+    public void testLongestCommonPrefix(){
+        String strs[] = {"flw",""};
+        String longPrefix = longestCommonPrefix(strs);
+        System.out.println(longPrefix);
+    }
+
+    public String longestCommonPrefix(String[] strs) {
+        int cursor = 0;
+        while(true){
+            if(strs==null || strs.length==0 ){
+                return "";
+            }
+            if(strs.length ==1){
+                return strs[0];
+            }
+            for(int strIndex=1;strIndex<strs.length;strIndex++){
+                if(strs[0].length()<=cursor
+                        ||strs[strIndex].length()<=cursor
+                        ||strs[0].charAt(cursor)!=strs[strIndex].charAt(cursor)){
+                    return strs[0].substring(0,cursor);
+                }
+            }
+            cursor++;
+        }
+
+    }
+
+    /**
+     * kmp算法 求next数组
+     */
+    public int[] getNext(String temp){
+        char[] tempCharArr = temp.toCharArray();
+        int[] nextArr = new int[tempCharArr.length];
+        for(int i=0;i<nextArr.length;i++){
+            nextArr[i] = -1;
+        }
+        int index=1;
+        while(index<tempCharArr.length){
+            int k = nextArr[index-1];
+            while(k!=-1 && tempCharArr[k+1]!=tempCharArr[index]){
+                k = nextArr[k];
+            }
+            if(tempCharArr[k+1]==tempCharArr[index]){
+                nextArr[index++] = k+1;
+                continue;
+            }
+            nextArr[index++] = -1;
+        }
+        return nextArr;
+    }
+
+
+    public int kmp(String oriStr,String temp){
+        char[] oriArr = oriStr.toCharArray();
+        char[] tempArr = temp.toCharArray();
+        int[] nextArr = getNext(temp);
+        int tempIndex = -1;
+        for(int i=0;i<oriArr.length;i++){
+            if(tempIndex == tempArr.length-1){
+                return i-tempArr.length;
+            }
+            while(tempIndex!=-1 && tempArr[tempIndex+1]!=oriArr[i]){
+                tempIndex=nextArr[tempIndex];
+            }
+            if(tempArr[tempIndex+1]==oriArr[i]){
+                tempIndex++;
+            }
+        }
+        return -1;
+    }
+
+    @Test
+    public void testKmp(){
+        String oriStr = "aabcbcad";
+        String temp = "bca";
+        int kmp = kmp(oriStr,temp);
+        if(kmp!=-1){
+            System.out.println(kmp);
+            System.out.println(oriStr.substring(kmp,kmp+temp.length()));
+        }
+    }
+
+    @Test
+    public void testGetNext(){
+        int[] nextArr = getNext("ababc");
+        for(Integer next : nextArr){
+            System.out.println(next);
+        }
+    }
+
+    @Test
+    public void testGBK(){
+        String temp = "中文123";
+        char[] tempCharArr = temp.toCharArray();
+        for(char tempChar : tempCharArr){
+            System.out.println(tempChar);
+        }
+    }
+
+
+    public void quickSort(int[] arr,int start,int end){
+        if(start>=end){
+            return;
+        }
+        int left=start;
+        int right=end;
+        int sentry = arr[end];
+        while(left!=right){
+            while(right>left && arr[left]<=sentry){
+                left++;
+            }
+            while(right>left && arr[right]>=sentry){
+                right--;
+            }
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+        }
+        arr[end]=arr[left];
+        arr[left]=sentry;
+        quickSort(arr,start,left-1);
+        quickSort(arr,left+1,end);
+    }
+
+    public <E>void swap(E a,E b){
+        E temp =a;
+        a=b;
+        b=temp;
+    }
+
+    @Test
+    public void testSwap(){
+        int num1 = 1;
+        int num2 = 2;
+        Integer num3 =3;
+        Integer num4 = 4;
+        List<Integer> numList1 = new ArrayList<>();
+        List<Integer> numList2 = new ArrayList<>();
+        numList1.add(1);
+
+        swap(num1,num2);
+        swap(num3,num4);
+        swap(numList1,numList2);
+        System.out.println(num1);
+        System.out.println(num2);
+        System.out.println(num3);
+        System.out.println(num4);
+        System.out.println(numList1.size());
+        System.out.println(numList2.size());
+
+
+    }
 
 }

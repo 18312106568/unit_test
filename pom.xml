@@ -503,11 +503,6 @@
             <artifactId>ojdbc6</artifactId>
             <version>11.2.0.4</version>
         </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.5.0</version>
-        </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -515,6 +510,18 @@
             <version>29.0-jre</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.bytedeco/javacv-platform -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv-platform -->
+        <dependency>
+            <groupId>org.bytedeco.javacpp-presets</groupId>
+            <artifactId>opencv-platform</artifactId>
+            <version>3.4.1-1.4.1</version>
+        </dependency>
 
     </dependencies>
 

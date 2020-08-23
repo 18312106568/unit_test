@@ -1,0 +1,107 @@
+package com.creditcloud.jpa.unit_test.designModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class VisitorDesign {
+    public abstract class ResourceFile {
+        protected String filePath;
+        public ResourceFile(String filePath) {
+            this.filePath = filePath;
+        }
+        abstract public void accept(Visitor vistor);
+    }
+    public class PdfFile extends ResourceFile {
+        public PdfFile(String filePath) {
+            super(filePath);
+        }
+        @Override
+        public void accept(Visitor visitor) {
+            visitor.visit(this);
+        }
+        //...
+    }
+
+    public class PPTFile extends ResourceFile {
+        public PPTFile(String filePath) {
+            super(filePath);
+        }
+        @Override
+        public void accept(Visitor visitor) {
+            visitor.visit(this);
+        }
+        //...
+    }
+
+    public class WordFile extends ResourceFile {
+        public WordFile(String filePath) {
+            super(filePath);
+        }
+        @Override
+        public void accept(Visitor visitor) {
+            visitor.visit(this);
+        }
+        //...
+    }
+    //...PPTFile、WordFile跟PdfFile类似，这里就省略了...
+    public interface Visitor {
+        void visit(PdfFile pdfFile);
+        void visit(PPTFile pdfFile);
+        void visit(WordFile pdfFile);
+    }
+    public class Extractor implements Visitor {
+        @Override
+        public void visit(PPTFile pptFile) {
+            //...
+            System.out.println("Extract PPT.");
+        }
+        @Override
+        public void visit(PdfFile pdfFile) {
+            //...
+            System.out.println("Extract PDF.");
+        }
+        @Override
+        public void visit(WordFile wordFile) {
+            //...
+            System.out.println("Extract WORD.");
+        }
+    }
+    public class Compressor implements Visitor {
+        @Override
+        public void visit(PPTFile pptFile) {
+            //...
+            System.out.println("Compress PPT.");
+        }
+        @Override
+        public void visit(PdfFile pdfFile) {
+            //...
+            System.out.println("Compress PDF.");
+        }
+        @Override
+        public void visit(WordFile wordFile) {
+            //...
+            System.out.println("Compress WORD.");
+        }
+    }
+
+
+    public  void domain(String[] args) {
+        Extractor extractor = new Extractor();
+        List<ResourceFile> resourceFiles = listAllResourceFiles(args[0]);
+        for (ResourceFile resourceFile : resourceFiles) {
+            resourceFile.accept(extractor);
+        }
+        Compressor compressor = new Compressor();
+        for(ResourceFile resourceFile : resourceFiles) {
+            resourceFile.accept(compressor);
+        }
+    }
+    private  List<ResourceFile> listAllResourceFiles(String resourceDirectory) {
+        List<ResourceFile> resourceFiles = new ArrayList<>();
+        //...根据后缀(pdf/ppt/word)由工厂方法创建不同的类对象(PdfFile/PPTFile/WordFile)
+        resourceFiles.add(new PdfFile("a.pdf"));
+        resourceFiles.add(new WordFile("b.word"));
+        resourceFiles.add(new PPTFile("c.ppt"));
+        return resourceFiles;
+    }
+}

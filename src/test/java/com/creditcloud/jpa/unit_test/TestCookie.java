@@ -24,6 +24,7 @@ import java.io.*;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.security.cert.CertificateFactory;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -213,7 +214,9 @@ public class TestCookie {
 
     @Test
     public void testDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE,d MMM yyyy hh:mm:ss z", Locale.ENGLISH);
         System.out.println(new Date(1515997891000L));
+        System.out.println(sdf.format(new Date(1515997891000L)));
     }
 
 

@@ -538,4 +538,44 @@ public class TestFile {
 
     }
 
+    @Test
+    public void testRewireFile() throws FileNotFoundException {
+        File srcDir = new File("F:\\tmp\\98-设计模式之美\\10丨开源与项目实战：开源实战 (14讲)\\");
+        File[] allChildFiles = srcDir.listFiles();
+        for(File childFile : allChildFiles){
+            if(!".html".equals(getExtension(childFile.getName()))){
+                continue;
+            }
+          rewriteFile(childFile);
+        }
+    }
+
+    public String getExtension(String fileName){
+        return fileName.substring(fileName.lastIndexOf("."));
+    }
+
+    public void rewriteFile(File srcFile) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new FileInputStream(srcFile));
+        Integer count=0;
+        String REGEX = ".*user-select: none;";
+        List<String> lineList = new ArrayList<>();
+        while(scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            if(line.matches(REGEX)){
+                count++;
+                continue;
+            }
+            lineList.add(line);
+
+        }
+        System.out.println(srcFile.getName()+":"+count);
+        if(count==0){
+            return;
+        }
+        PrintWriter pw = new PrintWriter(new FileOutputStream(srcFile));
+        for(String line : lineList){
+            pw.println(line);
+        }
+    }
+
 }

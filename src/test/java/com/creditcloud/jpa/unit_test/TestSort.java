@@ -91,6 +91,54 @@ public class TestSort {
         quickSort(arr,i+1,right);
     }
 
+
+    /**
+     * 归并排序
+     * @return
+     */
+    public static int[] mergeSort(int[] arr,int left,int right){
+        if(left==right){
+            return new int[]{arr[left]};
+        }
+
+        //二分
+        int mid = (left+right)/2;
+        int[] lArr = mergeSort(arr,left,mid);
+        int[] rArr = mergeSort(arr,mid+1,right);
+
+
+        //合并
+        int[] nArr =new int[right-left+1];
+        int lIndex=0;
+        int rIndex=0;
+        int nIndex=0;
+        while(lIndex<lArr.length && rIndex<rArr.length){
+            if(lArr[lIndex]<=rArr[rIndex]){
+                nArr[nIndex++] = lArr[lIndex++];
+            }else {
+                nArr[nIndex] = rArr[rIndex];
+            }
+        }
+        while(lIndex<lArr.length){
+            nArr[nIndex++] = lArr[lIndex++];
+        }
+        while(rIndex<rArr.length){
+            nArr[nIndex++] = rArr[rIndex++];
+        }
+
+        return nArr;
+
+    }
+
+    @Test
+    public void testMergeSort(){
+        int arr[] = new int[]{5,3,3,8,9,7,4};
+        int arr2[] = mergeSort(arr,0,arr.length-1);
+        for(int num : arr2){
+            System.out.println(num);
+        }
+    }
+
     @Test
     public void testStable(){
         Student[] students = new Student[]{

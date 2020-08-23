@@ -76,6 +76,15 @@ public class TestInteger {
     }
 
     @Test
+    public void testBooleanArr(){
+        boolean[] intArr = new boolean[256];
+        intArr['a'] = true;
+        for(boolean num : intArr){
+            System.out.println(num);
+        }
+    }
+
+    @Test
     public void testAtomic(){
         AtomicLong txnSeq = new AtomicLong(0);
         System.out.println(txnSeq);
@@ -197,5 +206,35 @@ public class TestInteger {
     @Test
     public void testPow(){
         System.out.println(1 ^2);
+    }
+
+
+    private Random r = new Random();
+
+    private int randomLevel() {
+        int level = 1;
+        for (int i = 1; i < 16; ++i) {
+            if (r.nextInt() % 2 == 1) {
+                level++;
+            }
+        }
+
+        return level;
+    }
+
+
+    @Test
+    public void testRandomLeval(){
+        int randowArr[] = new int[16];
+        for(int i=0;i<randowArr.length;i++){
+            randowArr[i] = 0;
+        }
+        for(int i=0;i<1000000;i++){
+            randowArr[randomLevel()]++;
+        }
+
+        for(int i=randowArr.length-1;i>=0;i--){
+            System.out.println(randowArr[i]);
+        }
     }
 }

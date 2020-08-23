@@ -102,8 +102,8 @@ public class StringSearch {
         char[] modeCharArr = modeChars.toCharArray();
         int[] suffix = new int[modeChars.length()];
         boolean[] prefix = new boolean[modeChars.length()];
-        for(char modeChar : modeCharArr){
-            System.out.print(modeChar);
+        for(int i=0;i<modeCharArr.length;i++){
+            System.out.print(modeCharArr[i]);
             System.out.print(' ');
         }
         System.out.println();
