@@ -13,7 +13,7 @@ import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport;
 
 import java.util.Iterator;
-import java.util.Queue;
+import java.util.Stack;
 
 /**
  *
@@ -65,7 +65,7 @@ public class TestProxy {
         }
 
         for(int i=w;i>0;i--){
-            if(states[n-1][i]){
+            if(states[arr.length-1][i]){
                 return i;
             }
         }
@@ -100,11 +100,11 @@ public class TestProxy {
             }
         }
 
-        public void deepSelect(int[] arr, int start, int weight, Queue<Integer> queue){
+        public void deepSelect(int[] arr, int start, int weight, Stack<Integer> stack){
 
             if(weight>=LIMIT||start==arr.length){
                 if(weight==LIMIT){
-                    Iterator it = queue.iterator();
+                    Iterator it = stack.iterator();
                     while(it.hasNext()){
                         System.out.print(it.next()+" ");
                     }
@@ -117,12 +117,21 @@ public class TestProxy {
                 if(arr[i]==lastSelect){
                     continue;
                 }
-                queue.add(arr[start]);
-                deepSelect(arr,i+1,weight+arr[i],queue);
-                lastSelect = queue.remove();
+                stack.add(arr[i]);
+                deepSelect(arr,i+1,weight+arr[i],stack);
+                lastSelect = stack.pop();
             }
 
         }
+    }
+
+    @Test
+    public void testFlashBack(){
+        int arr[] = {2,3,5,5,7};
+
+        FlashBack flashBack = new FlashBack(arr);
+
+        flashBack.deepSelect(arr,0,0,new Stack<>());
     }
     
 }

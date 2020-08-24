@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb2e9bb2-6fcd-4b4d-a663-5063d9c085df" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Binary/TestInteger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/Binary/TestInteger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestCookie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestCookie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestHttp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/io/EidtFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/io/EidtFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/search/StringSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/search/StringSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/Binary/TestInteger.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/Binary/TestInteger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestCookie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestCookie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestHttp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestHttp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/creditcloud/jpa/unit_test/TestMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/unit_test.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="102" column="78" selection-start-line="102" selection-start-column="78" selection-end-line="102" selection-end-column="78" />
+            <state relative-caret-position="759">
+              <caret line="128" column="24" lean-forward="true" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -360,7 +343,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1598114169372" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1598258204024" />
     <property name="dynamic.classpath" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../websocket" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -403,8 +386,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestString.testSwap">
-    <configuration name="TestSort.testMergeSort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestProxy.testFlashBack">
+    <configuration name="TestProxy.testFlashBack" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="unit_test" />
       <extension name="coverage">
         <pattern>
@@ -413,8 +396,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.creditcloud.jpa.unit_test" />
-      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestSort" />
-      <option name="METHOD_NAME" value="testMergeSort" />
+      <option name="MAIN_CLASS_NAME" value="com.creditcloud.jpa.unit_test.TestProxy" />
+      <option name="METHOD_NAME" value="testFlashBack" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -485,19 +468,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.TestSort.testMergeSort" />
       <item itemvalue="JUnit.TestString.testGetNext" />
       <item itemvalue="JUnit.TestString.testKmp" />
       <item itemvalue="JUnit.TestString.testGBK" />
       <item itemvalue="JUnit.TestString.testSwap" />
+      <item itemvalue="JUnit.TestProxy.testFlashBack" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestProxy.testFlashBack" />
         <item itemvalue="JUnit.TestString.testSwap" />
         <item itemvalue="JUnit.TestString.testGBK" />
         <item itemvalue="JUnit.TestString.testKmp" />
         <item itemvalue="JUnit.TestString.testGetNext" />
-        <item itemvalue="JUnit.TestSort.testMergeSort" />
       </list>
     </recent_temporary>
   </component>
@@ -616,44 +599,44 @@
       <workItem from="1597842723053" duration="6421000" />
       <workItem from="1597892361280" duration="4130000" />
       <workItem from="1597924495820" duration="14020000" />
-      <workItem from="1598173128050" duration="1086000" />
+      <workItem from="1598173128050" duration="4044000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestString_testGetNext - 2020.08.19 at 22h 15m 45s.xml">
-      <configuration name="TestString.testGetNext" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 24m 40s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testKmp - 2020.08.20 at 11h 49m 25s.xml">
-      <configuration name="TestString.testKmp" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 25m 41s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testKmp - 2020.08.20 at 11h 50m 18s.xml">
-      <configuration name="TestString.testKmp" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 26m 54s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testKmp - 2020.08.20 at 11h 51m 09s.xml">
-      <configuration name="TestString.testKmp" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 27m 49s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testKmp - 2020.08.20 at 11h 51m 28s.xml">
-      <configuration name="TestString.testKmp" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 43m 21s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testKmp - 2020.08.20 at 11h 51m 50s.xml">
-      <configuration name="TestString.testKmp" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 47m 37s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testGBK - 2020.08.21 at 13h 01m 56s.xml">
-      <configuration name="TestString.testGBK" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 49m 08s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testSwap - 2020.08.22 at 20h 43m 07s.xml">
-      <configuration name="TestString.testSwap" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 49m 57s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testSwap - 2020.08.22 at 20h 44m 13s.xml">
-      <configuration name="TestString.testSwap" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 55m 32s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestString_testSwap - 2020.08.22 at 20h 46m 36s.xml">
-      <configuration name="TestString.testSwap" configurationId="JUnit" />
+    <history-entry file="TestProxy_testFlashBack - 2020.08.23 at 17h 56m 57s.xml">
+      <configuration name="TestProxy.testFlashBack" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1086171000" />
+    <option name="totallyTimeSpent" value="1089129000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -678,7 +661,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993573" weight="0.32974428" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8489717" weight="0.44475922" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8489717" visible="true" weight="0.44475922" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.657455" weight="0.35410765" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -963,6 +946,12 @@
           <line>253</line>
           <properties />
           <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestProxy.java</url>
+          <line>120</line>
+          <properties />
+          <option name="timeStamp" value="176" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1511,8 +1500,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/creditcloud/jpa/unit_test/TestProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="102" column="78" selection-start-line="102" selection-start-column="78" selection-end-line="102" selection-end-column="78" />
+        <state relative-caret-position="759">
+          <caret line="128" column="24" lean-forward="true" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="29" />
         </state>
       </provider>
     </entry>
